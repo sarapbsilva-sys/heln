@@ -554,3 +554,498 @@ body.system-body {
     transform: none !important;
     opacity: 0.7;
 }
+
+/* =====================================================
+   RESPONSIVIDADE COMPLETA - TELA 3
+   ===================================================== */
+
+/* Evita estouro horizontal */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =====================================================
+   TABLETS / NOTEBOOKS MENORES
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .lms-header-universal {
+        padding: 14px 20px;
+    }
+
+    .header-container {
+        width: 100%;
+        gap: 15px;
+    }
+
+    .lms-content-universal {
+        margin: 24px auto 40px;
+        padding: 0 20px;
+    }
+
+    /* HERO */
+
+    .hero-learning-banner {
+        padding: 30px;
+        gap: 25px;
+    }
+
+    .hero-text-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .hero-title {
+        font-size: 27px;
+    }
+
+    .hero-img {
+        height: 130px;
+        max-width: 230px;
+        object-fit: contain;
+    }
+
+    /* CARDS */
+
+    .coursera-card {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .coursera-card-thumb {
+        width: 125px;
+        height: 105px;
+    }
+
+    .coursera-img {
+        height: 75px;
+    }
+}
+
+
+/* =====================================================
+   CELULARES
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    body.system-body {
+        min-height: 100svh;
+    }
+
+
+    /* ================= HEADER ================= */
+
+    .lms-header-universal {
+        padding: 12px 16px;
+    }
+
+    .header-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .brand-box {
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .system-top-title {
+        font-size: 18px;
+        white-space: nowrap;
+    }
+
+    .nep-tag-badge {
+        font-size: 9px;
+        padding: 4px 8px;
+        white-space: nowrap;
+    }
+
+    .header-actions {
+        flex-shrink: 0;
+    }
+
+    .code-badge {
+        font-size: 10px;
+        padding: 6px 9px;
+        gap: 4px;
+    }
+
+
+    /* ================= CONTEÚDO ================= */
+
+    .lms-content-universal {
+        width: 100%;
+        margin: 18px auto 30px;
+        padding: 0 14px;
+    }
+
+
+    /* ================= HERO ================= */
+
+    .hero-learning-banner {
+        width: 100%;
+        padding: 24px 18px;
+        border-radius: 18px;
+
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+
+        gap: 18px;
+        margin-bottom: 28px;
+    }
+
+    .hero-text-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .lesson-badge {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .lesson-badge .tag-meta,
+    .lesson-badge .tag-desc {
+        font-size: 9px;
+        padding: 4px 8px;
+    }
+
+    .hero-title {
+        font-size: 24px;
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+    }
+
+    .hero-img {
+        height: 105px;
+        width: auto;
+        max-width: 70%;
+        object-fit: contain;
+        order: -1;
+    }
+
+    .btn-continuar-hero {
+        padding: 11px 22px;
+        font-size: 13px;
+        justify-content: center;
+    }
+
+
+    /* ================= CATÁLOGO ================= */
+
+    .catalog-section-header {
+        margin-top: 28px;
+        margin-bottom: 18px;
+        gap: 12px;
+    }
+
+    .section-title-wrapper {
+        gap: 9px;
+    }
+
+    .section-accent-bar {
+        width: 5px;
+        height: 23px;
+    }
+
+    .section-heading {
+        font-size: 21px;
+    }
+
+
+    /* ================= ABAS ================= */
+
+    .course-tabs {
+        width: 100%;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .course-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab-btn {
+        flex-shrink: 0;
+        font-size: 12px;
+        padding: 7px 11px;
+    }
+
+
+    /* ================= LISTA DE CURSOS ================= */
+
+    .courses-list-coursera {
+        gap: 16px;
+    }
+
+
+    /* ================= CARD ================= */
+
+    .coursera-card {
+        width: 100%;
+        padding: 16px;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 14px;
+        border-radius: 16px;
+    }
+
+    /* Remove movimento lateral no touch */
+    .coursera-card:hover {
+        transform: none;
+    }
+
+
+    /* Imagem do curso */
+
+    .coursera-card-thumb {
+        width: 100%;
+        height: 130px;
+
+        border-radius: 12px;
+    }
+
+    .coursera-img {
+        height: 90px;
+        max-width: 80%;
+        object-fit: contain;
+    }
+
+    .thumb-icon {
+        font-size: 38px;
+    }
+
+
+    /* Conteúdo */
+
+    .coursera-card-body {
+        width: 100%;
+    }
+
+    .course-institution {
+        font-size: 10px;
+    }
+
+    .course-title-coursera {
+        font-size: 18px;
+        line-height: 1.25;
+        margin-bottom: 7px;
+    }
+
+    .course-desc-coursera {
+        font-size: 12.5px;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+
+
+    /* Informações do curso */
+
+    .course-meta-tags {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 7px 14px;
+
+        font-size: 11px;
+    }
+
+
+    /* ================= PROGRESSO ================= */
+
+    .mini-progress-wrapper {
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .mini-progress-bar {
+        flex: 1;
+        width: auto;
+        max-width: 220px;
+    }
+
+
+    /* ================= BOTÃO DO CARD ================= */
+
+    .coursera-card-action {
+        width: 100%;
+        display: flex;
+    }
+
+    .btn-vamos-comecar {
+        width: 100%;
+        min-height: 44px;
+
+        justify-content: center;
+
+        padding: 11px 18px;
+        font-size: 13px;
+    }
+
+
+    /* ================= PAGINAÇÃO ================= */
+
+    .catalog-pagination {
+        width: 100%;
+
+        gap: 10px;
+
+        margin-top: 28px;
+        margin-bottom: 10px;
+    }
+
+    .catalog-pagination .btn-voltar,
+    .catalog-pagination .btn-prossiga {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    #page-indicator {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+
+    /* ================= RODAPÉ ================= */
+
+    .footer-bar {
+        margin-top: 30px;
+
+        padding: 14px 15px;
+
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .footer-logo {
+        height: 42px;
+    }
+
+    .footer-content {
+        width: 100%;
+        gap: 4px;
+    }
+
+    .footer-content p {
+        padding: 0 10px;
+    }
+}
+
+
+/* =====================================================
+   CELULARES PEQUENOS
+   iPhone SE / Galaxy menores etc.
+   ===================================================== */
+
+@media (max-width: 380px) {
+
+    .lms-header-universal {
+        padding: 10px 12px;
+    }
+
+    .system-top-title {
+        font-size: 16px;
+    }
+
+    .nep-tag-badge {
+        display: none;
+    }
+
+    .code-badge {
+        font-size: 9px;
+        padding: 5px 7px;
+    }
+
+    .lms-content-universal {
+        padding: 0 10px;
+    }
+
+    .hero-learning-banner {
+        padding: 20px 14px;
+    }
+
+    .hero-img {
+        height: 90px;
+    }
+
+    .hero-title {
+        font-size: 21px;
+    }
+
+    .hero-subtitle {
+        font-size: 12px;
+    }
+
+    .section-heading {
+        font-size: 19px;
+    }
+
+    .coursera-card {
+        padding: 13px;
+    }
+
+    .coursera-card-thumb {
+        height: 110px;
+    }
+
+    .coursera-img {
+        height: 75px;
+    }
+
+    .course-title-coursera {
+        font-size: 17px;
+    }
+
+    .course-desc-coursera {
+        font-size: 12px;
+    }
+
+    .catalog-pagination {
+        gap: 7px;
+    }
+
+    .catalog-pagination .btn-voltar,
+    .catalog-pagination .btn-prossiga {
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+
+    #page-indicator {
+        font-size: 11px;
+    }
+
+    .footer-logo {
+        height: 36px;
+    }
+
+    .footer-bar {
+        font-size: 10px;
+    }
+}
