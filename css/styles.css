@@ -506,14 +506,14 @@ body {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: space-between; /* Distribui topo, centro e rodapé */
+        justify-content: space-between;
         align-items: center;
         overflow-y: auto;
     }
 
-    /* Topo Fixo */
+    /* 1. Nome do Hospital e Núcleo no topo */
     .header-info {
-        margin-top: 15px;
+        margin-top: 20px;
         margin-bottom: 0;
         padding-top: 0;
         text-align: center;
@@ -529,15 +529,15 @@ body {
         letter-spacing: 1px;
     }
 
-    /* Conteúdo do Meio Centralizado em Relação à Tela */
+    /* 2. Container Centralizado no meio da tela */
     .main-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: auto;    /* Empurra o bloco para o centro vertical */
-        margin-bottom: auto; /* Garante que ele não suba nem desça demais */
-        padding: 10px 0;
+        margin-top: auto;    /* Centraliza perfeitamente o bloco no meio */
+        margin-bottom: auto;
+        padding: 0;
         width: 100%;
     }
 
@@ -547,7 +547,8 @@ body {
         text-align: center;
     }
 
-    .hospital-logo {
+    /* Logo do QualiAcademy */
+    .hospital-logo, .hero-logo-top {
         width: 55%;
         max-width: 190px;
         margin-bottom: 2px;
@@ -556,21 +557,22 @@ body {
     .hero-section h1 {
         font-size: 28px;
         margin-bottom: 0;
+        line-height: 1.1;
     }
 
     .platform-subtitle {
         font-size: 12px;
-        margin-bottom: 2px;
+        margin-bottom: 0; /* Remove espaço extra para aproximar o botão */
     }
 
-    /* Botão Entrar alinhado e próximo ao texto */
+    /* 3. Botão Entrar colado abaixo do nome QualiAcademy */
     .btn-entrar {
-        padding: 8px 24px;
+        padding: 8px 26px;
         font-size: 14px;
-        margin-top: 6px;
+        margin-top: 8px; /* Fica coladinho no texto QualiAcademy / Plataforma */
     }
 
-    /* Rodapé Preso no Fundo */
+    /* 4. Rodapé na base */
     .footer-bar {
         position: relative;
         width: 100%;
