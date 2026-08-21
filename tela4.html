@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Ensino - NEP</title>
+    <link rel="stylesheet" href="css/tela3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="system-body">
+
+    <!-- Header Principal Topo (Sem Sidebar) -->
+    <header class="lms-header-universal">
+        <div class="header-container">
+            <div class="brand-box">
+            <h2 class="system-top-title">Quali<span>Academy</span></h2>
+                <span class="nep-tag-badge">Núcleo de Educação Permanente</span>
+            </div>
+
+            <!-- Busca + Acesso por Código -->
+            <div class="header-actions">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" placeholder="Buscar treinamento ou protocolo..." class="search-input">
+                </div>
+                <div class="code-badge">
+                    <i class="fa-solid fa-key"></i> Acesso Universal
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal Centralizado -->
+    <main class="lms-content-universal">
+
+        <!-- Banner Hero de Aprendizado (Continuar de onde parou) -->
+        <section class="hero-learning-banner">
+            <div class="hero-text-content">
+                <div class="lesson-badge">
+                    <span class="tag-meta">Em Andamento</span>
+                    <span class="tag-desc">Segurança do Paciente</span>
+                </div>
+                <h1 class="hero-title">Bem-vindo(a) ao Portal de Treinamentos</h1>
+                <p class="hero-subtitle">Módulo em destaque: <strong>Identificação Segura do Paciente</strong>. Assista à videoaula, responda ao quiz e garanta seu registro de presença.</p>
+                
+                <a href="tela4.html" class="btn-continuar-hero">
+                    Iniciar Treinamento <i class="fa-solid fa-play"></i>
+                </a>
+            </div>
+
+            <div class="hero-img-box">
+                <img src="../imgs/bonecos.png" alt="Personagens" class="hero-img">
+            </div>
+        </section>
+
+        <!-- Cards Rápidos de Indicadores -->
+        <section class="metrics-row">
+            <div class="metric-card">
+                <div class="metric-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div class="metric-data">
+                    <h3>1 / 5</h3>
+                    <p>Módulos Ativos</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="metric-data">
+                    <h3>0</h3>
+                    <p>Treinamentos Concluídos</p>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon icon-orange"><i class="fa-solid fa-clock"></i></div>
+                <div class="metric-data">
+                    <h3>15 min</h3>
+                    <p>Carga Horária Estimada</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtros do Catálogo (Estilo Coursera) -->
+        <div class="catalog-section-header">
+            <h2 class="section-heading">Catálogo de Treinamentos</h2>
+            <nav class="course-tabs">
+                <button class="tab-btn active">Todos os Módulos</button>
+                <button class="tab-btn">Metas Internacionais</button>
+                <button class="tab-btn">Protocolos Assistenciais</button>
+                <button class="tab-btn">Obrigatórios</button>
+            </nav>
+        </div>
+
+        <!-- Lista Horizontal de Cursos -->
+        <div class="courses-list-coursera">
+
+            <!-- CURSO 1: Meta 1 (Disponível) -->
+            <article class="coursera-card featured-course">
+                <div class="coursera-card-thumb">
+                    <img src="../imgs/bonecos.png" alt="Meta 1" class="coursera-img">
+                    <span class="coursera-badge-overlay">Meta 1</span>
+                </div>
+
+                <div class="coursera-card-body">
+                    <div class="course-institution">NEP • Hospital Regional Dantas Bião</div>
+                    <h3 class="course-title-coursera">Identificação <span class="highlight-green">Segura</span> do Paciente</h3>
+                    <p class="course-desc-coursera">
+                        Aprenda passo a passo como identificar com segurança nossas crianças e os 3 identificadores obrigatórios do hospital.
+                    </p>
+
+                    <div class="course-meta-tags">
+                        <span><i class="fa-solid fa-layer-group"></i> 8 Passos</span>
+                        <span><i class="fa-regular fa-clock"></i> 15 min</span>
+                        <span class="tag-level"><i class="fa-solid fa-signal"></i> Obrigatório</span>
+                    </div>
+
+                    <!-- Barra de Progresso Interna -->
+                    <div class="mini-progress-wrapper">
+                        <div class="mini-progress-bar"><div class="mini-progress-fill" style="width: 15%;"></div></div>
+                        <span class="progress-percent">15% concluído</span>
+                    </div>
+                </div>
+
+                <div class="coursera-card-action">
+                    <a href="tela4.html" class="btn-vamos-comecar">
+                        Acessar Módulo <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- CURSO 2: Meta 2 (Em Breve) -->
+            <article class="coursera-card card-locked">
+                <div class="coursera-card-thumb placeholder-bg">
+                    <i class="fa-solid fa-comments thumb-icon"></i>
+                    <span class="coursera-badge-overlay tag-disabled">Meta 2</span>
+                </div>
+
+                <div class="coursera-card-body">
+                    <div class="course-institution">NEP • Hospital Regional Dantas Bião</div>
+                    <h3 class="course-title-coursera">Comunicação <span class="highlight-muted">Efetiva</span> na Saúde</h3>
+                    <p class="course-desc-coursera">
+                        Diretrizes para passagem de plantão, chamados verbais e transferência segura de informações assistenciais.
+                    </p>
+
+                    <div class="course-meta-tags">
+                        <span><i class="fa-solid fa-layer-group"></i> 6 Passos</span>
+                        <span><i class="fa-regular fa-clock"></i> 10 min</span>
+                        <span class="tag-level"><i class="fa-solid fa-lock"></i> Em breve</span>
+                    </div>
+                </div>
+
+                <div class="coursera-card-action">
+                    <button type="button" class="btn-vamos-comecar btn-off" disabled>
+                        Indisponível <i class="fa-solid fa-lock"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- CURSO 3: Meta 3 (Em Breve) -->
+            <article class="coursera-card card-locked">
+                <div class="coursera-card-thumb placeholder-bg">
+                    <i class="fa-solid fa-pills thumb-icon"></i>
+                    <span class="coursera-badge-overlay tag-disabled">Meta 3</span>
+                </div>
+
+                <div class="coursera-card-body">
+                    <div class="course-institution">NEP • Hospital Regional Dantas Bião</div>
+                    <h3 class="course-title-coursera">Segurança nos <span class="highlight-muted">Medicamentos</span></h3>
+                    <p class="course-desc-coursera">
+                        Boas práticas no manuseio, prescrição, rotulagem e administração de medicamentos de alta vigilância.
+                    </p>
+
+                    <div class="course-meta-tags">
+                        <span><i class="fa-solid fa-layer-group"></i> 7 Passos</span>
+                        <span><i class="fa-regular fa-clock"></i> 12 min</span>
+                        <span class="tag-level"><i class="fa-solid fa-lock"></i> Em breve</span>
+                    </div>
+                </div>
+
+                <div class="coursera-card-action">
+                    <button type="button" class="btn-vamos-comecar btn-off" disabled>
+                        Indisponível <i class="fa-solid fa-lock"></i>
+                    </button>
+                </div>
+            </article>
+
+            <!-- CURSO 4: Meta 5 (Em Breve) -->
+            <article class="coursera-card card-locked">
+                <div class="coursera-card-thumb placeholder-bg">
+                    <i class="fa-solid fa-hand-holding-droplet thumb-icon"></i>
+                    <span class="coursera-badge-overlay tag-disabled">Meta 5</span>
+                </div>
+
+                <div class="coursera-card-body">
+                    <div class="course-institution">NEP • Hospital Regional Dantas Bião</div>
+                    <h3 class="course-title-coursera">Higienização das <span class="highlight-muted">Mãos</span></h3>
+                    <p class="course-desc-coursera">
+                        Técnicas essenciais e os 5 momentos de higienização das mãos na prevenção de infecções hospitalares.
+                    </p>
+
+                    <div class="course-meta-tags">
+                        <span><i class="fa-solid fa-layer-group"></i> 5 Passos</span>
+                        <span><i class="fa-regular fa-clock"></i> 10 min</span>
+                        <span class="tag-level"><i class="fa-solid fa-lock"></i> Em breve</span>
+                    </div>
+                </div>
+
+                <div class="coursera-card-action">
+                    <button type="button" class="btn-vamos-comecar btn-off" disabled>
+                        Indisponível <i class="fa-solid fa-lock"></i>
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+</body>
+</html>

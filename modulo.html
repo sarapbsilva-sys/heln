@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QualiAcademy</title>
+    <link rel="stylesheet" href="css/tela4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="system-body">
+
+    <!-- Topo da Tela do Sistema Padronizado (Padrão Tela 3) -->
+   <header class="lms-header-universal">
+    <div class="header-container">
+        <div class="brand-box">
+            <h2 class="system-top-title">Quali<span>Academy</span></h2>
+        </div>
+
+        <div class="header-actions">
+            <span class="nep-tag-badge">Hospital Estadual do Litoral Norte</span>
+        </div>
+    </div>
+</header>
+
+    <!-- Barra de Progresso -->
+    <div class="progress-section">
+        <div class="progress-bars">
+            <span class="bar active"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <p class="step-indicator">Passo 1 de 8 - Boas Vindas</p>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="system-content">
+        <div class="lesson-card" id="card-principal">
+            
+            <!-- PASSO 1 -->
+            <div id="step-1" class="step-content">
+                <div class="lesson-badge">
+                    <span class="tag-meta" id="dynamic-meta-badge">Meta</span>
+                    <span class="tag-desc" id="dynamic-categoria-badge">Capacitação</span>
+                </div>
+                
+                <h1 class="lesson-title" id="dynamic-hero-title">Carregando Módulo...</h1>
+
+                <p class="lesson-text" id="dynamic-hero-text"></p>
+
+                <div class="lesson-image-box">
+                    <img id="dynamic-hero-img" src="" alt="Personagens" class="lesson-img">
+                </div>
+
+                <button type="button" class="btn-vamos-comecar" onclick="goToStep(2)">
+                    Vamos começar <i class="fa-solid fa-circle-play"></i>
+                </button>
+            </div>
+
+            <!-- PASSO 2 -->
+            <div id="step-2" class="step-content" style="display: none;">
+                <div class="sub-badge" id="p2-subbadge"><span class="dot"></span> </div>
+                <h1 class="lesson-title left-title" id="p2-title"></h1>
+                <p class="lesson-text left-text" id="p2-text"></p>
+
+                <div class="cards-grid" id="p2-cards-container"></div>
+
+                <div class="card-navigation">
+                    <button type="button" class="btn-voltar" onclick="goToStep(1)">← Voltar</button>
+                    <button type="button" class="btn-prossiga" onclick="goToStep(3)">Muito bem, prossiga! →</button>
+                </div>
+            </div>
+
+            <!-- PASSO 3 -->
+            <div id="step-3" class="step-content" style="display: none;">
+                <div class="sub-badge" id="p3-subbadge"><span class="dot"></span> </div>
+                <h1 class="lesson-title left-title" id="p3-title"></h1>
+                <p class="lesson-text left-text" id="p3-text"></p>
+
+                <div class="cards-grid-5" id="p3-cards-container"></div>
+
+                <div class="card-navigation">
+                    <button type="button" class="btn-voltar" onclick="goToStep(2)">← Voltar</button>
+                    <button type="button" class="btn-prossiga" onclick="goToStep(4)">Entendi, prossiga! →</button>
+                </div>
+            </div>
+
+            <!-- PASSO 4 -->
+            <div id="step-4" class="step-content" style="display: none;">
+                <div class="sub-badge" id="p4-subbadge"><span class="dot"></span> </div>
+                <h1 class="lesson-title left-title" id="p4-title"></h1>
+                <p class="lesson-text left-text" id="p4-text"></p>
+
+                <div class="cards-grid-step4" id="p4-cards-container"></div>
+
+                <div class="highlight-banner-step4" id="p4-banner-container">
+                    <div class="banner-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="banner-text">
+                        <h4 id="p4-banner-title"></h4>
+                        <p id="p4-banner-desc"></p>
+                    </div>
+                </div>
+
+                <div class="card-navigation">
+                    <button type="button" class="btn-voltar" onclick="goToStep(3)">← Voltar</button>
+                    <button type="button" class="btn-prossiga" onclick="goToStep(5)">Entendi, prossiga! →</button>
+                </div>
+            </div>
+
+            <!-- PASSO 5 - VIDEOAULA -->
+            <div id="step-5" class="step-content" style="display: none;">
+                <div class="sub-badge"><span class="dot"></span> VIDEOAULA</div>
+                <h1 class="lesson-title left-title">Assista à aula antes de responder</h1>
+                
+                <div class="video-instruction-box">
+                    
+                    <p class="lesson-text left-text">
+                        Toque no botão abaixo para abrir a videoaula. Depois de assistir, volte aqui e siga para o quiz.
+                    </p>
+                </div>
+
+                <a id="btn-yt-link" href="#" target="_blank" class="btn-youtube-call pulse">
+                    <div class="yt-left">
+                        <div class="yt-play-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="yt-text">
+                            <h3>Assistir à videoaula</h3>
+                            <span id="yt-desc-text">YouTube · abre em uma nova aba</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right yt-arrow"></i>
+                </a>
+
+                <div class="alert-warning-step5">
+                    <div class="alert-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+                    <p><strong>Importante:</strong> assistir à videoaula é essencial para responder corretamente às questões a seguir.</p>
+                </div>
+
+                <div class="card-navigation">
+                    <button type="button" class="btn-voltar" onclick="goToStep(4)">← Voltar</button>
+                    <button type="button" class="btn-prossiga" onclick="goToStep(6)">Já assisti, prossiga! →</button>
+                </div>
+            </div>
+
+            <!-- PASSO 6 - QUIZ DINÂMICO -->
+            <div id="step-6" class="step-content" style="display: none;">
+                <div class="sub-badge"><span class="dot"></span> VAMOS TESTAR SEU CONHECIMENTO</div>
+                <h1 class="lesson-title left-title">Responda ao quiz</h1>
+                <p class="lesson-text left-text">
+                    Perguntas rápidas com correção na hora. Ao acertar, a opção fica verde.<br>
+                    Acerte todas para liberar o próximo passo.
+                </p>
+
+                <div class="quiz-container" id="quiz-dynamic-container"></div>
+
+                <div class="quiz-footer-nav">
+                    <div class="card-navigation">
+                        <button type="button" class="btn-voltar" onclick="goToStep(5)">← Voltar</button>
+                        <button type="button" class="btn-prossiga btn-disabled" id="btn-next-quiz" disabled onclick="goToStep(7)">Continuar →</button>
+                    </div>
+                    <p class="quiz-hint-text" id="quiz-hint">Responda corretamente às perguntas para liberar o botão.</p>
+                </div>
+            </div>
+
+            <!-- PASSO 7 - AVALIAÇÃO DE SATISFAÇÃO -->
+            <div id="step-7" class="step-content" style="display: none;">
+                <div class="sub-badge"><span class="dot"></span> SUA AVALIAÇÃO</div>
+                <h1 class="lesson-title left-title">Avaliação de satisfação</h1>
+                <p class="lesson-text left-text">Sua opinião ajuda o NEP a melhorar os treinamentos. Marque uma opção em cada linha.</p>
+
+                <div class="rating-scale-legend">
+                    <span><strong>5</strong> Excelente</span>
+                    <span><strong>1</strong> Péssimo</span>
+                </div>
+
+                <div class="rating-table-wrapper">
+                    <table class="rating-table">
+                        <thead>
+                            <tr>
+                                <th class="col-criteria"></th>
+                                <th>Excelente<br><span class="scale-num">(5)</span></th>
+                                <th>Bom<br><span class="scale-num">(4)</span></th>
+                                <th>Regular<br><span class="scale-num">(3)</span></th>
+                                <th>Ruim<br><span class="scale-num">(2)</span></th>
+                                <th>Péssimo<br><span class="scale-num">(1)</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="criteria-label">Clareza e relevância do conteúdo</td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                            <tr>
+                                <td class="criteria-label">Metodologia utilizada</td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                            <tr>
+                                <td class="criteria-label">Qualidade do material didático</td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                            <tr>
+                                <td class="criteria-label">Domínio do instrutor</td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                            <tr>
+                                <td class="criteria-label">Aplicabilidade na prática assistencial</td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="rating-footer-nav">
+                    <div class="card-navigation">
+                        <button type="button" class="btn-voltar" onclick="goToStep(6)">← Voltar</button>
+                        <button type="button" class="btn-prossiga btn-disabled" id="btn-next-rating" disabled onclick="goToStep(8)">Continuar →</button>
+                    </div>
+                    <p class="quiz-hint-text" id="rating-hint">Marque uma opção em cada linha para continuar.</p>
+                </div>
+            </div>
+
+            <!-- PASSO 8 - REGISTRO DE PRESENÇA -->
+            <div id="step-8" class="step-content" style="display: none;">
+                <div class="sub-badge"><span class="dot"></span> SEUS DADOS</div>
+                <h1 class="lesson-title left-title">Registre sua presença</h1>
+                <p class="lesson-text left-text">Por último, preencha seus dados. As respostas vão direto para o registro do NEP.</p>
+
+                <form id="form-presence" class="presence-form" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="user-name">Nome completo <span class="required">*</span></label>
+                        <input type="text" id="user-name" class="form-input" placeholder="Digite seu nome completo" oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-matricula">Matrícula <span class="required">*</span></label>
+                        <input type="text" id="user-matricula" class="form-input" placeholder="Digite sua matrícula" oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-profession">Profissão <span class="required">*</span></label>
+                        <input type="text" id="user-profession" class="form-input" placeholder="Ex: Enfermeiro, Técnico, Médico..." oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-sector">Setor de lotação <span class="required">*</span></label>
+                        <input type="text" id="user-sector" class="form-input" placeholder="Seu setor atual" oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-shift">Turno <span class="required">*</span></label>
+                        <input type="text" id="user-shift" class="form-input" placeholder="Ex: Manhã, Tarde, Noturno, Integral" oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-feedback">Dúvidas ou sugestões? <span class="optional">(opcional)</span></label>
+                        <textarea id="user-feedback" class="form-textarea" placeholder="Escreva aqui, se quiser" rows="3"></textarea>
+                    </div>
+
+                    <div class="card-navigation form-navigation">
+                        <button type="button" class="btn-voltar" onclick="goToStep(7)">← Voltar</button>
+                        <button type="submit" class="btn-prossiga btn-disabled" id="btn-submit-presence" disabled>Enviar e registrar presença</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- MODAL DE SUCESSO -->
+            <div id="success-modal" class="modal-overlay" style="display: none;">
+                <div class="modal-card">
+                    <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h2>Presença registrada com sucesso!</h2>
+                    <p>Você concluiu todas as etapas do treinamento do NEP com êxito.</p>
+                    <button type="button" class="btn-prossiga" onclick="closeSuccessModal()">Concluir Módulo</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Rodapé no fim da página (Igual Tela 3) -->
+    <footer class="footer-bar">
+        <div class="footer-content">
+            <img src="../imgs/logos.png" alt="Logo do Rodapé" class="footer-logo">
+            <p>Departamento de Qualidade e Segurança do Paciente | HELN</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS DE CARREGAMENTO -->
+    <script src="js/modulos.js"></script>
+    <script>
+        let currentModulo = null;
+        let quizScore = {};
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const moduloId = urlParams.get('id') || 'meta1';
+
+            if (typeof BANCO_DE_MODULOS === 'undefined') {
+                console.error("O arquivo js/modulos.js não foi encontrado ou não foi carregado.");
+                return;
+            }
+
+            currentModulo = BANCO_DE_MODULOS[moduloId];
+
+            if (!currentModulo) {
+                alert("Treinamento não encontrado!");
+                window.location.href = "tela3.html";
+                return;
+            }
+
+            renderModuloData(currentModulo);
+        });
+
+        function renderModuloData(data) {
+            document.title = `${data.metaBadge} - ${data.categoria}`;
+
+            document.getElementById('dynamic-meta-badge').textContent = data.metaBadge;
+            document.getElementById('dynamic-categoria-badge').textContent = data.categoria;
+            document.getElementById('dynamic-hero-title').innerHTML = data.tituloHtml;
+            document.getElementById('dynamic-hero-text').innerHTML = data.textoBoasVindas;
+            document.getElementById('dynamic-hero-img').src = data.imagemHero;
+
+            document.getElementById('p2-subbadge').innerHTML = `<span class="dot"></span> ${data.passo2.subBadge}`;
+            document.getElementById('p2-title').textContent = data.passo2.titulo;
+            document.getElementById('p2-text').textContent = data.passo2.texto;
+            document.getElementById('p2-cards-container').innerHTML = data.passo2.cards.map(c => `
+                <div class="info-card">
+                    <div class="card-number">${c.num}</div>
+                    <div class="card-icon"><i class="fa-solid ${c.icon}"></i></div>
+                    <h3>${c.titulo}</h3>
+                </div>
+            `).join('');
+
+            document.getElementById('p3-subbadge').innerHTML = `<span class="dot"></span> ${data.passo3.subBadge}`;
+            document.getElementById('p3-title').textContent = data.passo3.titulo;
+            document.getElementById('p3-text').innerHTML = data.passo3.texto;
+            document.getElementById('p3-cards-container').innerHTML = data.passo3.cards.map(c => `
+                <div class="info-card-step3">
+                    <div class="card-icon-step3"><i class="fa-solid ${c.icon}"></i></div>
+                    <h3>${c.titulo}</h3>
+                </div>
+            `).join('');
+
+            document.getElementById('p4-subbadge').innerHTML = `<span class="dot"></span> ${data.passo4.subBadge}`;
+            document.getElementById('p4-title').textContent = data.passo4.titulo;
+            document.getElementById('p4-text').innerHTML = data.passo4.texto;
+            document.getElementById('p4-cards-container').innerHTML = data.passo4.cards.map(c => `
+                <div class="info-card-step4">
+                    <div class="card-icon-step4"><i class="fa-solid ${c.icon}"></i></div>
+                    <h3>${c.titulo}</h3>
+                </div>
+            `).join('');
+            document.getElementById('p4-banner-title').textContent = data.passo4.bannerDestaque.titulo;
+            document.getElementById('p4-banner-desc').textContent = data.passo4.bannerDestaque.texto;
+
+            document.getElementById('btn-yt-link').href = data.passo5.videoUrl;
+            document.getElementById('yt-desc-text').textContent = data.passo5.descricaoVideo;
+
+            renderQuiz(data.quiz);
+        }
+
+        function renderQuiz(quizArray) {
+            const container = document.getElementById('quiz-dynamic-container');
+            container.innerHTML = '';
+            quizScore = {};
+
+            quizArray.forEach((q) => {
+                quizScore[q.id] = false;
+
+                const qBox = document.createElement('div');
+                qBox.className = 'quiz-box';
+                qBox.id = `q${q.id}-box`;
+
+                let optionsHtml = q.opcoes.map(opt => `
+                    <label class="quiz-option" onclick="checkAnswer(${q.id}, ${opt.correta}, this)">
+                        <input type="radio" name="q${q.id}" value="${opt.correta ? 'correct' : 'wrong'}">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">${opt.texto}</span>
+                    </label>
+                `).join('');
+
+                qBox.innerHTML = `<h3 class="quiz-question">${q.pergunta}</h3><div class="quiz-options">${optionsHtml}</div>`;
+                container.appendChild(qBox);
+            });
+        }
+
+        function checkAnswer(questionNum, isCorrect, element) {
+            const parentBox = document.getElementById(`q${questionNum}-box`);
+            const options = parentBox.querySelectorAll('.quiz-option');
+
+            if (quizScore[questionNum]) return;
+
+            const oldFeedback = parentBox.querySelector('.quiz-feedback');
+            if (oldFeedback) oldFeedback.remove();
+
+            const radio = element.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+
+            if (isCorrect) {
+                options.forEach(opt => opt.classList.remove('option-wrong'));
+                element.classList.add('option-correct');
+                quizScore[questionNum] = true;
+                options.forEach(opt => opt.style.pointerEvents = 'none');
+
+                const feedback = document.createElement('div');
+                feedback.className = 'quiz-feedback';
+                feedback.innerHTML = '<span class="feedback-badge feedback-success"><i class="fa-solid fa-check"></i> Isso mesmo!</span>';
+                parentBox.appendChild(feedback);
+            } else {
+                element.classList.add('option-wrong');
+                quizScore[questionNum] = false;
+
+                const feedback = document.createElement('div');
+                feedback.className = 'quiz-feedback';
+                feedback.innerHTML = '<span class="feedback-badge feedback-wrong"><i class="fa-solid fa-circle-exclamation"></i> Ainda não. Tente outra opção!</span>';
+                parentBox.appendChild(feedback);
+            }
+
+            const allCorrect = Object.values(quizScore).every(val => val === true);
+            if (allCorrect) {
+                const btnNext = document.getElementById('btn-next-quiz');
+                const hint = document.getElementById('quiz-hint');
+                if (btnNext) {
+                    btnNext.disabled = false;
+                    btnNext.classList.remove('btn-disabled');
+                }
+                if (hint) {
+                    hint.textContent = 'Parabéns! Você acertou todas as perguntas.';
+                    hint.style.color = '#15803d';
+                    hint.style.fontWeight = '600';
+                }
+            }
+        }
+
+        function checkRatingCompletion() {
+            const item1 = document.querySelector('input[name="item1"]:checked');
+            const item2 = document.querySelector('input[name="item2"]:checked');
+            const item3 = document.querySelector('input[name="item3"]:checked');
+            const item4 = document.querySelector('input[name="item4"]:checked');
+            const item5 = document.querySelector('input[name="item5"]:checked');
+
+            const btnNext = document.getElementById('btn-next-rating');
+            const hint = document.getElementById('rating-hint');
+
+            if (item1 && item2 && item3 && item4 && item5) {
+                if (btnNext) {
+                    btnNext.disabled = false;
+                    btnNext.classList.remove('btn-disabled');
+                }
+                if (hint) {
+                    hint.textContent = 'Obrigado por avaliar!';
+                    hint.style.color = '#15803d';
+                    hint.style.fontWeight = '600';
+                }
+            }
+        }
+
+        function checkFormCompletion() {
+            const name = document.getElementById('user-name')?.value.trim() || '';
+            const matricula = document.getElementById('user-matricula')?.value.trim() || '';
+            const profession = document.getElementById('user-profession')?.value.trim() || '';
+            const sector = document.getElementById('user-sector')?.value.trim() || '';
+            const shift = document.getElementById('user-shift')?.value.trim() || '';
+
+            const btnSubmit = document.getElementById('btn-submit-presence');
+            if (!btnSubmit) return;
+
+            if (name !== '' && matricula !== '' && profession !== '' && sector !== '' && shift !== '') {
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('btn-disabled');
+            } else {
+                btnSubmit.disabled = true;
+                btnSubmit.classList.add('btn-disabled');
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const modal = document.getElementById('success-modal');
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            if (modal) modal.style.display = 'none';
+            window.location.href = 'tela3.html';
+        }
+
+        function goToStep(stepNumber) {
+            const steps = [
+                document.getElementById('step-1'),
+                document.getElementById('step-2'),
+                document.getElementById('step-3'),
+                document.getElementById('step-4'),
+                document.getElementById('step-5'),
+                document.getElementById('step-6'),
+                document.getElementById('step-7'),
+                document.getElementById('step-8')
+            ];
+
+            const indicator = document.querySelector('.step-indicator');
+            const bars = document.querySelectorAll('.progress-bars .bar');
+
+            const stepTitles = [
+                'Passo 1 de 8 - Boas Vindas',
+                'Passo 2 de 8 - Apresentação',
+                'Passo 3 de 8 - Quando conferir',
+                'Passo 4 de 8 - Onde identificar',
+                'Passo 5 de 8 - Videoaula',
+                'Passo 6 de 8 - Quiz',
+                'Passo 7 de 8 - Satisfação',
+                'Passo 8 de 8 - Conclusão'
+            ];
+
+            steps.forEach(step => { if (step) step.style.display = 'none'; });
+            bars.forEach(bar => bar.classList.remove('active'));
+
+            const targetStep = steps[stepNumber - 1];
+            if (targetStep) {
+                targetStep.style.display = 'flex';
+                if (indicator && stepTitles[stepNumber - 1]) indicator.textContent = stepTitles[stepNumber - 1];
+                for (let i = 0; i < stepNumber; i++) {
+                    if (bars[i]) bars[i].classList.add('active');
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

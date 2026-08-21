@@ -1,0 +1,499 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    margin: 0;
+    
+    background-color: #f7faf7;
+    background-image: 
+        /* Iluminação central */
+        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 1) 0%, transparent 60%),
+        /* Luzes verdes institucionais sutis */
+        radial-gradient(circle at 0% 0%, rgba(85, 139, 47, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(45, 90, 39, 0.08) 0%, transparent 50%),
+        /* Malha de pontilhados sutis */
+        radial-gradient(rgba(85, 139, 47, 0.15) 1px, transparent 1px);
+        
+    /* O último valor (24px) controla o espaçamento dos pontos */
+    background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+    background-position: 0 0, 0 0, 0 0, 12px 12px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Header */
+.header-info {
+    text-align: center;
+    margin-bottom: 40px; /* Aumente aqui se quiser afastar ainda mais */
+}
+
+/* Estilo da Logo Maior */
+.hospital-logo {
+    width: 380px; /* Aumentado de 220px para 300px (ajuste se quiser maior ainda) */
+    height: auto;
+    margin-bottom: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Texto do Núcleo Maior */
+/* Texto do Núcleo em cinza forte */
+.sub-title {
+    font-size: 16px; 
+    letter-spacing: 2.5px;
+    color: #888b8d;  /* Cor cinza forte escolhida */
+    font-weight: 700;
+}
+
+/* Hero Section coladinha na logo */
+.hero-section {
+    text-align: center;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px; /* Ajuda a dar o respiro entre os blocos */
+}
+
+/* Título NEP Academy usando a fonte Inter da Tela 3 */
+.hero-section h1 {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 52px;
+    font-weight: 700;
+    color: #2d5a27;
+    margin-bottom: 4px; /* Ajustado para aproximar o subtítulo */
+    letter-spacing: -0.5px;
+}
+
+/* Palavra Academy em itálico com a mesma fonte Inter */
+.hero-section h1 span {
+    font-family: 'Inter', sans-serif !important;
+    color: #558b2f;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.btn-entrar {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #558b2f;
+    color: #ffffff;
+    padding: 12px 36px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(85, 139, 47, 0.3);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-entrar:hover {
+    background-color: #436f24;
+    transform: translateY(-2px);
+}
+
+.arrow {
+    font-size: 18px;
+}
+
+/* Rodapé fixado na parte inferior da tela */
+.footer-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffffff; /* Fundo branco */
+    color: #558b2f; /* Fonte verde */
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Organiza um em cima do outro */
+    align-items: center;    /* Centraliza perfeitamente */
+    gap: 4px;               /* Espacinho curto entre a logo e o texto */
+}
+
+.footer-logo {
+    height: 60px;           /* Tamanho da logo */
+    width: auto;
+}
+
+.hospital-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;                  
+    font-weight: 700;                 
+    color: #2d5a27;   /* Mesmo tom de verde do título "Trilha de Conhecimento" */
+    letter-spacing: 2px;              
+    margin-bottom: 4px;
+}
+
+/* Estilos específicos da Tela de Login */
+/* Container do Login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    padding-bottom: 50px; 
+}
+
+/* Card Branco Moderno */
+.login-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Efeito de vidro suave */
+    width: 100%;
+    max-width: 400px; /* Levemente mais estreito e elegante */
+    padding: 45px 35px;
+    border-radius: 24px;
+    text-align: center;
+    /* Sombra mais difusa, puxada levemente para o verde */
+    box-shadow: 0 20px 40px rgba(45, 90, 39, 0.08), 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid rgba(85, 139, 47, 0.1); /* Borda super sutil */
+}
+
+/* Ícone de Cadeado Refinado */
+.lock-icon {
+    background-color: #f1f8e9; /* Fundo verde bem clarinho */
+    color: #558b2f;
+    width: 55px;
+    height: 55px;
+    border-radius: 16px; /* Borda um pouco mais moderna */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    font-size: 22px;
+}
+
+/* Títulos */
+/* Títulos do Card de Login */
+.login-card h2 {
+    font-family: 'Inter', sans-serif; /* Trocado de Playfair Display para Inter */
+    font-weight: 700; /* Peso em negrito para dar destaque ao título */
+    font-size: 26px;
+    letter-spacing: -0.5px; /* Aproxima levemente as letras, fica muito elegante na Inter */
+    margin-bottom: 8px;
+    
+    /* Mantenha a cor de acordo com o fundo que você escolheu: */
+    color: #2d5a27; /* Use esta se o card for branco */
+    /* color: #ffffff; Use esta se o card for verde */
+}
+
+.login-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    
+    /* Mantenha a cor de acordo com o fundo que você escolheu: */
+    color: #666; /* Use esta se o card for branco */
+    /* color: rgba(255, 255, 255, 0.85); Use esta se o card for verde */
+}
+
+/* Input (Campo de digitar) */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #f7faf7; /* Cinza/verde super claro */
+    border: 1px solid #dcedc8;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efeito ao clicar no input */
+.input-group input:focus {
+    border-color: #558b2f;
+    box-shadow: 0 0 0 3px rgba(85, 139, 47, 0.15);
+    background-color: #ffffff;
+}
+
+.input-group input::placeholder {
+    color: #aaa;
+    letter-spacing: 3px;
+}
+
+/* Botão de Validar */
+.btn-validar {
+    width: 100%;
+    background-color: #558b2f;
+    color: #ffffff;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(85, 139, 47, 0.25);
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 25px;
+}
+
+.btn-validar:hover {
+    background-color: #436f24;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(85, 139, 47, 0.35);
+}
+
+/* Botão de Voltar */
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #666;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.btn-voltar:hover {
+    color: #2d5a27;
+}
+
+.icon-voltar {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.btn-voltar:hover .icon-voltar {
+    transform: translateX(-4px);
+}
+/* Estilos específicos para a Tela 3 (Sistema interno) */
+.system-body {
+    background: #eefbee; /* Um tom de verde bem clarinho de fundo */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.system-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    width: 100%;
+}
+
+.system-top-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2d5a27;
+}
+
+.btn-logout {
+    background-color: #558b2f;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #436f24;
+    transform: scale(1.05);
+}
+
+.system-content {
+    flex: 1;
+    padding: 10px 40px; /* Reduzimos o padding superior/inferior para 10px */
+    max-width: 100%;    /* Garante que aproveite melhor a largura da tela */
+    width: 100%;
+    margin: 0;          /* Remove margens automáticas que centralizavam tudo */
+}
+
+/* Card da Meta */
+.trilha-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.meta-card {
+    background-color: #ffffff;
+    width: 280px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.2s;
+}
+
+.meta-card:hover {
+    transform: translateY(-4px);
+}
+
+.meta-header {
+    display: flex;
+    background-color: #558b2f;
+}
+
+.meta-tag {
+    background-color: #3b631e;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 12px;
+}
+
+.meta-category {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+}
+
+.meta-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    text-align: center;
+    padding: 12px 10px;
+}
+
+.meta-image-container {
+    padding: 10px;
+    text-align: center;
+    background-color: #fafafa;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meta-img {
+    max-width: 130px;
+    height: auto;
+}
+/* Hero Section */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px; /* Reduzimos o espaço de 12px para 4px para colar mais no texto */
+    margin-bottom: 30px;
+}
+
+.hero-logo-top {
+    height: 60px; /* Ajuste o tamanho se quiser um pouco maior ou menor */
+    width: auto;
+    object-fit: contain;
+    margin-bottom: -9px; /* Se quiser aproximar ainda mais, esse ajuste puxa o texto para cima */
+}
+
+/* Título Principal NEP Academy */
+.hero-section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 58px;
+    font-weight: 700;
+    color: #2d5a27;
+    margin-bottom: 4px; /* Distância curta para o subtítulo ficar colado */
+    letter-spacing: -0.5px;
+}
+
+.hero-section h1 span {
+    color: #558b2f;
+    font-style: italic;
+    font-weight: 600;
+}
+
+/* Subtítulo Discreto Abaixo */
+.platform-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #558b2f;
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+    margin-bottom: 24px; /* Afasta o botão de entrar */
+}
+
+/* Botão Entrar */
+.btn-entrar {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #558b2f;
+    color: #ffffff;
+    padding: 12px 36px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(85, 139, 47, 0.3);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-entrar:hover {
+    background-color: #436f24;
+    transform: translateY(-2px);
+}
+
+/* Tamanho e alinhamento do ícone SVG */
+.icon-entrar {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease; /* Prepara para a animação */
+}
+
+/* Efeito premium: o ícone desliza levemente para a direita no hover */
+.btn-entrar:hover .icon-entrar {
+    transform: translateX(4px);
+}
+/* Tamanho e transição do ícone de voltar */
+.icon-voltar {
+    width: 18px; /* Ligeiramente menor que o entrar para ficar delicado, mas pode mudar para 20px se preferir */
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+/* Efeito premium: o ícone desliza levemente para a esquerda no hover */
+.btn-voltar:hover .icon-voltar {
+    transform: translateX(-4px);
+}

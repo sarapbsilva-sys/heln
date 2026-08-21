@@ -1,0 +1,268 @@
+/* ==========================================
+   ESTILOS EXCLUSIVOS - PAINEL ADMIN (NEP)
+   Identidade visual alinhada com Tela 4
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo com fundo verde suave idêntico ao do sistema */
+body.system-body {
+    background-color: #eefbee;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Superior do Admin */
+.lms-header-universal {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(85, 139, 47, 0.15);
+    padding: 16px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.system-top-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2d5a27;
+}
+
+.system-top-title span {
+    color: #558b2f;
+}
+
+.nep-tag-badge {
+    background-color: #3b631e;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 12px;
+}
+
+.code-badge {
+    background-color: #eefbee;
+    color: #2d5a27;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(85, 139, 47, 0.25);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.code-badge:hover {
+    background-color: #558b2f;
+    color: #ffffff;
+}
+
+/* Container do Formulário */
+.admin-container {
+    max-width: 960px;
+    width: 100%;
+    margin: 36px auto 60px auto;
+    background: 
+        radial-gradient(circle at 100% 100%, rgba(0, 210, 180, 0.25) 0%, rgba(0, 210, 180, 0.02) 50%, transparent 70%),
+        #ffffff;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05), 0 4px 20px rgba(0, 210, 180, 0.12);
+    border: 1px solid rgba(0, 210, 180, 0.2);
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: #2c3e50;
+    margin-bottom: 6px;
+}
+
+.hero-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+/* Seções e Títulos de Bloco */
+.admin-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    color: #2c3e50;
+    margin: 28px 0 18px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(85, 139, 47, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-section-title i {
+    color: #558b2f;
+    font-size: 18px;
+}
+
+/* Grids do Formulário */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+/* Campos de Entrada (Inputs, Textarea, Selects) */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.form-field label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2d5a27;
+}
+
+.form-field input, 
+.form-field textarea, 
+.form-field select {
+    padding: 11px 16px;
+    border: 1px solid rgba(85, 139, 47, 0.25);
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    background: #fcfdfe;
+    transition: all 0.2s ease;
+}
+
+.form-field input:focus, 
+.form-field textarea:focus {
+    border-color: #558b2f;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(85, 139, 47, 0.12);
+}
+
+.form-field input::placeholder, 
+.form-field textarea::placeholder {
+    color: #a0aec0;
+}
+
+/* Card Builder do Quiz */
+.quiz-card-builder {
+    background: #f8fdf8;
+    border: 1px solid rgba(85, 139, 47, 0.2);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.quiz-card-builder label input[type="radio"] {
+    accent-color: #558b2f;
+}
+
+/* Botões do Painel */
+.btn-add {
+    background-color: #eefbee;
+    color: #2d5a27;
+    border: 1px dashed #558b2f;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-add:hover {
+    background-color: #558b2f;
+    color: #ffffff;
+    border-style: solid;
+}
+
+.btn-generate {
+    background-color: #558b2f;
+    color: #ffffff;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(85, 139, 47, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-generate:hover {
+    background-color: #436f24;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(85, 139, 47, 0.4);
+}
+
+/* Bloco de Código Gerado (JSON) */
+.output-json-box {
+    background: #1e293b;
+    color: #38bdf8;
+    padding: 20px;
+    border-radius: 14px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13.5px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 350px;
+    overflow-y: auto;
+    border: 1px solid #334155;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .admin-container {
+        padding: 24px 18px;
+        margin: 20px 12px;
+    }
+    .hero-title {
+        font-size: 24px;
+    }
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
