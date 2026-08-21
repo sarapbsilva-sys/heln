@@ -503,13 +503,17 @@ body {
    ========================================== */
 @media (max-width: 768px) {
     body {
-        justify-content: space-between;
+        /* Centraliza todo o bloco verticalmente */
+        justify-content: center;
+        gap: 15px; /* Controla o espaçamento geral entre Header, Centro e Footer */
+        padding: 20px 0;
         overflow-y: auto;
     }
 
+    /* Reduz as margens do cabeçalho */
     .header-info {
         margin-bottom: 0;
-        padding-top: 20px;
+        padding-top: 0;
     }
 
     .hospital-title {
@@ -522,16 +526,16 @@ body {
         letter-spacing: 1px;
     }
 
-    /* Centraliza o bloco do meio verticalmente */
+    /* Ajusta o bloco do meio para não esticar */
     .main-content {
-        flex: 1;
-        justify-content: center;
-        padding: 20px 0;
+        flex: initial; /* Remove o crescimento forçado */
+        padding: 5px 0;
     }
 
     .hospital-logo {
-        width: 70%;
-        max-width: 250px;
+        width: 65%;
+        max-width: 220px;
+        margin-bottom: 4px;
     }
 
     .hero-section {
@@ -539,24 +543,26 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 34px;
+        font-size: 32px;
     }
 
     .platform-subtitle {
-        font-size: 14px;
+        font-size: 13px;
+        margin-bottom: 10px;
     }
 
     .btn-entrar {
-        padding: 10px 30px;
-        font-size: 15px;
-        margin-top: 15px;
+        padding: 8px 24px;
+        font-size: 14px;
+        margin-top: 8px;
     }
 
     .footer-bar {
         position: relative;
+        padding: 8px 15px;
     }
 
     .footer-logo {
-        height: 45px;
+        height: 38px;
     }
 }
