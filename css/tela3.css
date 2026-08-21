@@ -406,11 +406,24 @@ body.system-body {
     .coursera-card-action { width: 100%; display: flex; justify-content: flex-end; }
 }
 
-/* Esconde PORTAL | TREINAMENTO no mobile */
-.lesson-badge {
-    display: none;
-}
+@media (max-width: 600px) {
 
+    /* Remove a logo NEP do banner no mobile */
+    .hero-img-box {
+        display: none !important;
+    }
+
+    /* Texto passa a ocupar todo o banner */
+    .hero-text-content {
+        width: 100%;
+        max-width: 100%;
+        flex: 1;
+    }
+
+    .hero-learning-banner {
+        padding: 22px 18px;
+    }
+}
 /* Rodapé na parte inferior da tela */
 .footer-bar {
     width: 100%;
