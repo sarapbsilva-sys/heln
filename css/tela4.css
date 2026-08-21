@@ -264,12 +264,14 @@ body:has(#step-1:not([style*="display: none"])) .lesson-card {
 /* ==========================================
    CONFIGURAÇÃO DOS PASSSOS (ISOLADOS)
    ========================================== */
-
-/* Garante que o container interno ocupe a largura total */
 .step-content {
     width: 100%;
-    display: flex;
     flex-direction: column;
+}
+
+/* Passos que o JavaScript esconder não aparecem */
+.step-content[style*="display: none"] {
+    display: none !important;
 }
 
 /* PASSO 1: Mantém tudo centralizado */
