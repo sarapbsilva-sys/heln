@@ -1566,28 +1566,32 @@ img {
        PROGRESSO
        ===================================================== */
 
-    .progress-section {
-        width: auto;
-        max-width: none;
+  @media (max-width: 600px) {
 
-        margin: 15px 14px 5px;
+    .progress-section {
+        width: calc(100% - 24px);
+        max-width: 1080px;
+
+        margin: 14px auto 6px;
         padding: 0;
     }
 
     .progress-bars {
         width: 100%;
-        gap: 4px;
-        margin-bottom: 6px;
+        gap: 6px;
+        margin-bottom: 7px;
     }
 
     .progress-bars .bar {
-        height: 6px;
-        border-radius: 3px;
+        flex: 1;
+        height: 8px;
+        border-radius: 4px;
     }
 
     .step-indicator {
         font-size: 11px;
     }
+}
 
 
     /* =====================================================
@@ -1633,50 +1637,66 @@ img {
        PASSO 1
        ===================================================== */
 
+   @media (max-width: 600px) {
+
+    /* ================= PASSO 1 - INTRODUÇÃO ================= */
+
     #step-1 {
         width: 100%;
-        gap: 14px;
-    }
-
-    .lesson-badge {
-        max-width: 100%;
-    }
-
-    .lesson-badge .tag-meta,
-    .lesson-badge .tag-desc {
-        font-size: 9px;
-        padding: 5px 8px;
-    }
-
-    .lesson-title {
-        font-size: 24px;
-        line-height: 1.2;
-    }
-
-    .lesson-text {
-        width: 100%;
-        max-width: 100%;
-
-        font-size: 12.5px;
-        line-height: 1.5;
-    }
-
-    .lesson-image-box {
-        margin: 5px 0;
-    }
-
-    .lesson-img {
-        height: 95px;
-        max-width: 80%;
-        object-fit: contain;
-    }
-
-    .btn-vamos-comecar {
-        padding: 11px 22px;
-        font-size: 13px;
+        gap: 8px;
+        align-items: center;
         justify-content: center;
+        text-align: center;
     }
 
+    #step-1 .lesson-badge {
+        margin-bottom: 3px;
+    }
+
+    #step-1 .lesson-title {
+        font-size: 23px;
+        line-height: 1.15;
+        margin: 0;
+    }
+
+    #step-1 .lesson-text {
+        max-width: 320px;
+        font-size: 12px;
+        line-height: 1.45;
+        margin: 2px auto 4px;
+    }
+
+    #step-1 .lesson-image-box {
+        margin: 2px 0;
+    }
+
+    #step-1 .lesson-img {
+        height: 78px;
+        max-width: 70%;
+    }
+
+    #step-1 .btn-vamos-comecar {
+        margin-top: 5px;
+        padding: 10px 22px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 600px) {
+
+    #step-1 {
+        min-height: auto;
+    }
+
+    .lesson-card {
+        justify-content: flex-start;
+    }
+
+    body:has(#step-1[style*="display: flex"]) .lesson-card,
+    body:has(#step-1:not([style*="display: none"])) .lesson-card {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
 
     /* =====================================================
        TÍTULOS DOS PASSOS
