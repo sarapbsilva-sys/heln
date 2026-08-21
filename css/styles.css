@@ -497,53 +497,66 @@ body {
 .btn-voltar:hover .icon-voltar {
     transform: translateX(-4px);
 }
+
+/* ==========================================
+   ALTERAÇÕES APLICADAS APENAS NO MOBILE
+   ========================================== */
 @media (max-width: 768px) {
-    /* 1. Faz o body ocupar toda a altura e distribui o espaço */
     body {
-        display: flex;
-        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
-        min-height: 100vh;
         overflow-y: auto;
     }
 
-    /* 2. Garante que o header fique no topo */
     .header-info {
         margin-bottom: 0;
-        padding-top: 25px;
+        padding-top: 20px;
     }
 
-    /* 3. ESSENCIAL: Faz a seção central ocupar todo o espaço sobrando e centraliza o conteúdo */
-    .hero-section {
+    .hospital-title {
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+
+    .sub-title {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    /* Centraliza o bloco do meio verticalmente */
+    .main-content {
         flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Centraliza verticalmente no meio da tela */
-        align-items: center;    /* Centraliza horizontalmente */
-        margin-top: 0;
+        justify-content: center;
         padding: 20px 0;
     }
 
-    /* Reduz levemente a logo central no mobile para encaixar melhor */
     .hospital-logo {
-        width: 75%;
-        max-width: 280px;
+        width: 70%;
+        max-width: 250px;
+    }
+
+    .hero-section {
+        margin-top: 0;
     }
 
     .hero-section h1 {
-        font-size: 36px;
+        font-size: 34px;
+    }
+
+    .platform-subtitle {
+        font-size: 14px;
     }
 
     .btn-entrar {
-        margin-top: 20px;
-        margin-bottom: 0; /* Remove margens desnecessárias */
+        padding: 10px 30px;
+        font-size: 15px;
+        margin-top: 15px;
     }
 
-    /* 4. Garante que o rodapé fique fixo na base sem flutuar sobre nada */
     .footer-bar {
         position: relative;
-        width: 100%;
-        margin-top: auto;
+    }
+
+    .footer-logo {
+        height: 45px;
     }
 }
