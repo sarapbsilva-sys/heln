@@ -503,46 +503,72 @@
             if (modal) modal.style.display = 'none';
             window.location.href = 'tela3.html';
         }
+function goToStep(stepNumber) {
 
-        function goToStep(stepNumber) {
-            const steps = [
-                document.getElementById('step-1'),
-                document.getElementById('step-2'),
-                document.getElementById('step-3'),
-                document.getElementById('step-4'),
-                document.getElementById('step-5'),
-                document.getElementById('step-6'),
-                document.getElementById('step-7'),
-                document.getElementById('step-8')
-            ];
+    const steps = [
+        document.getElementById('step-1'),
+        document.getElementById('step-2'),
+        document.getElementById('step-3'),
+        document.getElementById('step-4'),
+        document.getElementById('step-5'),
+        document.getElementById('step-6'),
+        document.getElementById('step-7'),
+        document.getElementById('step-8')
+    ];
 
-            const indicator = document.querySelector('.step-indicator');
-            const bars = document.querySelectorAll('.progress-bars .bar');
+    const indicator = document.querySelector('.step-indicator');
+    const bars = document.querySelectorAll('.progress-bars .bar');
 
-            const stepTitles = [
-                'Passo 1 de 8 - Boas Vindas',
-                'Passo 2 de 8 - Apresentação',
-                'Passo 3 de 8 - Quando conferir',
-                'Passo 4 de 8 - Onde identificar',
-                'Passo 5 de 8 - Videoaula',
-                'Passo 6 de 8 - Quiz',
-                'Passo 7 de 8 - Satisfação',
-                'Passo 8 de 8 - Conclusão'
-            ];
+    const stepTitles = [
+        'Passo 1 de 8 - Boas Vindas',
+        'Passo 2 de 8 - Apresentação',
+        'Passo 3 de 8 - Quando conferir',
+        'Passo 4 de 8 - Onde identificar',
+        'Passo 5 de 8 - Videoaula',
+        'Passo 6 de 8 - Quiz',
+        'Passo 7 de 8 - Satisfação',
+        'Passo 8 de 8 - Conclusão'
+    ];
 
-            steps.forEach(step => { if (step) step.style.display = 'none'; });
-            bars.forEach(bar => bar.classList.remove('active'));
+    /* ESCONDE TODOS */
+    steps.forEach((step) => {
+        if (step) {
+            step.style.setProperty('display', 'none', 'important');
+        }
+    });
 
-            const targetStep = steps[stepNumber - 1];
-            if (targetStep) {
-                targetStep.style.display = 'flex';
-                if (indicator && stepTitles[stepNumber - 1]) indicator.textContent = stepTitles[stepNumber - 1];
-                for (let i = 0; i < stepNumber; i++) {
-                    if (bars[i]) bars[i].classList.add('active');
-                }
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+    /* Atualiza progresso */
+    bars.forEach(bar => {
+        bar.classList.remove('active');
+    });
+
+    /* MOSTRA APENAS O PASSO ATUAL */
+    const targetStep = steps[stepNumber - 1];
+
+    if (targetStep) {
+
+        targetStep.style.setProperty(
+            'display',
+            'flex',
+            'important'
+        );
+
+        if (indicator) {
+            indicator.textContent = stepTitles[stepNumber - 1];
+        }
+
+        for (let i = 0; i < stepNumber; i++) {
+            if (bars[i]) {
+                bars[i].classList.add('active');
             }
         }
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+}
     </script>
 </body>
 </html>
