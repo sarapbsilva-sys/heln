@@ -1,3 +1,4 @@
+
 /* ==========================================
    ESTILOS EXCLUSIVOS - TELA 4 (BARRA DE PROGRESSO EXTERNA)
    ========================================== */
@@ -1566,32 +1567,28 @@ img {
        PROGRESSO
        ===================================================== */
 
-  @media (max-width: 600px) {
-
     .progress-section {
-        width: calc(100% - 24px);
-        max-width: 1080px;
+        width: auto;
+        max-width: none;
 
-        margin: 14px auto 6px;
+        margin: 15px 14px 5px;
         padding: 0;
     }
 
     .progress-bars {
         width: 100%;
-        gap: 6px;
-        margin-bottom: 7px;
+        gap: 4px;
+        margin-bottom: 6px;
     }
 
     .progress-bars .bar {
-        flex: 1;
-        height: 8px;
-        border-radius: 4px;
+        height: 6px;
+        border-radius: 3px;
     }
 
     .step-indicator {
         font-size: 11px;
     }
-}
 
 
     /* =====================================================
@@ -1637,66 +1634,50 @@ img {
        PASSO 1
        ===================================================== */
 
-   @media (max-width: 600px) {
-
-    /* ================= PASSO 1 - INTRODUÇÃO ================= */
-
     #step-1 {
         width: 100%;
-        gap: 8px;
-        align-items: center;
+        gap: 14px;
+    }
+
+    .lesson-badge {
+        max-width: 100%;
+    }
+
+    .lesson-badge .tag-meta,
+    .lesson-badge .tag-desc {
+        font-size: 9px;
+        padding: 5px 8px;
+    }
+
+    .lesson-title {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .lesson-text {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 12.5px;
+        line-height: 1.5;
+    }
+
+    .lesson-image-box {
+        margin: 5px 0;
+    }
+
+    .lesson-img {
+        height: 95px;
+        max-width: 80%;
+        object-fit: contain;
+    }
+
+    .btn-vamos-comecar {
+        padding: 11px 22px;
+        font-size: 13px;
         justify-content: center;
-        text-align: center;
     }
 
-    #step-1 .lesson-badge {
-        margin-bottom: 3px;
-    }
-
-    #step-1 .lesson-title {
-        font-size: 23px;
-        line-height: 1.15;
-        margin: 0;
-    }
-
-    #step-1 .lesson-text {
-        max-width: 320px;
-        font-size: 12px;
-        line-height: 1.45;
-        margin: 2px auto 4px;
-    }
-
-    #step-1 .lesson-image-box {
-        margin: 2px 0;
-    }
-
-    #step-1 .lesson-img {
-        height: 78px;
-        max-width: 70%;
-    }
-
-    #step-1 .btn-vamos-comecar {
-        margin-top: 5px;
-        padding: 10px 22px;
-        font-size: 12px;
-    }
-}
-@media (max-width: 600px) {
-
-    #step-1 {
-        min-height: auto;
-    }
-
-    .lesson-card {
-        justify-content: flex-start;
-    }
-
-    body:has(#step-1[style*="display: flex"]) .lesson-card,
-    body:has(#step-1:not([style*="display: none"])) .lesson-card {
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-}
 
     /* =====================================================
        TÍTULOS DOS PASSOS
@@ -2241,5 +2222,133 @@ img {
 
     .footer-bar {
         font-size: 9px;
+    }
+}
+
+/* =====================================================
+   AJUSTE FINAL MOBILE - PROGRESSO + PASSO 1
+   Mantém a imagem proporcional e aproxima a barra do card
+   ===================================================== */
+@media (max-width: 600px) {
+
+    .progress-section {
+        width: calc(100% - 24px) !important;
+        max-width: 1080px !important;
+        margin: 10px auto 0 !important;
+        padding: 0 !important;
+    }
+
+    .progress-bars {
+        width: 100% !important;
+        gap: 5px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .progress-bars .bar {
+        flex: 1 !important;
+        height: 8px !important;
+        border-radius: 4px !important;
+    }
+
+    .step-indicator {
+        font-size: 11px !important;
+        margin: 0 !important;
+    }
+
+    .system-content {
+        width: 100% !important;
+        padding: 4px 12px 24px !important;
+        margin: 0 !important;
+        justify-content: flex-start !important;
+    }
+
+    .lesson-card,
+    .lesson-card.align-left {
+        width: 100% !important;
+        max-width: 1080px !important;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 22px 16px !important;
+        border-radius: 18px !important;
+        overflow: visible !important;
+    }
+
+    #step-1 {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 10px !important;
+    }
+
+    #step-1 .lesson-badge {
+        margin: 0 !important;
+    }
+
+    #step-1 .lesson-badge .tag-meta,
+    #step-1 .lesson-badge .tag-desc {
+        font-size: 9px !important;
+        padding: 5px 9px !important;
+    }
+
+    #step-1 .lesson-title {
+        font-size: 24px !important;
+        line-height: 1.18 !important;
+        margin: 0 !important;
+    }
+
+    #step-1 .lesson-text {
+        width: 100% !important;
+        max-width: 360px !important;
+        font-size: 12.5px !important;
+        line-height: 1.5 !important;
+        margin: 0 !important;
+    }
+
+    #step-1 .lesson-image-box {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 !important;
+    }
+
+    #step-1 .lesson-img {
+        width: auto !important;
+        height: 110px !important;
+        max-width: 88% !important;
+        max-height: none !important;
+        object-fit: contain !important;
+        flex-shrink: 0 !important;
+    }
+
+    #step-1 .btn-vamos-comecar {
+        margin-top: 2px !important;
+        padding: 11px 24px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .progress-section {
+        width: calc(100% - 18px) !important;
+        margin-top: 8px !important;
+    }
+
+    .system-content {
+        padding-left: 9px !important;
+        padding-right: 9px !important;
+        padding-top: 4px !important;
+    }
+
+    #step-1 .lesson-img {
+        height: 96px !important;
+        max-width: 90% !important;
+    }
+
+    #step-1 .lesson-title {
+        font-size: 21px !important;
     }
 }
