@@ -24,12 +24,21 @@
             <p class="login-subtitle">Digite a chave entregue pelo Núcleo de Segurança do Paciente.</p>
 
             <!-- Formulário -->
-            <form action="#" method="POST">
-                <div class="input-group">
-                    <input type="text" placeholder="C H A V E" required>
-                </div>
-                <button type="submit" class="btn-validar">Validar chave</button>
-            </form>
+         <form id="loginForm">
+    <div class="input-group">
+        <input 
+            type="text" 
+            id="chave"
+            placeholder="C H A V E" 
+            autocomplete="off"
+            required
+        >
+    </div>
+
+    <button type="submit" class="btn-validar">
+        Validar chave
+    </button>
+</form>
 
             <!-- Link de Voltar -->
             <a href="index.html" class="btn-voltar">
@@ -48,6 +57,35 @@
         <p>Departamento de Qualidade e Segurança do Paciente | HELN</p>
     </div>
 </footer>
+<script
 
+<script>
+    const CHAVE_ACESSO = "HELN2026";
+
+    document
+        .getElementById("loginForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const chaveDigitada = document
+                .getElementById("chave")
+                .value
+                .trim()
+                .toUpperCase();
+
+            if (chaveDigitada === CHAVE_ACESSO) {
+
+                window.location.href = "tela3.html";
+
+            } else {
+
+                alert("Chave de integração inválida.");
+
+                document.getElementById("chave").value = "";
+                document.getElementById("chave").focus();
+            }
+        });
+</script>
 </body>
 </html>
