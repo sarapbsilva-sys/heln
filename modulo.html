@@ -502,8 +502,7 @@
             const modal = document.getElementById('success-modal');
             if (modal) modal.style.display = 'none';
             window.location.href = 'tela3.html';
-        }
-function goToStep(stepNumber) {
+        }function goToStep(stepNumber) {
 
     const steps = [
         document.getElementById('step-1'),
@@ -530,44 +529,50 @@ function goToStep(stepNumber) {
         'Passo 8 de 8 - Conclusão'
     ];
 
-    /* ESCONDE TODOS */
-    steps.forEach((step) => {
+    /* Esconde todos */
+    steps.forEach(step => {
         if (step) {
             step.style.setProperty('display', 'none', 'important');
         }
     });
 
-    /* Atualiza progresso */
-    bars.forEach(bar => {
-        bar.classList.remove('active');
-    });
+    bars.forEach(bar => bar.classList.remove('active'));
 
-    /* MOSTRA APENAS O PASSO ATUAL */
     const targetStep = steps[stepNumber - 1];
 
-    if (targetStep) {
+    if (!targetStep) return;
 
-        targetStep.style.setProperty(
-            'display',
-            'flex',
-            'important'
-        );
+    /* Mostra apenas o atual */
+    targetStep.style.setProperty('display', 'flex', 'important');
 
-        if (indicator) {
-            indicator.textContent = stepTitles[stepNumber - 1];
-        }
-
-        for (let i = 0; i < stepNumber; i++) {
-            if (bars[i]) {
-                bars[i].classList.add('active');
-            }
-        }
-
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+    if (indicator) {
+        indicator.textContent = stepTitles[stepNumber - 1];
     }
+
+    for (let i = 0; i < stepNumber; i++) {
+        if (bars[i]) {
+            bars[i].classList.add('active');
+        }
+    }
+
+    /*
+       IMPORTANTE:
+       espera o navegador recalcular a altura
+       do novo step antes de reposicionar.
+    */
+    requestAnimationFrame(() => {
+
+        document.body.offsetHeight;
+
+        requestAnimationFrame(() => {
+
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'auto'
+            });
+        });
+    });
 }
     </script>
 </body>
