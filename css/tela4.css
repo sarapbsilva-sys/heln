@@ -2857,32 +2857,150 @@ img {
         background: #ffffff;
     }
 }
-/* =====================================================
-   CORREÇÃO DEFINITIVA - CARD CRESCE COM O CONTEÚDO
-   ===================================================== */
-
 @media (max-width: 600px) {
 
-    /* Página pode crescer normalmente */
-    html,
-    body {
+    /* =========================================
+       PADRÃO ÚNICO PARA TODOS OS STEPS
+       ========================================= */
+
+    .lesson-card,
+    .lesson-card.align-left {
+        width: 100% !important;
+        max-width: 100% !important;
+
         height: auto !important;
-        min-height: 100%;
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+
+        padding: 28px 18px !important;
+
+        border-radius: 18px !important;
+
+        overflow: visible !important;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    body.system-body,
-    .system-body {
-        height: auto !important;
-        min-height: 100svh !important;
+    /* PASSO 1 acompanha a mesma caixa */
+    #step-1 {
+        width: 100% !important;
 
-        overflow-x: hidden !important;
-        overflow-y: visible !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        text-align: center;
+
+        gap: 16px !important;
+    }
+
+    #step-1 .lesson-title {
+        width: 100%;
+        font-size: 24px !important;
+        line-height: 1.2 !important;
+    }
+
+    #step-1 .lesson-text {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+    }
+
+    #step-1 .lesson-image-box {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin: 6px 0 !important;
+    }
+
+    #step-1 .lesson-img {
+        width: auto !important;
+        height: 120px !important;
+
+        max-width: 85% !important;
+
+        object-fit: contain !important;
+    }
+
+    #step-1 .btn-vamos-comecar {
+        width: 100%;
+
+        min-height: 46px;
+
+        justify-content: center;
+
+        margin-top: 4px !important;
+
+        padding: 12px 18px !important;
+
+        font-size: 13px !important;
     }
 
 
-    /* Área principal cresce conforme o step */
+    /* =========================================
+       NAVEGAÇÃO MOBILE
+       VOLTAR + PROSSEGUIR EM COLUNA
+       ========================================= */
+
+    .card-navigation,
+    #step-3 .card-navigation,
+    #step-4 .card-navigation,
+    .rating-footer-nav .card-navigation,
+    .form-navigation {
+        width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+
+        gap: 10px !important;
+
+        margin-top: 24px !important;
+    }
+
+    .btn-voltar,
+    .btn-prossiga {
+        width: 100% !important;
+
+        min-height: 46px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 12px 16px !important;
+
+        font-size: 13px !important;
+
+        border-radius: 28px;
+
+        white-space: normal !important;
+    }
+
+    /* Primeiro fica o Prosseguir, depois Voltar?
+       Se quiser Voltar em cima, apague estas duas regras. */
+
+    .btn-voltar {
+        order: 1;
+    }
+
+    .btn-prossiga {
+        order: 2;
+    }
+
+
+    /* =========================================
+       CONTEÚDO CRESCE PRA BAIXO
+       ========================================= */
+
     .system-content {
         width: 100% !important;
 
@@ -2890,42 +3008,11 @@ img {
         min-height: 0 !important;
         max-height: none !important;
 
-        flex: 0 0 auto !important;
+        padding: 110px 18px 36px !important;
 
         overflow: visible !important;
-
-        padding: 108px 18px 35px !important;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
     }
 
-
-    /* CARD PRINCIPAL */
-    .lesson-card,
-    .lesson-card.align-left {
-        width: 100% !important;
-        max-width: 100% !important;
-
-        /* ESSENCIAL */
-        height: auto !important;
-        min-height: 0 !important;
-        max-height: none !important;
-
-        overflow: visible !important;
-
-        display: flex;
-        flex-direction: column;
-
-        align-items: stretch;
-
-        padding: 20px 15px !important;
-    }
-
-
-    /* Cada step cresce de acordo com seu conteúdo */
     .step-content {
         width: 100% !important;
 
@@ -2934,55 +3021,16 @@ img {
         max-height: none !important;
 
         overflow: visible !important;
-
-        flex-shrink: 0;
     }
 
-
-    /* Textos nunca são cortados */
-    .lesson-text,
-    .left-text,
-    .course-desc,
-    .quiz-question,
-    .option-text,
-    .alert-warning-step5 p,
-    .highlight-banner-step4 p {
-        height: auto !important;
-        max-height: none !important;
-
-        overflow: visible !important;
-
-        white-space: normal !important;
-        word-break: normal;
-        overflow-wrap: break-word;
-    }
-
-
-    /* Grids também podem crescer */
-    .cards-grid,
-    .cards-grid-5,
-    .cards-grid-step4,
-    .quiz-container,
-    .presence-form,
-    .rating-footer-nav {
-        height: auto !important;
-        max-height: none !important;
-
-        overflow: visible !important;
-    }
-
-
-    /* Footer sempre DEPOIS do conteúdo */
+    /* Footer depois do conteúdo */
     .footer-bar {
         position: static !important;
 
-        top: auto !important;
-        bottom: auto !important;
-
         width: 100% !important;
 
-        flex-shrink: 0;
-
         margin-top: 20px !important;
+
+        flex-shrink: 0;
     }
 }
