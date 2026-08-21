@@ -2749,7 +2749,6 @@ img {
     .footer-logo {
         height: 34px !important;
     }
-}
 
 @media (max-width: 380px) {
 
@@ -2797,5 +2796,34 @@ img {
     .btn-prossiga {
         padding: 8px 11px !important;
         font-size: 10px !important;
+    }
+}
+
+@media (max-width: 600px) {
+
+    body.system-body,
+    .system-body {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .system-content {
+        flex: 1;
+        width: 100%;
+    }
+
+    .footer-bar {
+        position: relative !important;
+        bottom: auto !important;
+
+        width: 100%;
+
+        margin-top: auto !important;
+
+        padding: 10px 12px !important;
+
+        background: #ffffff;
+        z-index: 10;
     }
 }
