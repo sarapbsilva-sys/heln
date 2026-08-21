@@ -2798,33 +2798,33 @@ img {
 }
 @media (max-width: 600px) {
 
-    /* Página */
-    body.system-body {
-        min-height: 100vh;
+    body.system-body,
+    .system-body {
         min-height: 100svh;
-
         height: auto !important;
 
         display: flex;
         flex-direction: column;
 
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
     }
 
-
-    /* CONTEÚDO CENTRAL */
+    /* CONTEÚDO */
     .system-content {
         width: 100%;
 
-        /* ocupa o espaço disponível */
-        flex: 1 0 auto;
-
-        /* espaço do header + progresso fixos */
-        padding: 108px 18px 35px !important;
-
+        /*
+         * Mantém o footer no final da tela quando
+         * o step tem pouco conteúdo.
+         * Se o conteúdo crescer, cresce normalmente.
+         */
+        min-height: calc(100svh - 70px) !important;
         height: auto !important;
-        min-height: 0 !important;
+
+        flex: none !important;
+
+        padding: 108px 18px 35px !important;
 
         display: flex;
         flex-direction: column;
@@ -2832,8 +2832,7 @@ img {
         justify-content: flex-start;
     }
 
-
-    /* CARD CRESCE CONFORME O STEP */
+    /* CARD */
     .lesson-card,
     .lesson-card.align-left {
         width: 100%;
@@ -2845,14 +2844,13 @@ img {
         overflow: visible !important;
     }
 
-
-    /* FOOTER NO FINAL DA PÁGINA */
+    /* FOOTER */
     .footer-bar {
         position: static !important;
 
         width: 100%;
 
-        margin-top: auto !important;
+        margin-top: 0 !important;
 
         flex-shrink: 0;
 
