@@ -1603,17 +1603,26 @@ img {
        CONTEÚDO PRINCIPAL
        ===================================================== */
 
-    .system-content {
-        flex: none;
+  @media (max-width: 600px) {
 
-        width: 100%;
-  padding: 20px 12px 28px !important;
-        margin: 0 !important;
+    .system-content {
+        width: 100% !important;
+
+        height: auto !important;
+
+        /* mantém altura mínima quando o step é curto */
+        min-height: calc(100svh - 70px) !important;
+
+        flex: 1 0 auto !important;
+
+        padding: 108px 18px 35px !important;
 
         display: flex;
-        justify-content: flex-start;
+        flex-direction: column;
         align-items: center;
+        justify-content: flex-start;
     }
+}
 
 
     /* =====================================================
@@ -2845,10 +2854,12 @@ img {
     }
 
     /* FOOTER */
-    .footer-bar {
+  .footer-bar {
         position: static !important;
+        top: auto !important;
+        bottom: auto !important;
 
-        width: 100%;
+        width: 100% !important;
 
         margin-top: 0 !important;
 
