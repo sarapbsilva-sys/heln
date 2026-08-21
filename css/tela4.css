@@ -2274,16 +2274,14 @@ img {
         overflow: visible !important;
     }
 
-    #step-1 {
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
-        gap: 10px !important;
-    }
-
+   #step-1 {
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+}
     #step-1 .lesson-badge {
         margin: 0 !important;
     }
