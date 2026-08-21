@@ -2735,7 +2735,7 @@ img {
         white-space: nowrap;
     }
 
-     .footer-bar {
+   .footer-bar {
         position: fixed !important;
         bottom: 0 !important;
         left: 0 !important;
@@ -2748,6 +2748,11 @@ img {
         background: #ffffff;
 
         z-index: 1000;
+    }
+
+    /* Espaço para o conteúdo não ficar atrás do footer */
+    .system-content {
+        padding-bottom: 90px !important;
     }
 
     .footer-logo {
