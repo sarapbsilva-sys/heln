@@ -2735,12 +2735,19 @@ img {
         white-space: nowrap;
     }
 
-    .footer-bar {
-        position: relative !important;
-        bottom: auto !important;
-        margin-top: 14px !important;
-        padding: 10px 12px !important;
-        font-size: 9px !important;
+     .footer-bar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+
+        width: 100% !important;
+
+        margin: 0 !important;
+        padding: 10px 12px;
+
+        background: #ffffff;
+
+        z-index: 1000;
     }
 
     .footer-logo {
