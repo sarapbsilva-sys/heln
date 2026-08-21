@@ -1639,94 +1639,50 @@ img {
     /* =====================================================
        PASSO 1
        ===================================================== */
-@media (max-width: 600px) {
-
-    /* =========================
-       STEP 1 - ESTILO MAIOR
-       ========================= */
 
     #step-1 {
-        width: 100% !important;
-        align-items: center !important;
-        text-align: center !important;
-        gap: 18px !important;
+        width: 100%;
+        gap: 14px;
     }
 
-    /* Badge */
-    #step-1 .lesson-badge {
-        margin-bottom: 4px !important;
+    .lesson-badge {
+        max-width: 100%;
     }
 
-    #step-1 .lesson-badge .tag-meta,
-    #step-1 .lesson-badge .tag-desc {
-        font-size: 13px !important;
-        padding: 7px 14px !important;
+    .lesson-badge .tag-meta,
+    .lesson-badge .tag-desc {
+        font-size: 9px;
+        padding: 5px 8px;
     }
 
-    /* TÍTULO - maior, como na primeira imagem */
-    #step-1 .lesson-title {
-        width: 100% !important;
-        max-width: 540px !important;
-
-        font-size: 46px !important;
-        line-height: 1.08 !important;
-
-        font-weight: 700 !important;
-
-        letter-spacing: -1px !important;
-
-        margin: 8px auto 4px !important;
+    .lesson-title {
+        font-size: 24px;
+        line-height: 1.2;
     }
 
-    /* TEXTO - maior e mais confortável */
-    #step-1 .lesson-text {
-        width: 100% !important;
-        max-width: 560px !important;
+    .lesson-text {
+        width: 100%;
+        max-width: 100%;
 
-        font-size: 19px !important;
-        line-height: 1.55 !important;
-
-        margin: 0 auto 8px !important;
-
-        color: #66706d !important;
+        font-size: 12.5px;
+        line-height: 1.5;
     }
 
-    /* IMAGEM */
-    #step-1 .lesson-image-box {
-        width: 100% !important;
-
-        margin: 12px 0 10px !important;
-
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
+    .lesson-image-box {
+        margin: 5px 0;
     }
 
-    #step-1 .lesson-img {
-        width: auto !important;
-        height: 210px !important;
-
-        max-width: 82% !important;
-
-        object-fit: contain !important;
+    .lesson-img {
+        height: 95px;
+        max-width: 80%;
+        object-fit: contain;
     }
 
-    /* BOTÃO */
-    #step-1 .btn-vamos-comecar {
-        width: 100% !important;
-        max-width: 560px !important;
-
-        min-height: 58px !important;
-
-        margin-top: 6px !important;
-
-        padding: 15px 20px !important;
-
-        font-size: 20px !important;
-
-        justify-content: center !important;
+    .btn-vamos-comecar {
+        padding: 11px 22px;
+        font-size: 13px;
+        justify-content: center;
     }
-}
 
 
     /* =====================================================
