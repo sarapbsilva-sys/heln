@@ -1410,3 +1410,943 @@ html, body {
     font-family: 'Inter', sans-serif;
     transition: color 0.2s ease;
 }
+/* =========================================================
+   RESPONSIVIDADE COMPLETA - TELA 4 / TREINAMENTO
+   COLOCAR NO FINAL DO CSS
+   ========================================================= */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .system-body {
+        height: auto !important;
+        min-height: 100vh;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    /* HEADER */
+
+    .lms-header-universal {
+        padding: 14px 20px;
+    }
+
+    .header-container {
+        width: 100%;
+        gap: 15px;
+    }
+
+    /* PROGRESSO */
+
+    .progress-section {
+        width: auto;
+        max-width: none;
+        margin: 18px 24px 8px;
+    }
+
+    /* CONTEÚDO */
+
+    .system-content {
+        width: 100%;
+        padding: 15px 24px;
+        margin-bottom: 40px;
+    }
+
+    .lesson-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 32px 35px;
+    }
+
+    .lesson-card.align-left {
+        padding: 30px 35px;
+    }
+
+    /* GRIDS */
+
+    .cards-grid,
+    .cards-grid-5,
+    .cards-grid-step4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        min-height: 100%;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    body.system-body,
+    .system-body {
+        width: 100%;
+        height: auto !important;
+        min-height: 100svh;
+
+        display: flex;
+        flex-direction: column;
+
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+
+        padding-bottom: 0;
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .lms-header-universal {
+        width: 100%;
+        padding: 11px 14px;
+    }
+
+    .header-container {
+        width: 100%;
+
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 8px;
+    }
+
+    .brand-box {
+        gap: 7px;
+        min-width: 0;
+    }
+
+    .system-top-title {
+        font-size: 17px;
+        white-space: nowrap;
+    }
+
+    .nep-tag-badge {
+        font-size: 8px;
+        padding: 4px 7px;
+        white-space: nowrap;
+    }
+
+    .header-actions {
+        flex-shrink: 0;
+    }
+
+    .code-badge {
+        font-size: 9px;
+        padding: 6px 8px;
+        gap: 4px;
+    }
+
+
+    /* =====================================================
+       PROGRESSO
+       ===================================================== */
+
+    .progress-section {
+        width: auto;
+        max-width: none;
+
+        margin: 15px 14px 5px;
+        padding: 0;
+    }
+
+    .progress-bars {
+        width: 100%;
+        gap: 4px;
+        margin-bottom: 6px;
+    }
+
+    .progress-bars .bar {
+        height: 6px;
+        border-radius: 3px;
+    }
+
+    .step-indicator {
+        font-size: 11px;
+    }
+
+
+    /* =====================================================
+       CONTEÚDO PRINCIPAL
+       ===================================================== */
+
+    .system-content {
+        flex: none;
+
+        width: 100%;
+
+        padding: 10px 12px 25px;
+
+        margin: 0;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+
+    /* =====================================================
+       CARD PRINCIPAL
+       ===================================================== */
+
+    .lesson-card,
+    .lesson-card.align-left {
+        width: 100%;
+        max-width: 100%;
+
+        min-height: auto !important;
+        height: auto !important;
+
+        padding: 22px 16px;
+
+        border-radius: 18px;
+
+        overflow: visible !important;
+    }
+
+
+    /* =====================================================
+       PASSO 1
+       ===================================================== */
+
+    #step-1 {
+        width: 100%;
+        gap: 14px;
+    }
+
+    .lesson-badge {
+        max-width: 100%;
+    }
+
+    .lesson-badge .tag-meta,
+    .lesson-badge .tag-desc {
+        font-size: 9px;
+        padding: 5px 8px;
+    }
+
+    .lesson-title {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .lesson-text {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 12.5px;
+        line-height: 1.5;
+    }
+
+    .lesson-image-box {
+        margin: 5px 0;
+    }
+
+    .lesson-img {
+        height: 95px;
+        max-width: 80%;
+        object-fit: contain;
+    }
+
+    .btn-vamos-comecar {
+        padding: 11px 22px;
+        font-size: 13px;
+        justify-content: center;
+    }
+
+
+    /* =====================================================
+       TÍTULOS DOS PASSOS
+       ===================================================== */
+
+    .left-title {
+        font-size: 22px;
+        line-height: 1.2;
+        margin-bottom: 7px;
+    }
+
+    .left-text {
+        font-size: 12.5px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .sub-badge {
+        font-size: 9px;
+        margin-bottom: 10px;
+    }
+
+    .sub-badge .dot {
+        width: 6px;
+        height: 6px;
+    }
+
+
+    /* =====================================================
+       PASSO 2 - CARDS
+       ===================================================== */
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .info-card {
+        width: 100%;
+
+        padding: 26px 15px 18px;
+
+        border-radius: 15px;
+    }
+
+    .card-number {
+        width: 28px;
+        height: 28px;
+
+        top: -12px;
+
+        font-size: 12px;
+    }
+
+    .card-icon {
+        width: 50px;
+        height: 50px;
+
+        font-size: 20px;
+
+        margin-top: 6px;
+        margin-bottom: 10px;
+    }
+
+    .info-card h3 {
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       PASSO 3
+       ===================================================== */
+
+    .cards-grid-5 {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .info-card-step3 {
+        padding: 13px 8px;
+        border-radius: 12px;
+    }
+
+    .card-icon-step3 {
+        width: 40px;
+        height: 40px;
+
+        font-size: 16px;
+        margin-bottom: 7px;
+    }
+
+    .info-card-step3 h3 {
+        font-size: 11px;
+        line-height: 1.3;
+    }
+
+
+    /* =====================================================
+       PASSO 4
+       ===================================================== */
+
+    .cards-grid-step4 {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 9px;
+
+        width: 100%;
+    }
+
+    .info-card-step4 {
+        padding: 11px 7px;
+        border-radius: 11px;
+    }
+
+    .card-icon-step4 {
+        width: 36px;
+        height: 36px;
+
+        font-size: 14px;
+    }
+
+    .info-card-step4 h3 {
+        font-size: 10.5px;
+    }
+
+    .highlight-banner-step4 {
+        padding: 11px 12px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+    }
+
+    .highlight-banner-step4 .banner-icon {
+        font-size: 18px;
+    }
+
+    .highlight-banner-step4 h4 {
+        font-size: 12px;
+    }
+
+    .highlight-banner-step4 p {
+        font-size: 10.5px;
+        line-height: 1.4;
+    }
+
+
+    /* =====================================================
+       PASSO 5 - VIDEOAULA
+       ===================================================== */
+
+    .video-instruction-box {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .mascot-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 19px;
+    }
+
+    .btn-youtube-call {
+        padding: 13px 12px;
+
+        border-radius: 13px;
+
+        margin-bottom: 15px;
+    }
+
+    .yt-left {
+        gap: 9px;
+        min-width: 0;
+    }
+
+    .yt-play-icon {
+        width: 38px;
+        height: 28px;
+
+        flex-shrink: 0;
+    }
+
+    .yt-text {
+        min-width: 0;
+    }
+
+    .yt-text h3 {
+        font-size: 15px;
+    }
+
+    .yt-text span {
+        font-size: 10px;
+    }
+
+    .yt-arrow {
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .alert-warning-step5 {
+        padding: 12px;
+
+        gap: 9px;
+
+        margin-bottom: 16px;
+    }
+
+    .alert-warning-step5 .alert-icon {
+        font-size: 17px;
+    }
+
+    .alert-warning-step5 p {
+        font-size: 11px;
+    }
+
+
+    /* =====================================================
+       PASSO 6 - QUIZ
+       ===================================================== */
+
+    .quiz-container {
+        gap: 12px;
+    }
+
+    .quiz-box {
+        padding: 14px 12px;
+        border-radius: 13px;
+    }
+
+    .quiz-question {
+        font-size: 13px;
+        line-height: 1.45;
+        margin-bottom: 11px;
+    }
+
+    .quiz-options {
+        gap: 8px;
+    }
+
+    .quiz-option {
+        width: 100%;
+
+        padding: 11px 10px;
+
+        gap: 9px;
+
+        border-radius: 10px;
+    }
+
+    .custom-radio {
+        width: 18px;
+        height: 18px;
+    }
+
+    .option-text {
+        flex: 1;
+
+        font-size: 11.5px;
+        line-height: 1.4;
+    }
+
+    .feedback-badge {
+        font-size: 10px;
+        padding: 5px 9px;
+    }
+
+    .quiz-hint-text {
+        font-size: 11px;
+    }
+
+
+    /* =====================================================
+       PASSO 7 - AVALIAÇÃO
+       ===================================================== */
+
+    .rating-scale-legend {
+        width: 100%;
+
+        gap: 8px;
+
+        font-size: 10.5px;
+
+        flex-wrap: wrap;
+
+        margin-bottom: 12px;
+    }
+
+    .rating-table-wrapper {
+        width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+
+        margin-bottom: 18px;
+    }
+
+    .rating-table {
+        min-width: 580px;
+    }
+
+    .rating-table th {
+        font-size: 11px;
+        padding: 9px 6px;
+    }
+
+    .rating-table th .scale-num {
+        font-size: 10px;
+    }
+
+    .rating-table td {
+        padding: 11px 6px;
+    }
+
+    .rating-table td.criteria-label {
+        font-size: 11px;
+    }
+
+    .radio-cell .custom-radio {
+        width: 20px;
+        height: 20px;
+    }
+
+
+    /* =====================================================
+       PASSO 8 - PRESENÇA
+       ===================================================== */
+
+    .presence-form {
+        gap: 14px;
+        margin-top: 5px;
+    }
+
+    .form-group {
+        gap: 5px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100%;
+
+        padding: 12px 13px;
+
+        font-size: 16px;
+
+        border-radius: 10px;
+    }
+
+    /*
+       16px no input evita o zoom automático
+       do Safari/iPhone ao tocar no campo.
+    */
+
+    .input-help {
+        font-size: 10.5px;
+    }
+
+    .form-textarea {
+        min-height: 85px;
+    }
+
+
+    /* =====================================================
+       NAVEGAÇÃO VOLTAR / PROSSEGUIR
+       ===================================================== */
+
+    .card-navigation,
+    #step-3 .card-navigation,
+    #step-4 .card-navigation {
+        width: 100%;
+
+        margin-top: 22px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 10px;
+    }
+
+    .btn-voltar,
+    .btn-prossiga {
+        min-height: 42px;
+
+        padding: 10px 16px;
+
+        font-size: 12px;
+
+        white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       MODAL
+       ===================================================== */
+
+    .modal-overlay {
+        padding: 15px;
+    }
+
+    .modal-card {
+        width: 100%;
+        max-width: 360px;
+
+        padding: 28px 20px;
+
+        border-radius: 18px;
+    }
+
+    .modal-icon {
+        font-size: 44px;
+    }
+
+    .modal-card h2 {
+        font-size: 18px;
+    }
+
+    .modal-card p {
+        font-size: 12.5px;
+    }
+
+
+    /* =====================================================
+       RODAPÉ
+       ===================================================== */
+
+    .footer-bar {
+        position: relative !important;
+
+        bottom: auto;
+
+        width: 100%;
+
+        margin-top: 20px;
+
+        padding: 12px 14px;
+
+        font-size: 10px;
+
+        line-height: 1.4;
+    }
+
+    .footer-content {
+        width: 100%;
+
+        gap: 3px;
+
+        text-align: center;
+    }
+
+    .footer-logo {
+        height: 38px;
+        width: auto;
+    }
+
+    .footer-content p {
+        padding: 0 8px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .lms-header-universal {
+        padding: 10px 11px;
+    }
+
+    .system-top-title {
+        font-size: 15px;
+    }
+
+    /* Oculta o badge do header para ganhar espaço */
+    .nep-tag-badge {
+        display: none;
+    }
+
+    .code-badge {
+        font-size: 8px;
+        padding: 5px 7px;
+    }
+
+    .progress-section {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .system-content {
+        padding: 8px 9px 20px;
+    }
+
+    .lesson-card,
+    .lesson-card.align-left {
+        padding: 19px 13px;
+        border-radius: 15px;
+    }
+
+    .lesson-title {
+        font-size: 21px;
+    }
+
+    .left-title {
+        font-size: 20px;
+    }
+
+    .lesson-img {
+        height: 80px;
+    }
+
+    .cards-grid-5,
+    .cards-grid-step4 {
+        gap: 7px;
+    }
+
+    .info-card-step3 h3,
+    .info-card-step4 h3 {
+        font-size: 10px;
+    }
+
+    .btn-voltar,
+    .btn-prossiga {
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+
+    .footer-logo {
+        height: 34px;
+    }
+
+    .footer-bar {
+        font-size: 9px;
+    }
+}
+
+/* =====================================================
+   AJUSTE FINAL MOBILE - PROGRESSO + PASSO 1
+   Mantém a imagem proporcional e aproxima a barra do card
+   ===================================================== */
+@media (max-width: 600px) {
+
+    .progress-section {
+        width: calc(100% - 24px) !important;
+        max-width: 1080px !important;
+        margin: 10px auto 0 !important;
+        padding: 0 !important;
+    }
+
+    .progress-bars {
+        width: 100% !important;
+        gap: 5px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .progress-bars .bar {
+        flex: 1 !important;
+        height: 8px !important;
+        border-radius: 4px !important;
+    }
+
+    .step-indicator {
+        font-size: 11px !important;
+        margin: 0 !important;
+    }
+
+    .system-content {
+        width: 100% !important;
+        padding: 4px 12px 24px !important;
+        margin: 0 !important;
+        justify-content: flex-start !important;
+    }
+
+    .lesson-card,
+    .lesson-card.align-left {
+        width: 100% !important;
+        max-width: 1080px !important;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 22px 16px !important;
+        border-radius: 18px !important;
+        overflow: visible !important;
+    }
+
+    #step-1 {
+        width: 100% !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 10px !important;
+    }
+
+    #step-1 .lesson-badge {
+        margin: 0 !important;
+    }
+
+    #step-1 .lesson-badge .tag-meta,
+    #step-1 .lesson-badge .tag-desc {
+        font-size: 9px !important;
+        padding: 5px 9px !important;
+    }
+
+    #step-1 .lesson-title {
+        font-size: 24px !important;
+        line-height: 1.18 !important;
+        margin: 0 !important;
+    }
+
+    #step-1 .lesson-text {
+        width: 100% !important;
+        max-width: 360px !important;
+        font-size: 12.5px !important;
+        line-height: 1.5 !important;
+        margin: 0 !important;
+    }
+
+    #step-1 .lesson-image-box {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 0 !important;
+    }
+
+    #step-1 .lesson-img {
+        width: auto !important;
+        height: 110px !important;
+        max-width: 88% !important;
+        max-height: none !important;
+        object-fit: contain !important;
+        flex-shrink: 0 !important;
+    }
+
+    #step-1 .btn-vamos-comecar {
+        margin-top: 2px !important;
+        padding: 11px 24px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .progress-section {
+        width: calc(100% - 18px) !important;
+        margin-top: 8px !important;
+    }
+
+    .system-content {
+        padding-left: 9px !important;
+        padding-right: 9px !important;
+        padding-top: 4px !important;
+    }
+
+    #step-1 .lesson-img {
+        height: 96px !important;
+        max-width: 90% !important;
+    }
+
+    #step-1 .lesson-title {
+        font-size: 21px !important;
+    }
+}
