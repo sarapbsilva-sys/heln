@@ -401,24 +401,16 @@ body.system-body {
 /* Responsividade */
 @media (max-width: 768px) {
     .header-container { flex-direction: column; align-items: flex-start; }
-  .hero-learning-banner {
-    width: 100%;
-    padding: 18px 16px;
-    border-radius: 18px;
-
-    /* mantém texto e imagem lado a lado */
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    text-align: left;
-    gap: 12px;
-
-    margin-bottom: 28px;
-}
+    .hero-learning-banner { flex-direction: column; text-align: center; gap: 20px; }
     .coursera-card { flex-direction: column; align-items: flex-start; }
     .coursera-card-action { width: 100%; display: flex; justify-content: flex-end; }
 }
+
+/* Esconde PORTAL | TREINAMENTO no mobile */
+.lesson-badge {
+    display: none;
+}
+
 /* Rodapé na parte inferior da tela */
 .footer-bar {
     width: 100%;
@@ -613,11 +605,10 @@ img {
         gap: 25px;
     }
 
-   .hero-text-content {
-    flex: 1;
-    min-width: 0;
-    max-width: calc(100% - 95px);
-}
+    .hero-text-content {
+        flex: 1;
+        min-width: 0;
+    }
 
     .hero-title {
         font-size: 27px;
@@ -728,32 +719,29 @@ img {
         max-width: 100%;
     }
 
-   .lesson-badge {
-    margin: 0 0 9px 0;
-    max-width: 100%;
-}
+    .lesson-badge {
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.lesson-badge .tag-meta,
-.lesson-badge .tag-desc {
-    font-size: 8px;
-    padding: 4px 7px;
-    white-space: nowrap;
-}
-/* Título */
-.hero-title {
-    font-size: 20px;
-    line-height: 1.15;
-    letter-spacing: -0.4px;
-    margin-bottom: 7px;
-}
+    .lesson-badge .tag-meta,
+    .lesson-badge .tag-desc {
+        font-size: 9px;
+        padding: 4px 8px;
+    }
 
-/* Descrição */
-.hero-subtitle {
-    font-size: 11.5px;
-    line-height: 1.4;
-    margin-bottom: 12px;
-}
+    .hero-title {
+        font-size: 24px;
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        margin-bottom: 10px;
+    }
 
+    .hero-subtitle {
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+    }
 
     .hero-img {
         height: 105px;
@@ -763,12 +751,11 @@ img {
         order: -1;
     }
 
- .btn-continuar-hero {
-    padding: 9px 15px;
-    font-size: 11px;
-    gap: 6px;
-    white-space: nowrap;
-}
+    .btn-continuar-hero {
+        padding: 11px 22px;
+        font-size: 13px;
+        justify-content: center;
+    }
 
 
     /* ================= CATÁLOGO ================= */
@@ -1011,17 +998,8 @@ img {
     }
 
     .hero-img {
-    width: 80px;
-    height: 80px;
-    max-width: 80px;
-
-    object-fit: contain;
-
-    flex-shrink: 0;
-
-    /* IMPORTANTE: remove o order -1 anterior */
-    order: initial;
-}
+        height: 90px;
+    }
 
     .hero-title {
         font-size: 21px;
