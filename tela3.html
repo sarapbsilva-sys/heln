@@ -32,7 +32,46 @@
 
 <body class="system-body">
 
+<!-- LOADING DA PÁGINA -->
+<div id="page-loader" class="page-loader">
 
+    <div class="page-loader-content">
+
+        <div class="loader-brand">
+            Quali<span>Academy</span>
+        </div>
+
+      <div class="loader-animation">
+
+    <div class="loader-ring"></div>
+
+    <div class="loader-logo-box">
+        <img
+            src="../imgs/logonep.png"
+            alt="NEP"
+            class="loader-logo"
+        >
+    </div>
+
+</div>
+
+        <div class="loader-text">
+            Preparando seu ambiente
+        </div>
+
+        <div class="loader-subtext">
+            Carregando treinamentos...
+        </div>
+
+        <div class="loader-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </div>
+
+</div>
 <!-- =====================================================
      HEADER
      ===================================================== -->
@@ -1161,15 +1200,16 @@ function obterImagemCurso(curso) {
             loading.style.display =
                 "none";
 
+atualizarHero();
 
-            atualizarHero();
+renderPagina();
 
-
-            renderPagina();
+esconderPageLoader();
 
 
         } catch (erro) {
 
+            esconderPageLoader();
 
             console.error(
                 "Erro ao carregar treinamentos:",
@@ -1283,6 +1323,32 @@ function normalizarImagemDrive(url) {
     }
 
     return url;
+}
+
+function esconderPageLoader() {
+
+    const loader =
+        document.getElementById('page-loader');
+
+    if (!loader) {
+        return;
+    }
+
+    /*
+     * Pequeno intervalo deixa a transição
+     * mais natural e evita um flash.
+     */
+    setTimeout(() => {
+
+        loader.classList.add(
+            'loader-hidden'
+        );
+
+        setTimeout(() => {
+            loader.remove();
+        }, 500);
+
+    }, 250);
 }
 </script>
 
