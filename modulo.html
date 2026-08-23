@@ -357,49 +357,74 @@ function renderModuloData(data) {
     /* ==========================================
        IMAGEM DO TREINAMENTO
        ========================================== */
+const heroImg =
+    document.getElementById('dynamic-hero-img');
 
-    const heroImg =
-        document.getElementById(
-            'dynamic-hero-img'
+const imagemOriginal =
+    String(data.imagemHero || '').trim();
+
+const imagemCurso =
+    normalizarImagemDrive(imagemOriginal);
+
+console.log(
+    'IMAGEM ORIGINAL:',
+    imagemOriginal
+);
+
+console.log(
+    'IMAGEM FINAL:',
+    imagemCurso
+);
+
+if (heroImg && imagemCurso) {
+
+    heroImg.onerror = function () {
+
+        console.error(
+            'Erro ao carregar imagem do treinamento:',
+            imagemCurso
         );
 
+        /*
+         * Se o thumbnail do Drive falhar,
+         * tenta o endpoint lh3.
+         */
+        const match =
+            imagemCurso.match(/[?&]id=([^&]+)/);
 
-    const imagemCurso =
-        String(
-            data.imagemHero || ''
-        ).trim();
+        if (
+            match &&
+            !this.dataset.fallbackTentado
+        ) {
+
+            this.dataset.fallbackTentado = '1';
+
+            const fileId =
+                decodeURIComponent(match[1]);
+
+            this.src =
+                'https://lh3.googleusercontent.com/d/' +
+                fileId;
+
+            return;
+        }
+
+        this.style.display = 'none';
+    };
 
 
-    if (imagemCurso) {
-
-        heroImg.src =
-            imagemCurso;
-
-        heroImg.style.display =
-            'block';
+    heroImg.onload = function () {
+        this.style.display = 'block';
+    };
 
 
-        heroImg.onerror =
-            function () {
+    heroImg.src = imagemCurso;
 
-                console.error(
-                    'Erro ao carregar imagem do treinamento:',
-                    imagemCurso
-                );
+} else if (heroImg) {
 
-                this.style.display =
-                    'none';
-            };
-
-    } else {
-
-        heroImg.removeAttribute(
-            'src'
-        );
-
-        heroImg.style.display =
-            'none';
-    }
+    heroImg.removeAttribute('src');
+    heroImg.style.display = 'none';
+}
 
 
     /* ==========================================
@@ -957,6 +982,69 @@ async function submitForm(event) {
             if (modal) modal.style.display = 'none';
             window.location.href = 'tela3.html';
         }
+
+        function normalizarImagemDrive(url) {
+
+    url = String(url || '').trim();
+
+    if (!url) {
+        return '';
+    }
+
+    /*
+     * Formato antigo:
+     * https://drive.google.com/uc?export=view&id=XXXX
+     */
+    try {
+
+        const parsed = new URL(url);
+
+        if (
+            parsed.hostname.includes('drive.google.com')
+        ) {
+
+            let id = '';
+
+            /* /uc?export=view&id=XXXX */
+            if (parsed.pathname === '/uc') {
+                id = parsed.searchParams.get('id') || '';
+            }
+
+            /* /file/d/XXXX/view */
+            if (!id) {
+                const match = parsed.pathname.match(
+                    /\/file\/d\/([^/]+)/
+                );
+
+                if (match) {
+                    id = match[1];
+                }
+            }
+
+            /* thumbnail?id=XXXX */
+            if (!id) {
+                id = parsed.searchParams.get('id') || '';
+            }
+
+            if (id) {
+                return (
+                    'https://drive.google.com/thumbnail?id=' +
+                    encodeURIComponent(id) +
+                    '&sz=w1600'
+                );
+            }
+        }
+
+    } catch (erro) {
+
+        console.error(
+            'URL de imagem inválida:',
+            url
+        );
+    }
+
+    return url;
+}
     </script>
 </body>
 </html>
