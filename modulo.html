@@ -492,274 +492,155 @@
             }
         }
 
-       async function submitForm(event) {
-
+      async function submitForm(event) {
     event.preventDefault();
 
-
-    /* ==========================================
-       BOTÃO
-       ========================================== */
-
-    const btn =
-        document.getElementById(
-            "btn-submit-presence"
-        );
-
+    const btn = document.getElementById("btn-submit-presence");
 
     if (btn) {
-
         btn.disabled = true;
-
-        btn.innerHTML =
-            '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
-
+        btn.classList.add("btn-disabled");
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
     }
 
-
-    /* ==========================================
-       CAMPOS
-       ========================================== */
-
     const nome =
-        document
-            .getElementById("user-name")
-            ?.value
-            .trim() || "";
-
+        document.getElementById("user-name")?.value.trim() || "";
 
     const matricula =
-        document
-            .getElementById("user-matricula")
-            ?.value
-            .trim() || "";
-
+        document.getElementById("user-matricula")?.value.trim() || "";
 
     const profissao =
-        document
-            .getElementById("user-profession")
-            ?.value
-            .trim() || "";
-
+        document.getElementById("user-profession")?.value.trim() || "";
 
     const setor =
-        document
-            .getElementById("user-sector")
-            ?.value
-            .trim() || "";
-
+        document.getElementById("user-sector")?.value.trim() || "";
 
     const turno =
-        document
-            .getElementById("user-shift")
-            ?.value
-            .trim() || "";
-
+        document.getElementById("user-shift")?.value.trim() || "";
 
     const observacao =
-        document
-            .getElementById("user-observation")
-            ?.value
-            .trim() || "";
+        document.getElementById("user-observation")?.value.trim() || "";
 
 
-    /* ==========================================
-       RESULTADO DO QUIZ
-       ========================================== */
+    /* =========================
+       QUIZ
+       ========================= */
 
-    const respostasQuiz =
-        Object.values(quizScore);
+    const respostasQuiz = Object.values(quizScore);
 
+    const notaQuiz = respostasQuiz.filter(
+        resposta => resposta === true
+    ).length;
 
-    const notaQuiz =
-        respostasQuiz.filter(
-            resposta => resposta === true
-        ).length;
-
-
-    const totalQuestoes =
-        respostasQuiz.length;
+    const totalQuestoes = respostasQuiz.length;
 
 
-    /* ==========================================
-       AVALIAÇÃO DE SATISFAÇÃO
-       ========================================== */
+    /* =========================
+       AVALIAÇÃO
+       ========================= */
 
     const avaliacoes = [
-        document.querySelector(
-            'input[name="item1"]:checked'
-        )?.value,
-
-        document.querySelector(
-            'input[name="item2"]:checked'
-        )?.value,
-
-        document.querySelector(
-            'input[name="item3"]:checked'
-        )?.value,
-
-        document.querySelector(
-            'input[name="item4"]:checked'
-        )?.value,
-
-        document.querySelector(
-            'input[name="item5"]:checked'
-        )?.value
+        document.querySelector('input[name="item1"]:checked')?.value,
+        document.querySelector('input[name="item2"]:checked')?.value,
+        document.querySelector('input[name="item3"]:checked')?.value,
+        document.querySelector('input[name="item4"]:checked')?.value,
+        document.querySelector('input[name="item5"]:checked')?.value
     ];
 
-
-    const avaliacoesNumericas =
-        avaliacoes
-            .map(Number)
-            .filter(valor =>
-                !isNaN(valor)
-            );
-
+    const valoresAvaliacao = avaliacoes
+        .map(Number)
+        .filter(valor => !isNaN(valor));
 
     let avaliacaoMedia = "";
 
+    if (valoresAvaliacao.length > 0) {
+        const soma = valoresAvaliacao.reduce((a, b) => a + b, 0);
 
-    if (avaliacoesNumericas.length > 0) {
-
-        const soma =
-            avaliacoesNumericas.reduce(
-                (a, b) => a + b,
-                0
-            );
-
-
-        avaliacaoMedia =
-            (
-                soma /
-                avaliacoesNumericas.length
-            )
-            .toFixed(1);
-
+        avaliacaoMedia = (
+            soma / valoresAvaliacao.length
+        ).toFixed(1);
     }
 
 
-    /* ==========================================
-       DADOS
-       ========================================== */
+    /* =========================
+       DADOS PARA API
+       ========================= */
 
     const dados = {
-
-        meta:
-            currentModulo?.metaBadge || "",
-
-        treinamento:
-            currentModulo?.categoria || "",
+        meta: currentModulo?.metaBadge || "",
+        treinamento: currentModulo?.categoria || "",
 
         nome,
-
         matricula,
-
         profissao,
-
         setor,
-
         turno,
 
         notaQuiz,
-
         totalQuestoes,
 
         avaliacao: avaliacaoMedia,
 
         observacao
-
     };
 
 
     try {
 
-        /* ==========================================
-           CHAMA A API DA PRÓPRIA VERCEL
-           ========================================== */
+        const resposta = await fetch("/api/presenca", {
+            method: "POST",
 
-        const resposta = await fetch(
-            "/api/presenca",
-            {
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body:
-                    JSON.stringify(dados)
-
-            }
-        );
+            body: JSON.stringify(dados)
+        });
 
 
-        const resultado =
-            await resposta.json();
+        const resultado = await resposta.json();
 
 
         if (!resposta.ok) {
-
             throw new Error(
                 resultado.message ||
-                "Não foi possível registrar."
+                "Não foi possível registrar a presença."
             );
-
         }
 
 
-        /* ==========================================
+        /* =========================
            SUCESSO
-           ========================================== */
+           ========================= */
 
-        const modal =
-            document.getElementById(
-                "success-modal"
-            );
-
+        const modal = document.getElementById("success-modal");
 
         if (modal) {
-
             modal.style.display = "flex";
-
         }
-
 
     } catch (erro) {
 
-        console.error(erro);
-
+        console.error("Erro ao registrar:", erro);
 
         alert(
             erro.message ||
-            "Erro ao registrar presença."
+            "Erro ao registrar presença. Tente novamente."
         );
 
-
         if (btn) {
-
             btn.disabled = false;
-
-            btn.classList.remove(
-                "btn-disabled"
-            );
-
+            btn.classList.remove("btn-disabled");
         }
 
     } finally {
 
         if (btn) {
-
             btn.innerHTML =
                 'Finalizar treinamento <i class="fa-solid fa-check"></i>';
-
         }
-
     }
-
 }
-
         function closeSuccessModal() {
             const modal = document.getElementById('success-modal');
             if (modal) modal.style.display = 'none';
