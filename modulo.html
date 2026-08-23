@@ -518,8 +518,8 @@
     const turno =
         document.getElementById("user-shift")?.value.trim() || "";
 
-    const observacao =
-        document.getElementById("user-observation")?.value.trim() || "";
+const observacao =
+    document.getElementById("user-feedback")?.value.trim() || "";
 
 
     /* =========================
@@ -587,25 +587,20 @@
 
     try {
 
-       const resposta = await fetch("https://script.google.com/macros/s/AKfycbwrL3Z3dGBIsYHOOd6urjl9-UlTAwBz4Cnvbw7C5-0fI_zZcR5mVgEZPN7phAp3YJ92/exec", {
+ const resposta = await fetch("/api/presenca", {
     method: "POST",
     headers: {
-        "Content-Type": "text/plain;charset=utf-8"
+        "Content-Type": "application/json"
     },
     body: JSON.stringify(dados)
 });
 
 const resultado = await resposta.json();
 
-
-       if (!resposta.ok) {
-
-    console.error("Resposta da API:", resultado);
-
+if (!resposta.ok) {
     throw new Error(
-        resultado.error ||
         resultado.message ||
-        "Não foi possível registrar a presença."
+        "Erro ao registrar presença."
     );
 }
 
