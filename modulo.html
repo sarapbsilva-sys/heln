@@ -587,18 +587,15 @@
 
     try {
 
-        const resposta = await fetch("/api/presenca", {
-            method: "POST",
+       const resposta = await fetch("https://script.google.com/macros/s/AKfycbwrL3Z3dGBIsYHOOd6urjl9-UlTAwBz4Cnvbw7C5-0fI_zZcR5mVgEZPN7phAp3YJ92/exec", {
+    method: "POST",
+    headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(dados)
+});
 
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify(dados)
-        });
-
-
-        const resultado = await resposta.json();
+const resultado = await resposta.json();
 
 
        if (!resposta.ok) {
