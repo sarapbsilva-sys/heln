@@ -3809,42 +3809,75 @@ img {
     }
 }
 /* =========================================================
-   CORREÇÃO FINAL DO FOOTER
-   FICA NO FIM DA PÁGINA, SEM SOBREPOR O CONTEÚDO
+   FOOTER DEFINITIVO
+   SEM ESPAÇO VERDE DEPOIS
+   SEM SOBREPOR CONTEÚDO
    ========================================================= */
 
-html,
-body {
+html {
     min-height: 100%;
 }
 
 body.system-body,
 .system-body {
+    width: 100% !important;
+
     min-height: 100vh !important;
+    height: auto !important;
+
     display: flex !important;
     flex-direction: column !important;
+
+    /* REMOVE O ESPAÇO VERDE DEPOIS DO FOOTER */
+    padding-bottom: 0 !important;
+
+    margin: 0 !important;
+
+    overflow-x: hidden !important;
 }
 
-/* O conteúdo ocupa todo o espaço disponível */
+
+/* CONTEÚDO CENTRAL */
+
 .system-content {
-    flex: 1 0 auto !important;
     width: 100% !important;
+
+    /* ocupa o espaço disponível */
+    flex: 1 0 auto !important;
+
+    margin-bottom: 0 !important;
 }
 
-/* Footer permanece depois do conteúdo */
+
+/* FOOTER */
+
 .footer-bar {
     position: static !important;
+
     top: auto !important;
+    right: auto !important;
     bottom: auto !important;
     left: auto !important;
-    right: auto !important;
 
     width: 100% !important;
 
-    /* ISSO empurra o footer para o fim quando sobra espaço */
+    /* empurra para o final quando a página for pequena */
     margin-top: auto !important;
 
+    margin-bottom: 0 !important;
+
     flex-shrink: 0 !important;
+
+    background: #ffffff !important;
+
+    z-index: auto !important;
+}
+
+
+/* NÃO DEIXA NADA CRIAR ESPAÇO DEPOIS DO FOOTER */
+
+.footer-bar:last-child {
+    margin-bottom: 0 !important;
 }
 
 
@@ -3857,20 +3890,24 @@ body.system-body,
     body.system-body,
     .system-body {
         min-height: 100svh !important;
-        display: flex !important;
-        flex-direction: column !important;
+
+        padding-bottom: 0 !important;
     }
+
 
     .system-content {
         flex: 1 0 auto !important;
 
-        /* mantém o afastamento do header/progresso */
-        padding-bottom: 38px !important;
+        margin-bottom: 0 !important;
     }
+
 
     .footer-bar {
         position: static !important;
+
         margin-top: auto !important;
+        margin-bottom: 0 !important;
+
         flex-shrink: 0 !important;
     }
 }
