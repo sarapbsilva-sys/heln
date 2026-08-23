@@ -531,24 +531,19 @@
     /* =====================================================
        IMAGEM
        ===================================================== */
+function obterImagemCurso(curso) {
 
-    function obterImagemCurso(
-        curso
-    ) {
+    const imagem =
+        normalizarImagemDrive(
+            curso.imagemHero
+        );
 
-        if (
-            curso.imagemHero &&
-            curso.imagemHero.trim()
-        ) {
-
-            return curso.imagemHero;
-
-        }
-
-
-        return "../imgs/bonecos.png";
+    if (imagem) {
+        return imagem;
     }
 
+    return '../imgs/bonecos.png';
+}
 
 
     /* =====================================================
@@ -685,26 +680,47 @@
 
                 <div class="coursera-card-thumb">
 
+<img
+    src="${escapeHtml(imagem)}"
+    alt="${escapeHtml(removerHtml(titulo))}"
+    class="coursera-img"
 
-                    <img
-                        src="${escapeHtml(imagem)}"
-                        alt="${escapeHtml(removerHtml(titulo))}"
-                        class="coursera-img"
+    onerror="
+        const urlAtual = this.src;
 
-                        onerror="
-                            this.onerror=null;
-                            this.src='../imgs/bonecos.png';
-                        "
-                    >
+        if (
+            !this.dataset.fallbackTentado &&
+            urlAtual.includes('drive.google.com/thumbnail')
+        ) {
 
+            this.dataset.fallbackTentado = '1';
 
-                    <span class="coursera-badge-overlay">
+            try {
 
-                        ${escapeHtml(
-                            curso.meta ||
-                            curso.id ||
-                            "Treinamento"
-                        )}
+                const parsed = new URL(urlAtual);
+                const id = parsed.searchParams.get('id');
+
+                if (id) {
+
+                    this.src =
+                        'https://lh3.googleusercontent.com/d/' +
+                        id;
+
+                    return;
+                }
+
+            } catch (e) {
+                console.error(
+                    'Erro ao tratar imagem do Drive:',
+                    e
+                );
+            }
+        }
+
+        this.onerror = null;
+        this.src = '../imgs/bonecos.png';
+    "
+>
 
                     </span>
 
@@ -1213,7 +1229,61 @@
         }
     );
 
+function normalizarImagemDrive(url) {
 
+    url = String(url || '').trim();
+
+    if (!url) {
+        return '';
+    }
+
+    try {
+
+        const parsed = new URL(url);
+
+        if (
+            parsed.hostname.includes('drive.google.com')
+        ) {
+
+            let id = '';
+
+            if (parsed.pathname === '/uc') {
+                id = parsed.searchParams.get('id') || '';
+            }
+
+            if (!id) {
+                const match = parsed.pathname.match(
+                    /\/file\/d\/([^/]+)/
+                );
+
+                if (match) {
+                    id = match[1];
+                }
+            }
+
+            if (!id) {
+                id = parsed.searchParams.get('id') || '';
+            }
+
+            if (id) {
+                return (
+                    'https://drive.google.com/thumbnail?id=' +
+                    encodeURIComponent(id) +
+                    '&sz=w1600'
+                );
+            }
+        }
+
+    } catch (erro) {
+
+        console.error(
+            'URL de imagem inválida:',
+            url
+        );
+    }
+
+    return url;
+}
 </script>
 
 
