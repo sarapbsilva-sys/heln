@@ -492,49 +492,50 @@
 
 </div>
 
-
 <div class="presence-summary-grid">
 
     <div class="presence-summary-card">
 
-        <span>
-            Registros
-        </span>
+        <div class="summary-icon">
+            <i class="fa-solid fa-clipboard-check"></i>
+        </div>
 
-        <strong id="presence-total">
-            0
-        </strong>
-
-    </div>
-
-
-    <div class="presence-summary-card">
-
-        <span>
-            Colaboradores
-        </span>
-
-        <strong id="presence-people">
-            0
-        </strong>
+        <div>
+            <span>Registros de presença</span>
+            <strong id="presence-total">0</strong>
+        </div>
 
     </div>
 
 
     <div class="presence-summary-card">
 
-        <span>
-            Média de satisfação
-        </span>
+        <div class="summary-icon">
+            <i class="fa-solid fa-users"></i>
+        </div>
 
-        <strong id="presence-rating">
-            -
-        </strong>
+        <div>
+            <span>Colaboradores</span>
+            <strong id="presence-people">0</strong>
+        </div>
+
+    </div>
+
+
+    <div class="presence-summary-card">
+
+        <div class="summary-icon">
+            <i class="fa-solid fa-book-open"></i>
+        </div>
+
+        <div>
+            <span>Treinamentos concluídos</span>
+            <strong id="presence-courses">0</strong>
+        </div>
 
     </div>
 
 </div>
-
 
 <div class="admin-panel">
 
@@ -569,7 +570,7 @@
                     <th>Matrícula</th>
                     <th>Setor</th>
                     <th>Turno</th>
-                    <th>Avaliação</th>
+    
 
                 </tr>
 
@@ -1953,14 +1954,12 @@ function filtrarPresencas() {
 
     renderPresencas(lista);
 }
-
 function renderPresencas(lista) {
 
     const tbody =
         document.getElementById(
             "presence-table-body"
         );
-
 
     if (!tbody) return;
 
@@ -1970,9 +1969,7 @@ function renderPresencas(lista) {
     ).textContent =
 
         `${lista.length} registro${
-            lista.length === 1
-                ? ""
-                : "s"
+            lista.length === 1 ? "" : "s"
         }`;
 
 
@@ -1981,16 +1978,16 @@ function renderPresencas(lista) {
         tbody.innerHTML = `
 
             <tr>
-
                 <td
-                    colspan="7"
+                    colspan="6"
                     class="table-empty"
                 >
+                    <i class="fa-solid fa-clipboard-check"></i>
 
-                    Nenhum registro encontrado.
-
+                    <span>
+                        Nenhum registro encontrado.
+                    </span>
                 </td>
-
             </tr>
 
         `;
@@ -2000,122 +1997,118 @@ function renderPresencas(lista) {
 
 
     tbody.innerHTML =
-        lista.map(
-            item => {
+        lista.map(item => {
+
+            const data =
+                formatarDataHora(
+                    item.dataHora
+                );
 
 
-                const data =
-                    formatarDataHora(
-                        item.dataHora
-                    );
+            const treinamento =
+                item.treinamentoTitulo ||
+                item.meta ||
+                item.treinamentoId ||
+                "-";
 
 
-                const treinamento =
+            return `
 
-                    item.treinamentoTitulo ||
+                <tr>
 
-                    item.meta ||
-
-                    item.treinamentoId ||
-
-                    "-";
+                    <td class="table-date">
+                        ${escapeHtml(data)}
+                    </td>
 
 
-                const media =
-                    Number(
-                        item.avaliacaoMedia || 0
-                    );
+                    <td>
 
+                        <div class="training-cell">
 
-                return `
+                            <span class="training-id">
+                                ${escapeHtml(
+                                    item.treinamentoId ||
+                                    item.meta ||
+                                    ""
+                                )}
+                            </span>
 
-                    <tr>
-
-                        <td>
-                            ${escapeHtml(data)}
-                        </td>
-
-                        <td>
-                            <strong class="table-course">
-
+                            <strong>
                                 ${escapeHtml(
                                     treinamento
                                 )}
-
-                            </strong>
-                        </td>
-
-                        <td>
-
-                            <strong>
-
-                                ${escapeHtml(
-                                    item.nome || "-"
-                                )}
-
                             </strong>
 
-                            <small>
+                        </div>
 
+                    </td>
+
+
+                    <td>
+
+                        <div class="person-cell">
+
+                            <div class="person-avatar">
                                 ${escapeHtml(
-                                    item.profissao || ""
+                                    (
+                                        item.nome ||
+                                        "?"
+                                    )
+                                    .charAt(0)
+                                    .toUpperCase()
                                 )}
+                            </div>
 
-                            </small>
+                            <div>
 
-                        </td>
+                                <strong>
+                                    ${escapeHtml(
+                                        item.nome || "-"
+                                    )}
+                                </strong>
 
-                        <td>
+                                <small>
+                                    ${escapeHtml(
+                                        item.profissao || ""
+                                    )}
+                                </small>
 
-                            ${escapeHtml(
-                                item.matricula || "-"
-                            )}
+                            </div>
 
-                        </td>
+                        </div>
 
-                        <td>
+                    </td>
+
+
+                    <td>
+                        ${escapeHtml(
+                            item.matricula || "-"
+                        )}
+                    </td>
+
+
+                    <td>
+                        <span class="sector-chip">
 
                             ${escapeHtml(
                                 item.setor || "-"
                             )}
 
-                        </td>
+                        </span>
+                    </td>
 
-                        <td>
 
-                            ${escapeHtml(
-                                item.turno || "-"
-                            )}
+                    <td>
+                        ${escapeHtml(
+                            item.turno || "-"
+                        )}
+                    </td>
 
-                        </td>
+                </tr>
 
-                        <td>
+            `;
 
-                            ${
-                                media
-                                    ? `
-
-                                        <span class="rating-score">
-
-                                            <i class="fa-solid fa-star"></i>
-
-                                            ${media.toFixed(1)}
-
-                                        </span>
-
-                                    `
-                                    : "-"
-                            }
-
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }
-        )
-        .join("");
+        }).join("");
 }
 function formatarDataHora(valor) {
 
@@ -2148,8 +2141,7 @@ function formatarDataHora(valor) {
             minute: "2-digit"
         }
     );
-}
-function atualizarResumoPresencas() {
+}function atualizarResumoPresencas() {
 
     const total =
         presencasAdmin.length;
@@ -2159,50 +2151,39 @@ function atualizarResumoPresencas() {
         new Set(
 
             presencasAdmin
-                .map(
-                    item =>
-                        String(
-                            item.matricula ||
-                            item.nome ||
-                            ""
-                        )
-                        .trim()
-                        .toUpperCase()
+
+                .map(item =>
+                    String(
+                        item.matricula ||
+                        item.nome ||
+                        ""
+                    )
+                    .trim()
+                    .toUpperCase()
                 )
+
                 .filter(Boolean)
 
         ).size;
 
 
-    const notas =
-        presencasAdmin
+    const treinamentos =
+        new Set(
 
-            .map(
-                item =>
-                    Number(
-                        item.avaliacaoMedia
+            presencasAdmin
+
+                .map(item =>
+                    String(
+                        item.treinamentoId ||
+                        item.meta ||
+                        ""
                     )
-            )
+                    .trim()
+                )
 
-            .filter(
-                nota =>
-                    nota > 0
-            );
+                .filter(Boolean)
 
-
-    const media =
-        notas.length
-
-            ? (
-                notas.reduce(
-                    (a, b) =>
-                        a + b,
-                    0
-                ) /
-                notas.length
-            ).toFixed(1)
-
-            : "-";
+        ).size;
 
 
     document.getElementById(
@@ -2218,12 +2199,9 @@ function atualizarResumoPresencas() {
 
 
     document.getElementById(
-        "presence-rating"
+        "presence-courses"
     ).textContent =
-
-        media === "-"
-            ? "-"
-            : `${media}/5`;
+        treinamentos;
 }
     </script>
 

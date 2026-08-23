@@ -266,3 +266,385 @@ body.system-body {
         gap: 12px;
     }
 }
+/* =========================================================
+   PRESENÇAS - RESUMO
+   ========================================================= */
+
+.presence-summary-grid {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin: 18px 0 22px;
+}
+
+
+.presence-summary-card {
+    min-height: 92px;
+
+    padding: 18px 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1eadf;
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 18px rgba(45, 90, 39, 0.045);
+}
+
+
+.summary-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eef7eb;
+
+    color: #558b2f;
+
+    font-size: 16px;
+}
+
+
+.presence-summary-card span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    color: #7b887e;
+}
+
+
+.presence-summary-card strong {
+    display: block;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    color: #315929;
+}
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.admin-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 0 0 18px 18px;
+}
+
+
+.admin-data-table {
+    width: 100%;
+
+    min-width: 900px;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+}
+
+
+.admin-data-table thead {
+    background: #f6faf4;
+}
+
+
+.admin-data-table th {
+    padding: 13px 16px;
+
+    border-bottom:
+        1px solid #e3ebe1;
+
+    text-align: left;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .45px;
+
+    text-transform: uppercase;
+
+    color: #728075;
+}
+
+
+.admin-data-table td {
+    padding: 15px 16px;
+
+    border-bottom:
+        1px solid #edf2eb;
+
+    vertical-align: middle;
+
+    font-size: 10px;
+
+    color: #536057;
+}
+
+
+.admin-data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+.admin-data-table tbody tr {
+    transition:
+        background .15s ease;
+}
+
+
+.admin-data-table tbody tr:hover {
+    background: #fafdfa;
+}
+
+
+/* DATA */
+
+.table-date {
+    white-space: nowrap;
+
+    color: #707c72 !important;
+}
+
+
+/* TREINAMENTO */
+
+.training-cell {
+    min-width: 180px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.training-cell strong {
+    font-size: 10px;
+    font-weight: 650;
+
+    line-height: 1.35;
+
+    color: #334637;
+}
+
+
+.training-id {
+    width: fit-content;
+
+    padding: 3px 7px;
+
+    border-radius: 999px;
+
+    background: #edf6e9;
+
+    color: #558b2f;
+
+    font-size: 8px;
+    font-weight: 750;
+}
+
+
+/* COLABORADOR */
+
+.person-cell {
+    min-width: 170px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.person-avatar {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eef7eb;
+
+    color: #4f7e32;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+.person-cell strong {
+    display: block;
+
+    font-size: 10px;
+    font-weight: 650;
+
+    color: #35453a;
+}
+
+
+.person-cell small {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 8px;
+
+    color: #909a92;
+}
+
+
+/* SETOR */
+
+.sector-chip {
+    display: inline-flex;
+
+    padding: 5px 8px;
+
+    border-radius: 8px;
+
+    background: #f3f7f1;
+
+    color: #59685b;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* SEM RESULTADOS */
+
+.table-empty {
+    height: 160px;
+
+    text-align: center !important;
+
+    color: #919c93 !important;
+}
+
+
+.table-empty i {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 22px;
+
+    color: #a8baa3;
+}
+
+
+.table-empty span {
+    display: block;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .presence-summary-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+
+    .presence-summary-card {
+        min-height: 80px;
+
+        padding: 12px;
+
+        gap: 9px;
+    }
+
+
+    .summary-icon {
+        width: 34px;
+        height: 34px;
+
+        font-size: 13px;
+    }
+
+
+    .presence-summary-card span {
+        font-size: 8px;
+    }
+
+
+    .presence-summary-card strong {
+        font-size: 19px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .presence-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .presence-summary-card {
+        min-height: 72px;
+
+        padding: 13px 15px;
+    }
+
+
+    .admin-table-wrapper {
+        width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    .admin-data-table {
+        min-width: 820px;
+    }
+
+
+    .admin-data-table th,
+    .admin-data-table td {
+        padding: 12px 13px;
+    }
+
+}
