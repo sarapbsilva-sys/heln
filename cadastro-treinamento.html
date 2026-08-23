@@ -1,0 +1,2913 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Cadastro de Treinamento - QualiAcademy
+    </title>
+
+
+    <link
+        rel="stylesheet"
+        href="css/admincss.css"
+    >
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+</head>
+
+
+<body class="admin-body">
+
+
+<!-- =====================================================
+     PROTEÇÃO
+     ===================================================== -->
+
+<script>
+
+    const adminLogado =
+        sessionStorage.getItem(
+            "qualiacademy_admin"
+        );
+
+
+    if (
+        adminLogado !== "true"
+    ) {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+</script>
+
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header class="admin-header">
+
+    <div class="admin-header-container">
+
+
+        <div class="admin-brand">
+
+            <h1>
+                Quali<span>Academy</span>
+            </h1>
+
+            <span class="admin-badge">
+                Editor
+            </span>
+
+        </div>
+
+
+
+        <button
+            type="button"
+            class="btn-header"
+            onclick="window.location.href='painel-admin.html'"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar ao painel
+
+        </button>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CONTEÚDO
+     ===================================================== -->
+
+<main class="training-editor-page">
+
+
+    <div class="editor-page-header">
+
+
+        <div>
+
+            <span class="page-kicker">
+                TREINAMENTOS
+            </span>
+
+
+            <h2 id="editor-title">
+                Novo treinamento
+            </h2>
+
+
+            <p>
+                Monte o conteúdo do treinamento,
+                adicione quantos passos forem necessários
+                e publique quando estiver pronto.
+            </p>
+
+        </div>
+
+
+
+        <span
+            id="editor-status"
+            class="status-chip status-draft"
+        >
+            Rascunho
+        </span>
+
+
+    </div>
+
+
+
+    <form id="form-training">
+
+
+        <!-- =================================================
+             01 IDENTIFICAÇÃO
+             ================================================= -->
+
+        <section class="editor-section">
+
+
+            <div class="editor-section-header">
+
+
+                <div class="section-number">
+                    01
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Identificação
+                    </h3>
+
+                    <p>
+                        Informações principais do treinamento.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="editor-grid two">
+
+
+                <!-- CATEGORIA -->
+
+                <div class="editor-field">
+
+                    <label for="course-category">
+                        Categoria *
+                    </label>
+
+
+                    <select
+                        id="course-category"
+                        required
+                        onchange="gerarIdAutomatico()"
+                    >
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+
+                        <option
+                            value="SEGURANÇA DO PACIENTE"
+                            data-sigla="SDP"
+                        >
+                            Segurança do Paciente
+                        </option>
+
+
+                        <option
+                            value="CONTROLE DE INFECÇÃO"
+                            data-sigla="CCIH"
+                        >
+                            Controle de Infecção
+                        </option>
+
+
+                        <option
+                            value="EDUCAÇÃO PERMANENTE"
+                            data-sigla="NEP"
+                        >
+                            Educação Permanente
+                        </option>
+
+
+                        <option
+                            value="QUALIDADE"
+                            data-sigla="QUA"
+                        >
+                            Qualidade
+                        </option>
+
+
+                        <option
+                            value="ENFERMAGEM"
+                            data-sigla="ENF"
+                        >
+                            Enfermagem
+                        </option>
+
+
+                        <option
+                            value="FARMÁCIA"
+                            data-sigla="FAR"
+                        >
+                            Farmácia
+                        </option>
+
+
+                        <option
+                            value="FISIOTERAPIA"
+                            data-sigla="FIS"
+                        >
+                            Fisioterapia
+                        </option>
+
+
+                        <option
+                            value="NUTRIÇÃO"
+                            data-sigla="NUT"
+                        >
+                            Nutrição
+                        </option>
+
+
+                        <option
+                            value="PSICOLOGIA"
+                            data-sigla="PSI"
+                        >
+                            Psicologia
+                        </option>
+
+
+                        <option
+                            value="SERVIÇO SOCIAL"
+                            data-sigla="SSO"
+                        >
+                            Serviço Social
+                        </option>
+
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ID -->
+
+                <div class="editor-field">
+
+                    <label for="course-id">
+                        ID do treinamento
+                    </label>
+
+
+                    <input
+                        id="course-id"
+                        type="text"
+                        readonly
+                        required
+                        placeholder="Gerado automaticamente"
+                    >
+
+
+                    <small>
+                        Exemplo: SDP001
+                    </small>
+
+                </div>
+
+
+
+                <!-- META -->
+
+                <div class="editor-field">
+
+                    <label for="course-meta">
+                        Identificação / Meta *
+                    </label>
+
+
+                    <input
+                        id="course-meta"
+                        type="text"
+                        required
+                        placeholder="Ex: Meta 1"
+                    >
+
+                </div>
+
+
+
+                <!-- ORDEM -->
+
+                <div class="editor-field">
+
+                    <label for="course-order">
+                        Ordem no portal
+                    </label>
+
+
+                    <input
+                        id="course-order"
+                        type="number"
+                        min="1"
+                        value="1"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- TÍTULO -->
+
+            <div class="editor-field">
+
+                <label for="course-title">
+                    Título *
+                </label>
+
+
+                <input
+                    id="course-title"
+                    type="text"
+                    required
+                    placeholder="Identificação Segura do Paciente"
+                >
+
+            </div>
+
+
+
+            <!-- BOAS VINDAS -->
+
+            <div class="editor-field">
+
+                <label for="course-welcome">
+                    Texto de boas-vindas *
+                </label>
+
+
+                <textarea
+                    id="course-welcome"
+                    rows="5"
+                    required
+                    placeholder="Olá, equipe! Neste treinamento vamos..."
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- IMAGEM -->
+
+            <div class="editor-field">
+
+                <label>
+                    Imagem do treinamento
+                </label>
+
+
+                <div class="course-image-upload">
+
+
+                    <input
+                        type="file"
+                        id="course-image-file"
+                        accept="image/png,image/jpeg,image/webp"
+                        onchange="selecionarImagem(event)"
+                    >
+
+
+
+                    <label
+                        for="course-image-file"
+                        class="course-image-upload-label"
+                    >
+
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+
+                        <strong>
+                            Selecionar imagem
+                        </strong>
+
+
+                        <span>
+                            PNG, JPG ou WEBP · até 5 MB
+                        </span>
+
+                    </label>
+
+
+
+                    <div
+                        id="course-image-preview-box"
+                        class="course-image-preview-box"
+                        style="display:none;"
+                    >
+
+
+                        <img
+                            id="course-image-preview"
+                            alt="Prévia da imagem"
+                        >
+
+
+
+                        <div class="course-image-preview-actions">
+
+
+                            <button
+                                type="button"
+                                class="btn-secondary"
+                                onclick="document.getElementById('course-image-file').click()"
+                            >
+
+                                Trocar imagem
+
+                            </button>
+
+
+
+                            <button
+                                type="button"
+                                class="builder-remove"
+                                onclick="removerImagem()"
+                                title="Remover"
+                            >
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <input
+                    id="course-image"
+                    type="hidden"
+                >
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             02 PASSOS DINÂMICOS
+             ================================================= -->
+
+        <section class="editor-section">
+
+
+            <div class="editor-section-header">
+
+
+                <div class="section-number">
+                    02
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Conteúdo do treinamento
+                    </h3>
+
+                    <p>
+                        Crie os passos que serão apresentados
+                        antes da videoaula.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="builder-title steps-main-header">
+
+
+                <div>
+
+                    <h4>
+                        Passos
+                    </h4>
+
+                    <small>
+                        Você define a quantidade e a ordem.
+                    </small>
+
+                </div>
+
+
+
+                <button
+                    type="button"
+                    class="btn-primary"
+                    onclick="adicionarPasso()"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Adicionar passo
+
+                </button>
+
+
+            </div>
+
+
+
+            <div
+                id="steps-builder"
+                class="dynamic-builder steps-builder"
+            >
+            </div>
+
+
+            <div
+                id="steps-empty"
+                class="steps-empty"
+            >
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <strong>
+                    Nenhum passo adicionado
+                </strong>
+
+                <span>
+                    Clique em “Adicionar passo”
+                    para montar o conteúdo.
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             03 VIDEOAULA FIXA
+             ================================================= -->
+
+        <section class="editor-section">
+
+
+            <div class="editor-section-header">
+
+
+                <div class="section-number">
+                    03
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Videoaula
+                    </h3>
+
+                    <p>
+                        Etapa fixa exibida após os passos do conteúdo.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="editor-field">
+
+                <label for="video-url">
+                    Link da videoaula
+                </label>
+
+
+                <input
+                    type="url"
+                    id="video-url"
+                    placeholder="https://youtube.com/..."
+                >
+
+            </div>
+
+
+
+            <div class="editor-field">
+
+                <label for="video-description">
+                    Descrição
+                </label>
+
+
+                <input
+                    type="text"
+                    id="video-description"
+                    placeholder="Assista ao vídeo antes de prosseguir"
+                >
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             04 QUIZ FIXO
+             ================================================= -->
+
+        <section class="editor-section">
+
+
+            <div class="editor-section-header">
+
+
+                <div class="section-number">
+                    04
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Quiz
+                    </h3>
+
+                    <p>
+                        Etapa fixa de validação do aprendizado.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="builder-title">
+
+
+                <div>
+
+                    <h4>
+                        Perguntas
+                    </h4>
+
+                    <small>
+                        Cadastre as questões e marque a resposta correta.
+                    </small>
+
+                </div>
+
+
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    onclick="adicionarPergunta()"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Adicionar pergunta
+
+                </button>
+
+
+            </div>
+
+
+
+            <div
+                id="quiz-builder"
+                class="dynamic-builder"
+            >
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             PUBLICAÇÃO
+             ================================================= -->
+
+        <section class="editor-section publish-editor">
+
+
+            <div>
+
+                <h3>
+                    Publicação
+                </h3>
+
+                <p>
+                    Rascunhos ficam salvos,
+                    mas não aparecem no portal.
+                </p>
+
+            </div>
+
+
+
+            <label class="publish-toggle">
+
+
+                <input
+                    type="checkbox"
+                    id="course-published"
+                    onchange="atualizarStatusVisual()"
+                >
+
+
+                <span class="toggle-track"></span>
+
+
+                <strong>
+                    Publicar treinamento
+                </strong>
+
+
+            </label>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             AÇÕES
+             ================================================= -->
+
+        <div class="editor-actions">
+
+
+            <button
+                type="button"
+                class="btn-secondary editor-cancel"
+                onclick="window.location.href='painel-admin.html'"
+            >
+
+                Cancelar
+
+            </button>
+
+
+
+            <button
+                type="submit"
+                class="btn-primary"
+                id="btn-save-training"
+            >
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Salvar treinamento
+
+            </button>
+
+
+        </div>
+
+
+    </form>
+
+
+</main>
+
+
+
+<div
+    id="editor-toast"
+    class="editor-toast"
+></div>
+
+
+
+<script>
+
+    /* =====================================================
+       CONFIG
+       ===================================================== */
+
+    const ADMIN_API =
+        "/api/admin";
+
+
+    const urlParams =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const editingId =
+        urlParams.get("id");
+
+
+    let arquivoImagemSelecionado =
+        null;
+
+
+
+    /* =====================================================
+       API
+       ===================================================== */
+
+    async function chamarAPI(
+        payload
+    ) {
+
+        const resposta =
+            await fetch(
+                ADMIN_API,
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+
+                }
+            );
+
+
+        const resultado =
+            await resposta
+                .json()
+                .catch(
+                    () => ({})
+                );
+
+
+        if (
+            !resposta.ok ||
+            resultado.success === false
+        ) {
+
+            throw new Error(
+
+                resultado.message ||
+
+                "Erro ao processar solicitação."
+
+            );
+        }
+
+
+        return resultado;
+    }
+
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    function mostrarToast(
+        mensagem,
+        erro = false
+    ) {
+
+        const toast =
+            document.getElementById(
+                "editor-toast"
+            );
+
+
+        toast.textContent =
+            mensagem;
+
+
+        toast.className =
+            erro
+                ? "editor-toast show error"
+                : "editor-toast show";
+
+
+        clearTimeout(
+            window.__editorToast
+        );
+
+
+        window.__editorToast =
+            setTimeout(
+                () => {
+
+                    toast.className =
+                        "editor-toast";
+
+                },
+                3000
+            );
+    }
+
+
+
+    /* =====================================================
+       ESCAPE
+       ===================================================== */
+
+    function escapeHtml(
+        valor
+    ) {
+
+        return String(
+            valor ?? ""
+        )
+        .replace(
+            /[&<>"']/g,
+
+            caractere => ({
+
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+
+            })[caractere]
+        );
+    }
+
+
+
+    /* =====================================================
+       ID AUTOMÁTICO
+       ===================================================== */
+
+    async function gerarIdAutomatico() {
+
+        if (editingId) {
+            return;
+        }
+
+
+        const select =
+            document.getElementById(
+                "course-category"
+            );
+
+
+        const option =
+            select.options[
+                select.selectedIndex
+            ];
+
+
+        const sigla =
+            option?.dataset?.sigla ||
+            "";
+
+
+        const campo =
+            document.getElementById(
+                "course-id"
+            );
+
+
+        if (!sigla) {
+
+            campo.value = "";
+
+            return;
+        }
+
+
+        campo.value =
+            "Gerando...";
+
+
+        try {
+
+            const resultado =
+                await chamarAPI({
+
+                    action:
+                        "nextCourseId",
+
+                    prefix:
+                        sigla
+
+                });
+
+
+            campo.value =
+                resultado.id;
+
+
+        } catch (erro) {
+
+            console.error(
+                erro
+            );
+
+
+            campo.value = "";
+
+
+            mostrarToast(
+                erro.message ||
+                "Não foi possível gerar o ID.",
+                true
+            );
+        }
+    }
+
+
+
+    /* =====================================================
+       IMAGEM
+       ===================================================== */
+
+    function selecionarImagem(
+        event
+    ) {
+
+        const arquivo =
+            event.target
+                .files?.[0];
+
+
+        if (!arquivo) {
+            return;
+        }
+
+
+        const permitidos = [
+
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+
+        ];
+
+
+        if (
+            !permitidos.includes(
+                arquivo.type
+            )
+        ) {
+
+            mostrarToast(
+                "Formato de imagem inválido.",
+                true
+            );
+
+
+            event.target.value = "";
+
+            return;
+        }
+
+
+        if (
+            arquivo.size >
+            5 * 1024 * 1024
+        ) {
+
+            mostrarToast(
+                "A imagem deve ter no máximo 5 MB.",
+                true
+            );
+
+
+            event.target.value = "";
+
+            return;
+        }
+
+
+        arquivoImagemSelecionado =
+            arquivo;
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            eventReader => {
+
+
+                document.getElementById(
+                    "course-image-preview"
+                ).src =
+                    eventReader.target.result;
+
+
+                document.getElementById(
+                    "course-image-preview-box"
+                ).style.display =
+                    "flex";
+
+            };
+
+
+        reader.readAsDataURL(
+            arquivo
+        );
+    }
+
+
+
+    function removerImagem() {
+
+        arquivoImagemSelecionado =
+            null;
+
+
+        document.getElementById(
+            "course-image-file"
+        ).value = "";
+
+
+        document.getElementById(
+            "course-image"
+        ).value = "";
+
+
+        document.getElementById(
+            "course-image-preview"
+        ).src = "";
+
+
+        document.getElementById(
+            "course-image-preview-box"
+        ).style.display =
+            "none";
+    }
+
+
+
+    function arquivoParaBase64(
+        arquivo
+    ) {
+
+        return new Promise(
+            (
+                resolve,
+                reject
+            ) => {
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    () => {
+
+
+                        const resultado =
+                            String(
+                                reader.result
+                            );
+
+
+                        resolve(
+
+                            resultado.includes(",")
+
+                                ? resultado
+                                    .split(",")[1]
+
+                                : resultado
+
+                        );
+
+                    };
+
+
+                reader.onerror =
+                    reject;
+
+
+                reader.readAsDataURL(
+                    arquivo
+                );
+
+            }
+        );
+    }
+
+
+
+    async function enviarImagem() {
+
+        if (
+            !arquivoImagemSelecionado
+        ) {
+
+            return (
+                document.getElementById(
+                    "course-image"
+                ).value ||
+                ""
+            );
+        }
+
+
+        const base64 =
+            await arquivoParaBase64(
+                arquivoImagemSelecionado
+            );
+
+
+        const resultado =
+            await chamarAPI({
+
+                action:
+                    "uploadCourseImage",
+
+                fileName:
+                    arquivoImagemSelecionado.name,
+
+                mimeType:
+                    arquivoImagemSelecionado.type,
+
+                base64
+
+            });
+
+
+        document.getElementById(
+            "course-image"
+        ).value =
+            resultado.url;
+
+
+        return resultado.url;
+    }
+
+
+
+    /* =====================================================
+       PASSOS
+       ===================================================== */
+
+    function adicionarPasso(
+        dados = {}
+    ) {
+
+        const container =
+            document.getElementById(
+                "steps-builder"
+            );
+
+
+        const passo =
+            document.createElement(
+                "div"
+            );
+
+
+        passo.className =
+            "builder-item step-builder";
+
+
+        passo.dataset.stepId =
+            dados.id ||
+
+            (
+                "step_" +
+                Date.now() +
+                "_" +
+                Math.random()
+                    .toString(36)
+                    .slice(2)
+            );
+
+
+        passo.innerHTML = `
+
+            <div class="step-builder-header">
+
+
+                <div class="step-builder-title">
+
+
+                    <span class="step-drag">
+
+                        <i class="fa-solid fa-grip-vertical"></i>
+
+                    </span>
+
+
+                    <strong class="step-number-label">
+                        PASSO
+                    </strong>
+
+
+                </div>
+
+
+
+                <div class="step-actions">
+
+
+                    <button
+                        type="button"
+                        class="step-move-btn"
+                        onclick="moverPassoCima(this)"
+                        title="Mover para cima"
+                    >
+
+                        <i class="fa-solid fa-arrow-up"></i>
+
+                    </button>
+
+
+
+                    <button
+                        type="button"
+                        class="step-move-btn"
+                        onclick="moverPassoBaixo(this)"
+                        title="Mover para baixo"
+                    >
+
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                    </button>
+
+
+
+                    <button
+                        type="button"
+                        class="builder-remove"
+                        onclick="removerPasso(this)"
+                        title="Excluir passo"
+                    >
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="editor-grid two">
+
+
+                <div class="editor-field">
+
+                    <label>
+                        Subtítulo
+                    </label>
+
+
+                    <input
+                        type="text"
+                        class="step-badge"
+                        placeholder="Ex: IMPORTANTE"
+                        value="${escapeHtml(
+                            dados.subBadge || ""
+                        )}"
+                    >
+
+                </div>
+
+
+
+                <div class="editor-field">
+
+                    <label>
+                        Tipo de conteúdo
+                    </label>
+
+
+                    <select
+                        class="step-type"
+                        onchange="alterarTipoPasso(this)"
+                    >
+
+
+                        <option
+                            value="texto"
+                            ${
+                                dados.tipo === "texto"
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            Texto
+                        </option>
+
+
+                        <option
+                            value="cards"
+                            ${
+                                dados.tipo === "cards" ||
+                                !dados.tipo
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            Texto + Cards
+                        </option>
+
+
+                        <option
+                            value="destaque"
+                            ${
+                                dados.tipo === "destaque"
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            Texto + Destaque
+                        </option>
+
+
+                        <option
+                            value="cards_destaque"
+                            ${
+                                dados.tipo === "cards_destaque"
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            Cards + Destaque
+                        </option>
+
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="editor-field">
+
+                <label>
+                    Título do passo *
+                </label>
+
+
+                <input
+                    type="text"
+                    class="step-title"
+                    placeholder="Título apresentado ao colaborador"
+                    value="${escapeHtml(
+                        dados.titulo || ""
+                    )}"
+                >
+
+            </div>
+
+
+
+            <div class="editor-field">
+
+                <label>
+                    Texto
+                </label>
+
+
+                <textarea
+                    class="step-text"
+                    rows="4"
+                    placeholder="Digite o conteúdo deste passo..."
+                >${escapeHtml(
+                    dados.texto || ""
+                )}</textarea>
+
+            </div>
+
+
+
+            <!-- CARDS -->
+
+            <div class="step-cards-area">
+
+
+                <div class="builder-title">
+
+
+                    <h4>
+                        Cards
+                    </h4>
+
+
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        onclick="adicionarCardPasso(this)"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Adicionar card
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div
+                    class="step-cards dynamic-builder"
+                >
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DESTAQUE -->
+
+            <div class="step-highlight-area">
+
+
+                <div class="editor-grid two">
+
+
+                    <div class="editor-field">
+
+                        <label>
+                            Título do destaque
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="step-highlight-title"
+                            value="${escapeHtml(
+                                dados.destaque?.titulo ||
+                                ""
+                            )}"
+                        >
+
+                    </div>
+
+
+
+                    <div class="editor-field">
+
+                        <label>
+                            Texto do destaque
+                        </label>
+
+
+                        <input
+                            type="text"
+                            class="step-highlight-text"
+                            value="${escapeHtml(
+                                dados.destaque?.texto ||
+                                ""
+                            )}"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        `;
+
+
+        container.appendChild(
+            passo
+        );
+
+
+
+        if (
+            dados.cards &&
+            dados.cards.length
+        ) {
+
+            dados.cards.forEach(
+                card => {
+
+                    adicionarCardNoContainer(
+
+                        passo.querySelector(
+                            ".step-cards"
+                        ),
+
+                        card
+
+                    );
+
+                }
+            );
+        }
+
+
+        atualizarTipoPasso(
+            passo
+        );
+
+
+        atualizarNumeracaoPassos();
+    }
+
+
+
+    function alterarTipoPasso(
+        select
+    ) {
+
+        atualizarTipoPasso(
+
+            select.closest(
+                ".step-builder"
+            )
+
+        );
+    }
+
+
+
+    function atualizarTipoPasso(
+        passo
+    ) {
+
+        const tipo =
+            passo.querySelector(
+                ".step-type"
+            ).value;
+
+
+        const areaCards =
+            passo.querySelector(
+                ".step-cards-area"
+            );
+
+
+        const areaDestaque =
+            passo.querySelector(
+                ".step-highlight-area"
+            );
+
+
+        areaCards.style.display =
+
+            (
+                tipo === "cards" ||
+                tipo === "cards_destaque"
+            )
+
+                ? "block"
+
+                : "none";
+
+
+        areaDestaque.style.display =
+
+            (
+                tipo === "destaque" ||
+                tipo === "cards_destaque"
+            )
+
+                ? "block"
+
+                : "none";
+    }
+
+
+
+    function removerPasso(
+        botao
+    ) {
+
+        const confirmar =
+            confirm(
+                "Deseja remover este passo?"
+            );
+
+
+        if (!confirmar) {
+            return;
+        }
+
+
+        botao
+            .closest(
+                ".step-builder"
+            )
+            .remove();
+
+
+        atualizarNumeracaoPassos();
+    }
+
+
+
+    function moverPassoCima(
+        botao
+    ) {
+
+        const passo =
+            botao.closest(
+                ".step-builder"
+            );
+
+
+        const anterior =
+            passo.previousElementSibling;
+
+
+        if (anterior) {
+
+            passo.parentNode.insertBefore(
+                passo,
+                anterior
+            );
+
+        }
+
+
+        atualizarNumeracaoPassos();
+    }
+
+
+
+    function moverPassoBaixo(
+        botao
+    ) {
+
+        const passo =
+            botao.closest(
+                ".step-builder"
+            );
+
+
+        const proximo =
+            passo.nextElementSibling;
+
+
+        if (proximo) {
+
+            passo.parentNode.insertBefore(
+                proximo,
+                passo
+            );
+
+        }
+
+
+        atualizarNumeracaoPassos();
+    }
+
+
+
+    function atualizarNumeracaoPassos() {
+
+        const passos =
+            document.querySelectorAll(
+                "#steps-builder .step-builder"
+            );
+
+
+        passos.forEach(
+            (
+                passo,
+                index
+            ) => {
+
+
+                passo.querySelector(
+                    ".step-number-label"
+                ).textContent =
+                    `PASSO ${index + 1}`;
+
+            }
+        );
+
+
+        document.getElementById(
+            "steps-empty"
+        ).style.display =
+
+            passos.length
+
+                ? "none"
+
+                : "flex";
+    }
+
+
+
+    /* =====================================================
+       CARDS DOS PASSOS
+       ===================================================== */
+
+    function adicionarCardPasso(
+        botao
+    ) {
+
+        const passo =
+            botao.closest(
+                ".step-builder"
+            );
+
+
+        const container =
+            passo.querySelector(
+                ".step-cards"
+            );
+
+
+        adicionarCardNoContainer(
+            container
+        );
+    }
+
+
+
+    function adicionarCardNoContainer(
+        container,
+        dados = {}
+    ) {
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "step-card-item";
+
+
+        card.innerHTML = `
+
+            <div class="step-card-fields">
+
+
+                <div class="editor-field">
+
+                    <label>
+                        Ícone
+                    </label>
+
+
+                    <input
+                        type="text"
+                        class="step-card-icon"
+                        placeholder="fa-circle-check"
+                        value="${escapeHtml(
+                            dados.icon ||
+                            "fa-circle-check"
+                        )}"
+                    >
+
+                </div>
+
+
+
+                <div class="editor-field">
+
+                    <label>
+                        Texto
+                    </label>
+
+
+                    <input
+                        type="text"
+                        class="step-card-title"
+                        placeholder="Texto do card"
+                        value="${escapeHtml(
+                            dados.titulo ||
+                            ""
+                        )}"
+                    >
+
+                </div>
+
+
+
+                <button
+                    type="button"
+                    class="builder-remove step-card-remove"
+                    onclick="this.closest('.step-card-item').remove()"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+
+            </div>
+
+        `;
+
+
+        container.appendChild(
+            card
+        );
+    }
+
+
+
+    /* =====================================================
+       LER PASSOS
+       ===================================================== */
+
+    function lerPassos() {
+
+        return [
+
+            ...document.querySelectorAll(
+                "#steps-builder .step-builder"
+            )
+
+        ]
+
+        .map(
+            (
+                passo,
+                index
+            ) => {
+
+
+                const cards = [
+
+                    ...passo.querySelectorAll(
+                        ".step-card-item"
+                    )
+
+                ]
+
+                .map(
+                    card => ({
+
+                        icon:
+
+                            card.querySelector(
+                                ".step-card-icon"
+                            ).value.trim(),
+
+                        titulo:
+
+                            card.querySelector(
+                                ".step-card-title"
+                            ).value.trim()
+
+                    })
+                )
+
+                .filter(
+                    card =>
+                        card.titulo
+                );
+
+
+                return {
+
+                    id:
+                        passo.dataset.stepId,
+
+                    ordem:
+                        index + 1,
+
+                    tipo:
+                        passo.querySelector(
+                            ".step-type"
+                        ).value,
+
+                    subBadge:
+                        passo.querySelector(
+                            ".step-badge"
+                        ).value.trim(),
+
+                    titulo:
+                        passo.querySelector(
+                            ".step-title"
+                        ).value.trim(),
+
+                    texto:
+                        passo.querySelector(
+                            ".step-text"
+                        ).value.trim(),
+
+                    cards,
+
+                    destaque: {
+
+                        titulo:
+                            passo.querySelector(
+                                ".step-highlight-title"
+                            )?.value.trim() ||
+                            "",
+
+                        texto:
+                            passo.querySelector(
+                                ".step-highlight-text"
+                            )?.value.trim() ||
+                            ""
+
+                    }
+
+                };
+
+            }
+        )
+
+        .filter(
+            passo =>
+                passo.titulo
+        );
+    }
+
+
+
+    /* =====================================================
+       QUIZ
+       ===================================================== */
+
+    function adicionarPergunta(
+        dados = {}
+    ) {
+
+        const container =
+            document.getElementById(
+                "quiz-builder"
+            );
+
+
+        const pergunta =
+            document.createElement(
+                "div"
+            );
+
+
+        pergunta.className =
+            "builder-item question-builder";
+
+
+        pergunta.dataset.group =
+
+            "quiz_" +
+
+            Date.now() +
+
+            "_" +
+
+            Math.random()
+                .toString(36)
+                .slice(2);
+
+
+
+        pergunta.innerHTML = `
+
+            <div class="builder-item-header">
+
+
+                <strong>
+                    Pergunta
+                </strong>
+
+
+                <button
+                    type="button"
+                    class="builder-remove"
+                    onclick="this.closest('.question-builder').remove()"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+
+            </div>
+
+
+
+            <div class="editor-field">
+
+                <label>
+                    Pergunta
+                </label>
+
+
+                <textarea
+                    class="builder-question"
+                    rows="3"
+                >${escapeHtml(
+                    dados.pergunta ||
+                    ""
+                )}</textarea>
+
+            </div>
+
+
+
+            <div class="quiz-options-builder">
+            </div>
+
+
+
+            <button
+                type="button"
+                class="btn-add-option"
+            >
+
+                <i class="fa-solid fa-plus"></i>
+
+                Adicionar alternativa
+
+            </button>
+
+        `;
+
+
+
+        pergunta.querySelector(
+            ".btn-add-option"
+        ).onclick =
+            () => {
+
+                adicionarAlternativa(
+
+                    pergunta.querySelector(
+                        ".quiz-options-builder"
+                    )
+
+                );
+
+            };
+
+
+        container.appendChild(
+            pergunta
+        );
+
+
+
+        const opcoes =
+            dados.opcoes?.length
+
+                ? dados.opcoes
+
+                : [
+
+                    {
+                        texto: "",
+                        correta: true
+                    },
+
+                    {
+                        texto: "",
+                        correta: false
+                    }
+
+                ];
+
+
+
+        opcoes.forEach(
+            opcao => {
+
+                adicionarAlternativa(
+
+                    pergunta.querySelector(
+                        ".quiz-options-builder"
+                    ),
+
+                    opcao
+
+                );
+
+            }
+        );
+    }
+
+
+
+    function adicionarAlternativa(
+        container,
+        dados = {}
+    ) {
+
+        const pergunta =
+            container.closest(
+                ".question-builder"
+            );
+
+
+        const linha =
+            document.createElement(
+                "div"
+            );
+
+
+        linha.className =
+            "quiz-option-editor";
+
+
+        linha.innerHTML = `
+
+            <input
+                type="text"
+                class="quiz-option-text"
+                placeholder="Digite a alternativa"
+                value="${escapeHtml(
+                    dados.texto ||
+                    ""
+                )}"
+            >
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="${pergunta.dataset.group}"
+                    ${
+                        dados.correta
+                            ? "checked"
+                            : ""
+                    }
+                >
+
+                Correta
+
+            </label>
+
+
+            <button
+                type="button"
+                class="builder-remove small"
+                onclick="this.closest('.quiz-option-editor').remove()"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        `;
+
+
+        container.appendChild(
+            linha
+        );
+    }
+
+
+
+    function lerQuiz() {
+
+        return [
+
+            ...document.querySelectorAll(
+                "#quiz-builder .question-builder"
+            )
+
+        ]
+
+        .map(
+            (
+                pergunta,
+                index
+            ) => {
+
+
+                const opcoes = [
+
+                    ...pergunta.querySelectorAll(
+                        ".quiz-option-editor"
+                    )
+
+                ]
+
+                .map(
+                    opcao => ({
+
+                        texto:
+                            opcao.querySelector(
+                                ".quiz-option-text"
+                            ).value.trim(),
+
+                        correta:
+                            opcao.querySelector(
+                                'input[type="radio"]'
+                            ).checked
+
+                    })
+                )
+
+                .filter(
+                    opcao =>
+                        opcao.texto
+                );
+
+
+                return {
+
+                    id:
+                        index + 1,
+
+                    pergunta:
+                        pergunta.querySelector(
+                            ".builder-question"
+                        ).value.trim(),
+
+                    opcoes
+
+                };
+
+            }
+        )
+
+        .filter(
+            pergunta =>
+                pergunta.pergunta &&
+                pergunta.opcoes.length >= 2
+        );
+    }
+
+
+
+    /* =====================================================
+       DADOS
+       ===================================================== */
+
+    function obterDadosFormulario() {
+
+        return {
+
+            id:
+                document.getElementById(
+                    "course-id"
+                ).value.trim(),
+
+
+            meta:
+                document.getElementById(
+                    "course-meta"
+                ).value.trim(),
+
+
+            categoria:
+                document.getElementById(
+                    "course-category"
+                ).value,
+
+
+            tituloHtml:
+                document.getElementById(
+                    "course-title"
+                ).value.trim(),
+
+
+            textoBoasVindas:
+                document.getElementById(
+                    "course-welcome"
+                ).value.trim(),
+
+
+            imagemHero:
+                document.getElementById(
+                    "course-image"
+                ).value,
+
+
+            passos:
+                lerPassos(),
+
+
+            video: {
+
+                videoUrl:
+                    document.getElementById(
+                        "video-url"
+                    ).value.trim(),
+
+                descricaoVideo:
+                    document.getElementById(
+                        "video-description"
+                    ).value.trim()
+
+            },
+
+
+            quiz:
+                lerQuiz(),
+
+
+            status:
+                document.getElementById(
+                    "course-published"
+                ).checked
+
+                    ? "PUBLICADO"
+
+                    : "RASCUNHO",
+
+
+            ordem:
+                Number(
+                    document.getElementById(
+                        "course-order"
+                    ).value ||
+                    1
+                )
+
+        };
+    }
+
+
+
+    /* =====================================================
+       STATUS VISUAL
+       ===================================================== */
+
+    function atualizarStatusVisual() {
+
+        const publicado =
+            document.getElementById(
+                "course-published"
+            ).checked;
+
+
+        const badge =
+            document.getElementById(
+                "editor-status"
+            );
+
+
+        badge.textContent =
+            publicado
+                ? "Publicado"
+                : "Rascunho";
+
+
+        badge.className =
+
+            publicado
+
+                ? "status-chip status-published"
+
+                : "status-chip status-draft";
+    }
+
+
+
+    /* =====================================================
+       SALVAR
+       ===================================================== */
+
+    document.getElementById(
+        "form-training"
+    )
+    .addEventListener(
+        "submit",
+        async event => {
+
+
+            event.preventDefault();
+
+
+            const btn =
+                document.getElementById(
+                    "btn-save-training"
+                );
+
+
+            try {
+
+
+                btn.disabled =
+                    true;
+
+
+                btn.innerHTML = `
+
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                    Salvando...
+
+                `;
+
+
+
+                /* UPLOAD IMAGEM */
+
+                const urlImagem =
+                    await enviarImagem();
+
+
+                document.getElementById(
+                    "course-image"
+                ).value =
+                    urlImagem;
+
+
+
+                const curso =
+                    obterDadosFormulario();
+
+
+
+                if (!curso.id) {
+
+                    throw new Error(
+                        "Selecione uma categoria para gerar o ID."
+                    );
+                }
+
+
+
+                if (
+                    curso.passos.length === 0
+                ) {
+
+                    throw new Error(
+                        "Adicione pelo menos um passo ao treinamento."
+                    );
+                }
+
+
+
+                for (
+                    const pergunta
+                    of curso.quiz
+                ) {
+
+                    if (
+                        !pergunta.opcoes.some(
+                            opcao =>
+                                opcao.correta
+                        )
+                    ) {
+
+                        throw new Error(
+
+                            `Marque a resposta correta da pergunta "${pergunta.pergunta}".`
+
+                        );
+                    }
+                }
+
+
+
+                await chamarAPI({
+
+                    action:
+                        "saveCourse",
+
+                    course:
+                        curso,
+
+                    originalId:
+                        editingId ||
+                        ""
+
+                });
+
+
+
+                mostrarToast(
+                    "Treinamento salvo com sucesso!"
+                );
+
+
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "painel-admin.html";
+
+                    },
+                    800
+                );
+
+
+            } catch (erro) {
+
+
+                console.error(
+                    erro
+                );
+
+
+                mostrarToast(
+                    erro.message,
+                    true
+                );
+
+
+                btn.disabled =
+                    false;
+
+
+                btn.innerHTML = `
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Salvar treinamento
+
+                `;
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       EDIÇÃO
+       ===================================================== */
+
+    function preencherCurso(
+        curso
+    ) {
+
+
+        document.getElementById(
+            "course-id"
+        ).value =
+            curso.id || "";
+
+
+        document.getElementById(
+            "course-meta"
+        ).value =
+            curso.meta || "";
+
+
+        document.getElementById(
+            "course-category"
+        ).value =
+            curso.categoria || "";
+
+
+        document.getElementById(
+            "course-title"
+        ).value =
+            curso.tituloHtml || "";
+
+
+        document.getElementById(
+            "course-welcome"
+        ).value =
+            curso.textoBoasVindas || "";
+
+
+        document.getElementById(
+            "course-order"
+        ).value =
+            curso.ordem || 1;
+
+
+        document.getElementById(
+            "course-published"
+        ).checked =
+            curso.status ===
+            "PUBLICADO";
+
+
+        atualizarStatusVisual();
+
+
+
+        if (
+            curso.imagemHero
+        ) {
+
+            document.getElementById(
+                "course-image"
+            ).value =
+                curso.imagemHero;
+
+
+            document.getElementById(
+                "course-image-preview"
+            ).src =
+                curso.imagemHero;
+
+
+            document.getElementById(
+                "course-image-preview-box"
+            ).style.display =
+                "flex";
+
+        }
+
+
+
+        (
+            curso.passos ||
+            []
+        )
+        .forEach(
+            passo => {
+
+                adicionarPasso(
+                    passo
+                );
+
+            }
+        );
+
+
+
+        document.getElementById(
+            "video-url"
+        ).value =
+            curso.video
+                ?.videoUrl ||
+            "";
+
+
+        document.getElementById(
+            "video-description"
+        ).value =
+            curso.video
+                ?.descricaoVideo ||
+            "";
+
+
+
+        (
+            curso.quiz ||
+            []
+        )
+        .forEach(
+            pergunta => {
+
+                adicionarPergunta(
+                    pergunta
+                );
+
+            }
+        );
+
+
+        atualizarNumeracaoPassos();
+    }
+
+
+
+    /* =====================================================
+       INIT
+       ===================================================== */
+
+    async function iniciarEditor() {
+
+
+        atualizarNumeracaoPassos();
+
+
+
+        if (
+            !editingId
+        ) {
+
+            adicionarPasso();
+
+            adicionarPergunta();
+
+            return;
+        }
+
+
+
+        document.getElementById(
+            "editor-title"
+        ).textContent =
+            "Editar treinamento";
+
+
+        document.getElementById(
+            "editor-status"
+        ).textContent =
+            "Carregando...";
+
+
+        try {
+
+
+            const resultado =
+                await chamarAPI({
+
+                    action:
+                        "getCourse",
+
+                    id:
+                        editingId
+
+                });
+
+
+            preencherCurso(
+                resultado.course
+            );
+
+
+        } catch (erro) {
+
+
+            console.error(
+                erro
+            );
+
+
+            mostrarToast(
+                erro.message,
+                true
+            );
+
+        }
+
+    }
+
+
+    iniciarEditor();
+
+</script>
+
+
+</body>
+
+</html>
