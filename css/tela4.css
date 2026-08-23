@@ -3443,3 +3443,368 @@ img {
         font-size: 14px !important;
     }
 }
+/* =========================================================
+   CORREÇÃO DEFINITIVA FINAL
+   - mantém o topo do card estável
+   - card cresce somente para baixo
+   - botões ficam no final do container
+   - no mobile, Voltar/Avançar ficam em coluna
+   - botão Vamos começar fica no final do Step 1
+   ========================================================= */
+
+/* BASE / DESKTOP */
+.system-content {
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+
+.lesson-card,
+.lesson-card.align-left {
+    width: 100% !important;
+    max-width: 1080px !important;
+    min-height: 480px !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+}
+
+.step-content {
+    width: 100% !important;
+    min-height: 400px !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+}
+
+.step-content[style*="display: none"] {
+    display: none !important;
+}
+
+/* Mantém o Passo 1 centralizado visualmente, mas ancorado no topo */
+#step-1 {
+    width: 100% !important;
+    min-height: 400px !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+}
+
+/* Navegação sempre no final do conteúdo disponível */
+.card-navigation,
+.rating-footer-nav .card-navigation,
+.form-navigation {
+    width: 100% !important;
+    margin-top: auto !important;
+    padding-top: 28px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Vamos começar no fim do Step 1 */
+#step-1 .btn-vamos-comecar {
+    margin-top: auto !important;
+    flex-shrink: 0 !important;
+}
+
+/* FOOTER SEM SOBREPOR O CONTEÚDO */
+.footer-bar {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    margin-top: auto !important;
+    flex-shrink: 0 !important;
+}
+
+/* =========================================================
+   MOBILE FINAL
+   ========================================================= */
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 100% !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    body.system-body,
+    .system-body {
+        width: 100% !important;
+        min-height: 100svh !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        padding: 0 !important;
+    }
+
+    /* Header fixo */
+    .lms-header-universal {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1000 !important;
+        width: 100% !important;
+        min-height: 58px !important;
+    }
+
+    /* Progresso fixo abaixo do header */
+    .progress-section {
+        position: fixed !important;
+        top: 58px !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 999 !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 10px 18px 9px !important;
+        background: #eefbee !important;
+    }
+
+    .progress-bars {
+        width: 100% !important;
+        display: flex !important;
+        gap: 6px !important;
+        margin: 0 0 6px 0 !important;
+    }
+
+    .progress-bars .bar {
+        flex: 1 1 0 !important;
+        height: 7px !important;
+        border-radius: 999px !important;
+    }
+
+    .step-indicator {
+        margin: 0 !important;
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+        font-weight: 600 !important;
+    }
+
+    /* Compensa header + progresso */
+    .system-content {
+        width: 100% !important;
+        padding: 132px 18px 38px !important;
+        margin: 0 !important;
+        height: auto !important;
+        min-height: calc(100svh - 70px) !important;
+        max-height: none !important;
+        flex: 1 0 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        overflow: visible !important;
+    }
+
+    /* Card com altura-base estável; cresce apenas para baixo */
+    .lesson-card,
+    .lesson-card.align-left {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 620px !important;
+        height: auto !important;
+        max-height: none !important;
+        padding: 28px 22px !important;
+        border-radius: 24px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        overflow: visible !important;
+    }
+
+    /* Todo step ocupa a altura-base do card. Se tiver muito conteúdo, cresce. */
+    .step-content {
+        width: 100% !important;
+        min-height: 564px !important;
+        height: auto !important;
+        max-height: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        overflow: visible !important;
+    }
+
+    .step-content[style*="display: none"] {
+        display: none !important;
+    }
+
+    /* Step 1 mantém visual maior/centralizado */
+    body:has(#step-1[style*="display: flex"]) .lesson-card,
+    body:has(#step-1:not([style*="display: none"])) .lesson-card {
+        min-height: 670px !important;
+        padding: 28px 22px 26px !important;
+        justify-content: flex-start !important;
+    }
+
+    #step-1 {
+        width: 100% !important;
+        min-height: 614px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+
+    #step-1 .lesson-badge {
+        flex-shrink: 0 !important;
+    }
+
+    #step-1 .lesson-title,
+    #step-1 .lesson-text,
+    #step-1 .lesson-image-box {
+        flex-shrink: 0 !important;
+    }
+
+    /* Vamos começar SEMPRE no fundo do card */
+    #step-1 .btn-vamos-comecar {
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 54px !important;
+        margin-top: auto !important;
+        padding: 13px 18px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        border-radius: 999px !important;
+    }
+
+    /* Navegação dos outros steps: fica no fim e em coluna */
+    .card-navigation,
+    #step-3 .card-navigation,
+    #step-4 .card-navigation,
+    .rating-footer-nav .card-navigation,
+    .form-navigation {
+        width: 100% !important;
+        margin-top: auto !important;
+        padding-top: 28px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .card-navigation .btn-voltar,
+    .card-navigation .btn-prossiga,
+    .form-navigation .btn-voltar,
+    .form-navigation .btn-prossiga {
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 50px !important;
+        margin: 0 !important;
+        padding: 13px 18px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+        line-height: 1.15 !important;
+        border-radius: 999px !important;
+        white-space: normal !important;
+    }
+
+    .btn-voltar {
+        order: 1 !important;
+    }
+
+    .btn-prossiga {
+        order: 2 !important;
+    }
+
+    /* Conteúdos longos não podem ser cortados */
+    .cards-grid,
+    .cards-grid-5,
+    .cards-grid-step4,
+    .video-instruction-box,
+    .alert-warning-step5,
+    .quiz-container,
+    .quiz-box,
+    .quiz-options,
+    .quiz-option,
+    .presence-form,
+    .rating-table-wrapper,
+    .rating-footer-nav {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Footer fica depois do card, nunca sobreposto */
+    .footer-bar {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 14px 16px !important;
+        flex-shrink: 0 !important;
+        background: #ffffff !important;
+    }
+}
+
+/* =========================================================
+   MOBILE PEQUENO
+   ========================================================= */
+@media (max-width: 380px) {
+
+    .lms-header-universal {
+        min-height: 54px !important;
+    }
+
+    .progress-section {
+        top: 54px !important;
+    }
+
+    .system-content {
+        padding: 124px 13px 32px !important;
+    }
+
+    .lesson-card,
+    .lesson-card.align-left {
+        min-height: 590px !important;
+        padding: 24px 16px !important;
+    }
+
+    .step-content {
+        min-height: 542px !important;
+    }
+
+    body:has(#step-1[style*="display: flex"]) .lesson-card,
+    body:has(#step-1:not([style*="display: none"])) .lesson-card {
+        min-height: 640px !important;
+        padding: 24px 16px 22px !important;
+    }
+
+    #step-1 {
+        min-height: 592px !important;
+    }
+
+    #step-1 .btn-vamos-comecar {
+        min-height: 52px !important;
+        margin-top: auto !important;
+    }
+}
