@@ -492,16 +492,27 @@
             }
         }
 
-      async function submitForm(event) {
+   
+async function submitForm(event) {
     event.preventDefault();
 
     const btn = document.getElementById("btn-submit-presence");
 
+    /* =========================
+       BLOQUEIA BOTÃO
+       ========================= */
+
     if (btn) {
         btn.disabled = true;
         btn.classList.add("btn-disabled");
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
+        btn.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
     }
+
+
+    /* =========================
+       DADOS DO COLABORADOR
+       ========================= */
 
     const nome =
         document.getElementById("user-name")?.value.trim() || "";
@@ -518,105 +529,155 @@
     const turno =
         document.getElementById("user-shift")?.value.trim() || "";
 
-const observacao =
-    document.getElementById("user-feedback")?.value.trim() || "";
+    const observacao =
+        document.getElementById("user-feedback")?.value.trim() || "";
 
 
     /* =========================
-       QUIZ
+       AVALIAÇÃO DE SATISFAÇÃO
        ========================= */
 
-    const respostasQuiz = Object.values(quizScore);
+    const avaliacaoConteudo =
+        document.querySelector(
+            'input[name="item1"]:checked'
+        )?.value || "";
 
-    const notaQuiz = respostasQuiz.filter(
-        resposta => resposta === true
-    ).length;
+    const avaliacaoMetodologia =
+        document.querySelector(
+            'input[name="item2"]:checked'
+        )?.value || "";
 
-    const totalQuestoes = respostasQuiz.length;
+    const avaliacaoMaterial =
+        document.querySelector(
+            'input[name="item3"]:checked'
+        )?.value || "";
+
+    const avaliacaoInstrutor =
+        document.querySelector(
+            'input[name="item4"]:checked'
+        )?.value || "";
+
+    const avaliacaoAplicabilidade =
+        document.querySelector(
+            'input[name="item5"]:checked'
+        )?.value || "";
 
 
     /* =========================
-       AVALIAÇÃO
+       MÉDIA DA AVALIAÇÃO
        ========================= */
 
-    const avaliacoes = [
-        document.querySelector('input[name="item1"]:checked')?.value,
-        document.querySelector('input[name="item2"]:checked')?.value,
-        document.querySelector('input[name="item3"]:checked')?.value,
-        document.querySelector('input[name="item4"]:checked')?.value,
-        document.querySelector('input[name="item5"]:checked')?.value
-    ];
+    const notasAvaliacao = [
+        avaliacaoConteudo,
+        avaliacaoMetodologia,
+        avaliacaoMaterial,
+        avaliacaoInstrutor,
+        avaliacaoAplicabilidade
+    ]
+    .map(Number)
+    .filter(nota => !isNaN(nota));
 
-    const valoresAvaliacao = avaliacoes
-        .map(Number)
-        .filter(valor => !isNaN(valor));
 
     let avaliacaoMedia = "";
 
-    if (valoresAvaliacao.length > 0) {
-        const soma = valoresAvaliacao.reduce((a, b) => a + b, 0);
+    if (notasAvaliacao.length > 0) {
 
-        avaliacaoMedia = (
-            soma / valoresAvaliacao.length
-        ).toFixed(1);
+        const soma = notasAvaliacao.reduce(
+            (total, nota) => total + nota,
+            0
+        );
+
+        avaliacaoMedia =
+            (soma / notasAvaliacao.length).toFixed(1);
     }
 
 
     /* =========================
-       DADOS PARA API
+       DADOS ENVIADOS
        ========================= */
 
     const dados = {
-        meta: currentModulo?.metaBadge || "",
-        treinamento: currentModulo?.categoria || "",
+
+        meta:
+            currentModulo?.metaBadge || "",
 
         nome,
         matricula,
         profissao,
         setor,
         turno,
+        observacao,
 
-        notaQuiz,
-        totalQuestoes,
+        avaliacaoConteudo,
+        avaliacaoMetodologia,
+        avaliacaoMaterial,
+        avaliacaoInstrutor,
+        avaliacaoAplicabilidade,
 
-        avaliacao: avaliacaoMedia,
-
-        observacao
+        avaliacaoMedia
     };
 
 
+    console.log("Dados enviados:", dados);
+
+
+    /* =========================
+       ENVIO PARA VERCEL
+       ========================= */
+
     try {
 
- const resposta = await fetch("/api/presenca", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(dados)
-});
+        const resposta = await fetch(
+            "/api/presenca",
+            {
+                method: "POST",
 
-const resultado = await resposta.json();
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-if (!resposta.ok) {
-    throw new Error(
-        resultado.message ||
-        "Erro ao registrar presença."
-    );
-}
+                body: JSON.stringify(dados)
+            }
+        );
+
+
+        const resultado = await resposta.json();
+
+
+        if (!resposta.ok) {
+
+            console.error(
+                "Resposta da API:",
+                resultado
+            );
+
+            throw new Error(
+                resultado.message ||
+                "Erro ao registrar presença."
+            );
+        }
+
 
         /* =========================
            SUCESSO
            ========================= */
 
-        const modal = document.getElementById("success-modal");
+        const modal =
+            document.getElementById(
+                "success-modal"
+            );
 
         if (modal) {
             modal.style.display = "flex";
         }
 
+
     } catch (erro) {
 
-        console.error("Erro ao registrar:", erro);
+        console.error(
+            "Erro ao registrar:",
+            erro
+        );
 
         alert(
             erro.message ||
@@ -632,7 +693,7 @@ if (!resposta.ok) {
 
         if (btn) {
             btn.innerHTML =
-                'Finalizar treinamento <i class="fa-solid fa-check"></i>';
+                "Enviar e registrar presença";
         }
     }
 }
