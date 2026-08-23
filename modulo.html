@@ -614,77 +614,221 @@
             btnSubmit.disabled = !completo;
             btnSubmit.classList.toggle('btn-disabled', !completo);
         }
+async function submitForm(event) {
+    event.preventDefault();
 
-        async function submitForm(event) {
-            event.preventDefault();
+    const btn = document.getElementById('btn-submit-presence');
 
-            const btn = document.getElementById('btn-submit-presence');
-            if (btn) {
-                btn.disabled = true;
-                btn.classList.add('btn-disabled');
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
+    if (btn) {
+        btn.disabled = true;
+        btn.classList.add('btn-disabled');
+        btn.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
+    }
+
+    const avaliacaoConteudo =
+        document.querySelector('input[name="item1"]:checked')?.value || '';
+
+    const avaliacaoMetodologia =
+        document.querySelector('input[name="item2"]:checked')?.value || '';
+
+    const avaliacaoMaterial =
+        document.querySelector('input[name="item3"]:checked')?.value || '';
+
+    const avaliacaoInstrutor =
+        document.querySelector('input[name="item4"]:checked')?.value || '';
+
+    const avaliacaoAplicabilidade =
+        document.querySelector('input[name="item5"]:checked')?.value || '';
+
+    const notas = [
+        avaliacaoConteudo,
+        avaliacaoMetodologia,
+        avaliacaoMaterial,
+        avaliacaoInstrutor,
+        avaliacaoAplicabilidade
+    ]
+    .map(Number)
+    .filter(n => !isNaN(n));
+
+    const avaliacaoMedia = notas.length
+        ? (
+            notas.reduce((a, b) => a + b, 0) /
+            notas.length
+        ).toFixed(1)
+        : '';
+
+    const dados = {
+        meta: currentModulo?.meta || '',
+
+        treinamentoId:
+            currentModulo?.id || '',
+
+        treinamentoTitulo:
+            removerHtml(
+                currentModulo?.tituloHtml || ''
+            ),
+
+        nome:
+            document
+                .getElementById('user-name')
+                ?.value.trim() || '',
+
+        matricula:
+            document
+                .getElementById('user-matricula')
+                ?.value.trim() || '',
+
+        profissao:
+            document
+                .getElementById('user-profession')
+                ?.value.trim() || '',
+
+        setor:
+            document
+                .getElementById('user-sector')
+                ?.value.trim() || '',
+
+        turno:
+            document
+                .getElementById('user-shift')
+                ?.value.trim() || '',
+
+        observacao:
+            document
+                .getElementById('user-feedback')
+                ?.value.trim() || '',
+
+        avaliacaoConteudo,
+        avaliacaoMetodologia,
+        avaliacaoMaterial,
+        avaliacaoInstrutor,
+        avaliacaoAplicabilidade,
+        avaliacaoMedia
+    };
+
+    console.log(
+        'DADOS ENVIADOS /api/presenca:',
+        dados
+    );
+
+    try {
+
+        const resposta = await fetch(
+            '/api/presenca',
+            {
+                method: 'POST',
+
+                headers: {
+                    'Content-Type':
+                        'application/json'
+                },
+
+                body:
+                    JSON.stringify(dados)
             }
+        );
 
-            const avaliacaoConteudo = document.querySelector('input[name="item1"]:checked')?.value || '';
-            const avaliacaoMetodologia = document.querySelector('input[name="item2"]:checked')?.value || '';
-            const avaliacaoMaterial = document.querySelector('input[name="item3"]:checked')?.value || '';
-            const avaliacaoInstrutor = document.querySelector('input[name="item4"]:checked')?.value || '';
-            const avaliacaoAplicabilidade = document.querySelector('input[name="item5"]:checked')?.value || '';
 
-            const notas = [
-                avaliacaoConteudo,
-                avaliacaoMetodologia,
-                avaliacaoMaterial,
-                avaliacaoInstrutor,
-                avaliacaoAplicabilidade
-            ].map(Number).filter(n => !isNaN(n));
+        /* ==========================================
+           LÊ A RESPOSTA COMO TEXTO PRIMEIRO
+           ========================================== */
 
-            const avaliacaoMedia = notas.length
-                ? (notas.reduce((a, b) => a + b, 0) / notas.length).toFixed(1)
-                : '';
+        const textoResposta =
+            await resposta.text();
 
-            const dados = {
-                meta: currentModulo?.meta || '',
-                treinamentoId: currentModulo?.id || '',
-                treinamentoTitulo: removerHtml(currentModulo?.tituloHtml || ''),
-                nome: document.getElementById('user-name')?.value.trim() || '',
-                matricula: document.getElementById('user-matricula')?.value.trim() || '',
-                profissao: document.getElementById('user-profession')?.value.trim() || '',
-                setor: document.getElementById('user-sector')?.value.trim() || '',
-                turno: document.getElementById('user-shift')?.value.trim() || '',
-                observacao: document.getElementById('user-feedback')?.value.trim() || '',
-                avaliacaoConteudo,
-                avaliacaoMetodologia,
-                avaliacaoMaterial,
-                avaliacaoInstrutor,
-                avaliacaoAplicabilidade,
-                avaliacaoMedia
-            };
 
-            try {
-                const resposta = await fetch('/api/presenca', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dados)
-                });
+        console.log(
+            'STATUS /api/presenca:',
+            resposta.status
+        );
 
-                const resultado = await resposta.json();
-                if (!resposta.ok) {
-                    throw new Error(resultado.message || 'Erro ao registrar presença.');
-                }
+        console.log(
+            'RESPOSTA /api/presenca:',
+            textoResposta
+        );
 
-                document.getElementById('success-modal').style.display = 'flex';
-            } catch (erro) {
-                console.error('Erro ao registrar:', erro);
-                alert(erro.message || 'Erro ao registrar presença. Tente novamente.');
-                if (btn) {
-                    btn.disabled = false;
-                    btn.classList.remove('btn-disabled');
-                }
-            } finally {
-                if (btn) btn.innerHTML = 'Enviar e registrar presença';
-            }
+
+        /* ==========================================
+           CONVERTE PARA JSON SE FOR POSSÍVEL
+           ========================================== */
+
+        let resultado = null;
+
+        try {
+
+            resultado =
+                textoResposta
+                    ? JSON.parse(textoResposta)
+                    : {};
+
+        } catch (erroJson) {
+
+            throw new Error(
+                `A API de presença retornou HTTP ${resposta.status}: ` +
+                textoResposta.substring(0, 300)
+            );
         }
+
+
+        /* ==========================================
+           ERRO DA API
+           ========================================== */
+
+        if (
+            !resposta.ok ||
+            resultado.success === false
+        ) {
+
+            throw new Error(
+                resultado.message ||
+                resultado.error ||
+                `Erro ao registrar presença. HTTP ${resposta.status}`
+            );
+        }
+
+
+        /* ==========================================
+           SUCESSO
+           ========================================== */
+
+        const modal =
+            document.getElementById(
+                'success-modal'
+            );
+
+        if (modal) {
+            modal.style.display = 'flex';
+        }
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao registrar:',
+            erro
+        );
+
+        alert(
+            erro.message ||
+            'Erro ao registrar presença. Tente novamente.'
+        );
+
+
+        if (btn) {
+            btn.disabled = false;
+            btn.classList.remove('btn-disabled');
+        }
+
+    } finally {
+
+        if (btn) {
+            btn.innerHTML =
+                'Enviar e registrar presença';
+        }
+
+    }
+}
 
         function removerHtml(html) {
             const div = document.createElement('div');
