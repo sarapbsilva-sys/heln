@@ -1,5 +1,3 @@
-const { google } = require("googleapis");
-
 module.exports = async function handler(req, res) {
 
     if (req.method !== "POST") {
@@ -11,141 +9,149 @@ module.exports = async function handler(req, res) {
 
     try {
 
-        /* ==========================================
-           VERIFICA VARIÁVEIS DA VERCEL
-           ========================================== */
-
-        const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-        const privateKey = process.env.GOOGLE_PRIVATE_KEY;
-        const spreadsheetId = process.env.GOOGLE_SHEET_ID;
-
-        if (!email) {
-            return res.status(500).json({
-                success: false,
-                message: "Configuração ausente.",
-                error: "GOOGLE_SERVICE_ACCOUNT_EMAIL não encontrada na Vercel."
-            });
-        }
-
-        if (!privateKey) {
-            return res.status(500).json({
-                success: false,
-                message: "Configuração ausente.",
-                error: "GOOGLE_PRIVATE_KEY não encontrada na Vercel."
-            });
-        }
-
-        if (!spreadsheetId) {
-            return res.status(500).json({
-                success: false,
-                message: "Configuração ausente.",
-                error: "GOOGLE_SHEET_ID não encontrada na Vercel."
-            });
-        }
+        const APPS_SCRIPT_URL =
+            "https://script.google.com/macros/s/AKfycbwrL3Z3dGBIsYHOOd6urjl9-UlTAwBz4Cnvbw7C5-0fI_zZcR5mVgEZPN7phAp3YJ92/exec";
 
 
-        /* ==========================================
-           DADOS RECEBIDOS
-           ========================================== */
-
-        const {
-            meta,
-            treinamento,
-            nome,
-            matricula,
-            profissao,
-            setor,
-            turno,
-            notaQuiz,
-            totalQuestoes,
-            avaliacao,
-            observacao
-        } = req.body || {};
+        console.log("Dados recebidos:", req.body);
 
 
-        if (!nome || !matricula || !profissao || !setor || !turno) {
-            return res.status(400).json({
-                success: false,
-                message: "Preencha todos os campos obrigatórios."
-            });
-        }
+        const respostaGoogle = await fetch(APPS_SCRIPT_URL, {
 
+            method: "POST",
 
-        /* ==========================================
-           GOOGLE AUTH
-           ========================================== */
-
-        const auth = new google.auth.GoogleAuth({
-            credentials: {
-                client_email: email,
-
-                private_key: privateKey
-                    .replace(/\\n/g, "\n")
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
             },
 
-            scopes: [
-                "https://www.googleapis.com/auth/spreadsheets"
-            ]
+            body: JSON.stringify(req.body),
+
+            redirect: "follow"
         });
 
 
-        const sheets = google.sheets({
-            version: "v4",
-            auth
-        });
+        console.log(
+            "Status Apps Script:",
+            respostaGoogle.status
+        );
+
+
+        const texto = await respostaGoogle.text();
+
+
+        console.log(
+            "Resposta Apps Script:",
+            texto.substring(0, 500)
+        );
 
 
         /* ==========================================
-           ENVIA PARA O GOOGLE SHEETS
+           APPS SCRIPT RETORNOU ERRO HTTP
            ========================================== */
 
-        await sheets.spreadsheets.values.append({
+        if (!respostaGoogle.ok) {
 
-            spreadsheetId,
+            return res.status(500).json({
 
-            range: "PRESENCAS!A:L",
+                success: false,
 
-            valueInputOption: "USER_ENTERED",
+                message:
+                    "O Google Apps Script retornou erro.",
 
-            requestBody: {
-                values: [[
+                googleStatus:
+                    respostaGoogle.status,
 
-                    new Date().toLocaleString("pt-BR", {
-                        timeZone: "America/Sao_Paulo"
-                    }),
+                googleResponse:
+                    texto.substring(0, 300)
 
-                    meta || "",
-                    treinamento || "",
-                    nome,
-                    matricula,
-                    profissao,
-                    setor,
-                    turno,
-                    notaQuiz ?? "",
-                    totalQuestoes ?? "",
-                    avaliacao || "",
-                    observacao || ""
+            });
 
-                ]]
-            }
-        });
+        }
 
+
+        /* ==========================================
+           TENTA CONVERTER PARA JSON
+           ========================================== */
+
+        let resultado;
+
+        try {
+
+            resultado = JSON.parse(texto);
+
+        } catch (erroJson) {
+
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+                    "O Apps Script não retornou JSON.",
+
+                googleStatus:
+                    respostaGoogle.status,
+
+                googleResponse:
+                    texto.substring(0, 300)
+
+            });
+
+        }
+
+
+        /* ==========================================
+           APPS SCRIPT RESPONDEU success:false
+           ========================================== */
+
+        if (!resultado.success) {
+
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+                    resultado.message ||
+                    "Erro ao salvar no Google Sheets."
+
+            });
+
+        }
+
+
+        /* ==========================================
+           SUCESSO
+           ========================================== */
 
         return res.status(200).json({
+
             success: true,
-            message: "Presença registrada com sucesso!"
+
+            message:
+                "Presença registrada com sucesso!"
+
         });
 
 
-    } catch (error) {
+    } catch (erro) {
 
-        console.error("ERRO GOOGLE:", error);
+        console.error(
+            "ERRO API PRESENCA:",
+            erro
+        );
+
 
         return res.status(500).json({
+
             success: false,
-            message: "Erro ao registrar presença.",
-            error: error.message,
-            code: error.code || null
+
+            message:
+                "Erro interno na API.",
+
+            error:
+                erro.message || String(erro)
+
         });
+
     }
+
 };
