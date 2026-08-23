@@ -874,60 +874,55 @@
     /* =====================================================
        API
        ===================================================== */
+async function chamarAPI(payload) {
 
-    async function chamarAPI(
-        payload
-    ) {
+    const resposta = await fetch("/api/admin", {
+        method: "POST",
 
-        const resposta =
-            await fetch(
-                ADMIN_API,
-                {
+        headers: {
+            "Content-Type": "application/json"
+        },
 
-                    method:
-                        "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "application/json"
-
-                    },
-
-                    body:
-                        JSON.stringify(
-                            payload
-                        )
-
-                }
-            );
+        body: JSON.stringify(payload)
+    });
 
 
-        const resultado =
-            await resposta
-                .json()
-                .catch(
-                    () => ({})
-                );
+    const texto = await resposta.text();
+
+    console.log(
+        "STATUS /api/admin:",
+        resposta.status
+    );
+
+    console.log(
+        "RESPOSTA /api/admin:",
+        texto
+    );
 
 
-        if (
-            !resposta.ok ||
-            resultado.success === false
-        ) {
+    let resultado;
 
-            throw new Error(
+    try {
+        resultado = JSON.parse(texto);
+    } catch {
 
-                resultado.message ||
-
-                "Erro ao processar solicitação."
-
-            );
-        }
-
-
-        return resultado;
+        throw new Error(
+            `API retornou ${resposta.status}: ${texto.substring(0, 200)}`
+        );
     }
+
+
+    if (!resposta.ok || resultado.success === false) {
+
+        throw new Error(
+            resultado.message ||
+            `Erro HTTP ${resposta.status}`
+        );
+    }
+
+
+    return resultado;
+}
 
 
 
