@@ -1,8 +1,40 @@
 module.exports = async function handler(req, res) {
 
-    /* ==========================================
+    /* =====================================================
+       CORS / OPTIONS
+       ===================================================== */
+
+    res.setHeader(
+        "Access-Control-Allow-Origin",
+        "*"
+    );
+
+    res.setHeader(
+        "Access-Control-Allow-Methods",
+        "POST, OPTIONS"
+    );
+
+    res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Content-Type"
+    );
+
+
+    /* =====================================================
+       PREFLIGHT
+       ===================================================== */
+
+    if (req.method === "OPTIONS") {
+
+        return res
+            .status(204)
+            .end();
+    }
+
+
+    /* =====================================================
        SOMENTE POST
-       ========================================== */
+       ===================================================== */
 
     if (req.method !== "POST") {
 
@@ -11,18 +43,17 @@ module.exports = async function handler(req, res) {
             success: false,
 
             message:
-                "Método não permitido."
+                `Método ${req.method} não permitido.`
 
         });
-
     }
 
 
     try {
 
-        /* ==========================================
-           URL DO APPS SCRIPT
-           ========================================== */
+        /* =================================================
+           APPS SCRIPT
+           ================================================= */
 
         const APPS_SCRIPT_URL =
             process.env.APPS_SCRIPT_URL;
@@ -38,34 +69,34 @@ module.exports = async function handler(req, res) {
                     "APPS_SCRIPT_URL não configurada na Vercel."
 
             });
-
         }
 
 
-        /* ==========================================
-           DADOS RECEBIDOS
-           ========================================== */
+        /* =================================================
+           BODY
+           ================================================= */
 
         const dados =
             req.body || {};
 
 
         console.log(
-            "Admin action:",
-            dados.action
+            "ADMIN REQUEST:",
+            dados
         );
 
 
-        /* ==========================================
-           ENVIA PARA APPS SCRIPT
-           ========================================== */
+        /* =================================================
+           ENVIA PARA GOOGLE APPS SCRIPT
+           ================================================= */
 
         const respostaGoogle =
             await fetch(
                 APPS_SCRIPT_URL,
                 {
 
-                    method: "POST",
+                    method:
+                        "POST",
 
                     headers: {
 
@@ -77,13 +108,15 @@ module.exports = async function handler(req, res) {
                     body:
                         JSON.stringify({
 
-                            scope: "admin",
+                            scope:
+                                "admin",
 
                             ...dados
 
                         }),
 
-                    redirect: "follow"
+                    redirect:
+                        "follow"
 
                 }
             );
@@ -94,23 +127,23 @@ module.exports = async function handler(req, res) {
 
 
         console.log(
-            "Status Apps Script:",
+            "STATUS GOOGLE:",
             respostaGoogle.status
         );
 
 
         console.log(
-            "Resposta Apps Script:",
+            "RESPOSTA GOOGLE:",
             texto.substring(
                 0,
-                500
+                1000
             )
         );
 
 
-        /* ==========================================
-           TENTA CONVERTER PARA JSON
-           ========================================== */
+        /* =================================================
+           CONVERTE RESPOSTA
+           ================================================= */
 
         let resultado;
 
@@ -122,29 +155,31 @@ module.exports = async function handler(req, res) {
                     texto
                 );
 
-        } catch (erroJson) {
+        } catch (erro) {
 
-            return res.status(500).json({
+            return res.status(502).json({
 
                 success: false,
 
                 message:
-                    "O Apps Script retornou uma resposta inválida.",
+                    "O Google Apps Script não retornou JSON.",
+
+                googleStatus:
+                    respostaGoogle.status,
 
                 googleResponse:
                     texto.substring(
                         0,
-                        300
+                        500
                     )
 
             });
-
         }
 
 
-        /* ==========================================
-           ERRO DO APPS SCRIPT
-           ========================================== */
+        /* =================================================
+           ERRO GOOGLE
+           ================================================= */
 
         if (
             !respostaGoogle.ok ||
@@ -157,16 +192,18 @@ module.exports = async function handler(req, res) {
 
                 message:
                     resultado.message ||
-                    "Erro no Apps Script."
+                    "O Apps Script retornou um erro.",
+
+                googleStatus:
+                    respostaGoogle.status
 
             });
-
         }
 
 
-        /* ==========================================
+        /* =================================================
            SUCESSO
-           ========================================== */
+           ================================================= */
 
         return res
             .status(200)
@@ -189,10 +226,8 @@ module.exports = async function handler(req, res) {
 
             message:
                 erro.message ||
-                "Erro interno na API administrativa."
+                "Erro interno da API administrativa."
 
         });
-
     }
-
 };
