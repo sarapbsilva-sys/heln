@@ -45,8 +45,13 @@
                 <p class="lesson-text" id="dynamic-hero-text"></p>
 
                 <div class="lesson-image-box">
-                    <img id="dynamic-hero-img" src="" alt="Personagens" class="lesson-img">
-                </div>
+    <img
+        id="dynamic-hero-img"
+        src=""
+        alt="Imagem do treinamento"
+        class="lesson-img"
+    >
+</div>
 
                 <button type="button" class="btn-vamos-comecar" onclick="goNext()">
                     Vamos começar <i class="fa-solid fa-circle-play"></i>
@@ -319,42 +324,153 @@
                 '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
             })[c]);
         }
+function renderModuloData(data) {
 
-        function renderModuloData(data) {
-            document.title = `${data.meta || 'Treinamento'} - ${data.categoria || 'QualiAcademy'}`;
+    document.title =
+        `${data.meta || 'Treinamento'} - ${data.categoria || 'QualiAcademy'}`;
 
-            document.getElementById('dynamic-meta-badge').textContent = data.meta || 'Treinamento';
-            document.getElementById('dynamic-categoria-badge').textContent = data.categoria || 'Capacitação';
-            document.getElementById('dynamic-hero-title').innerHTML = data.tituloHtml || 'Treinamento';
-            document.getElementById('dynamic-hero-text').textContent = data.textoBoasVindas || '';
 
-            const heroImg = document.getElementById('dynamic-hero-img');
-            if (data.imagemHero) {
-                heroImg.src = data.imagemHero;
-                heroImg.style.display = '';
-            } else {
-                heroImg.style.display = 'none';
-            }
+    document.getElementById(
+        'dynamic-meta-badge'
+    ).textContent =
+        data.meta || 'Treinamento';
 
-            renderPassos(Array.isArray(data.passos) ? data.passos : []);
 
-            const video = data.video || {};
-            const btnVideo = document.getElementById('btn-yt-link');
-            if (video.videoUrl) {
-                btnVideo.href = video.videoUrl;
-                btnVideo.style.display = 'flex';
-            } else {
-                btnVideo.href = '#';
-                btnVideo.style.display = 'none';
-            }
-            document.getElementById('yt-desc-text').textContent =
-                video.descricaoVideo || 'YouTube · abre em uma nova aba';
+    document.getElementById(
+        'dynamic-categoria-badge'
+    ).textContent =
+        data.categoria || 'Capacitação';
 
-            renderQuiz(Array.isArray(data.quiz) ? data.quiz : []);
-            montarSequencia();
-            criarBarraProgresso();
-            goToStep(1);
-        }
+
+    document.getElementById(
+        'dynamic-hero-title'
+    ).innerHTML =
+        data.tituloHtml || 'Treinamento';
+
+
+    document.getElementById(
+        'dynamic-hero-text'
+    ).textContent =
+        data.textoBoasVindas || '';
+
+
+    /* ==========================================
+       IMAGEM DO TREINAMENTO
+       ========================================== */
+
+    const heroImg =
+        document.getElementById(
+            'dynamic-hero-img'
+        );
+
+
+    const imagemCurso =
+        String(
+            data.imagemHero || ''
+        ).trim();
+
+
+    if (imagemCurso) {
+
+        heroImg.src =
+            imagemCurso;
+
+        heroImg.style.display =
+            'block';
+
+
+        heroImg.onerror =
+            function () {
+
+                console.error(
+                    'Erro ao carregar imagem do treinamento:',
+                    imagemCurso
+                );
+
+                this.style.display =
+                    'none';
+            };
+
+    } else {
+
+        heroImg.removeAttribute(
+            'src'
+        );
+
+        heroImg.style.display =
+            'none';
+    }
+
+
+    /* ==========================================
+       PASSOS
+       ========================================== */
+
+    renderPassos(
+        Array.isArray(data.passos)
+            ? data.passos
+            : []
+    );
+
+
+    /* ==========================================
+       VIDEOAULA
+       ========================================== */
+
+    const video =
+        data.video || {};
+
+
+    const btnVideo =
+        document.getElementById(
+            'btn-yt-link'
+        );
+
+
+    if (video.videoUrl) {
+
+        btnVideo.href =
+            video.videoUrl;
+
+        btnVideo.style.display =
+            'flex';
+
+    } else {
+
+        btnVideo.href =
+            '#';
+
+        btnVideo.style.display =
+            'none';
+    }
+
+
+    document.getElementById(
+        'yt-desc-text'
+    ).textContent =
+
+        video.descricaoVideo ||
+
+        'YouTube · abre em uma nova aba';
+
+
+    /* ==========================================
+       QUIZ
+       ========================================== */
+
+    renderQuiz(
+        Array.isArray(data.quiz)
+            ? data.quiz
+            : []
+    );
+
+
+    montarSequencia();
+
+    criarBarraProgresso();
+
+    goToStep(1);
+}
 
         function renderPassos(passos) {
             const container = document.getElementById('dynamic-content-steps');
