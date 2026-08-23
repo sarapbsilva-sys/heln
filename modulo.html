@@ -1,3203 +1,702 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QualiAcademy</title>
-
-    <link
-        rel="stylesheet"
-        href="css/modulo.css"
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    >
-
+    <link rel="stylesheet" href="css/tela4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
-
 <body class="system-body">
 
-
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
-
-<header class="lms-header-universal">
-
+    <!-- Topo da Tela do Sistema Padronizado (Padrão Tela 3) -->
+   <header class="lms-header-universal">
     <div class="header-container">
-
-
         <div class="brand-box">
-
-            <h2 class="system-top-title">
-
-                Quali<span>Academy</span>
-
-            </h2>
-
+            <h2 class="system-top-title">Quali<span>Academy</span></h2>
         </div>
-
 
         <div class="header-actions">
-
-            <span class="nep-tag-badge">
-
-                Hospital Estadual do Litoral Norte
-
-            </span>
-
+            <span class="nep-tag-badge">Hospital Estadual do Litoral Norte</span>
         </div>
-
-
     </div>
-
 </header>
 
-
-
-<!-- =====================================================
-     PROGRESSO
-     ===================================================== -->
-
-<div class="progress-section">
-
-
-    <div
-        class="progress-bars"
-        id="progress-bars"
-    >
+    <!-- Barra de Progresso - quantidade criada conforme o treinamento -->
+    <div class="progress-section">
+        <div class="progress-bars" id="progress-bars"></div>
+        <p class="step-indicator" id="step-indicator">Carregando treinamento...</p>
     </div>
 
+    <!-- Conteúdo Principal -->
+    <main class="system-content">
+        <div class="lesson-card" id="card-principal">
+            
+            <!-- PASSO 1 -->
+            <div id="step-1" class="step-content">
+                <div class="lesson-badge">
+                    <span class="tag-meta" id="dynamic-meta-badge">Meta</span>
+                    <span class="tag-desc" id="dynamic-categoria-badge">Capacitação</span>
+                </div>
+                
+                <h1 class="lesson-title" id="dynamic-hero-title">Carregando Módulo...</h1>
 
-    <p
-        class="step-indicator"
-        id="step-indicator"
-    >
+                <p class="lesson-text" id="dynamic-hero-text"></p>
 
-        Carregando treinamento...
+                <div class="lesson-image-box">
+                    <img id="dynamic-hero-img" src="" alt="Personagens" class="lesson-img">
+                </div>
 
-    </p>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     CONTEÚDO
-     ===================================================== -->
-
-<main class="system-content">
-
-
-    <div
-        class="lesson-card"
-        id="card-principal"
-    >
-
-
-
-        <!-- =================================================
-             BOAS-VINDAS
-             ================================================= -->
-
-        <div
-            id="step-welcome"
-            class="step-content"
-            data-step-title="Boas Vindas"
-        >
-
-
-            <div class="lesson-badge">
-
-                <span
-                    class="tag-meta"
-                    id="dynamic-meta-badge"
-                >
-                    Meta
-                </span>
-
-
-                <span
-                    class="tag-desc"
-                    id="dynamic-categoria-badge"
-                >
-                    Capacitação
-                </span>
-
-            </div>
-
-
-
-            <h1
-                class="lesson-title"
-                id="dynamic-hero-title"
-            >
-
-                Carregando treinamento...
-
-            </h1>
-
-
-
-            <p
-                class="lesson-text"
-                id="dynamic-hero-text"
-            >
-            </p>
-
-
-
-            <div class="lesson-image-box">
-
-                <img
-                    id="dynamic-hero-img"
-                    src=""
-                    alt="Imagem do treinamento"
-                    class="lesson-img"
-                >
-
-            </div>
-
-
-
-            <div class="card-navigation single-next">
-
-                <button
-                    type="button"
-                    class="btn-vamos-comecar nav-next"
-                >
-
-                    Vamos começar
-
-                    <i class="fa-solid fa-circle-play"></i>
-
+                <button type="button" class="btn-vamos-comecar" onclick="goNext()">
+                    Vamos começar <i class="fa-solid fa-circle-play"></i>
                 </button>
-
             </div>
 
+            <!-- PASSOS DE CONTEÚDO CADASTRADOS PELO ADMIN -->
+            <div id="dynamic-content-steps"></div>
 
-        </div>
+            <!-- PASSO 5 - VIDEOAULA -->
+            <div id="step-5" class="step-content" style="display: none;">
+                <div class="sub-badge"><span class="dot"></span> VIDEOAULA</div>
+                <h1 class="lesson-title left-title">Assista à aula antes de responder</h1>
+                
+                <div class="video-instruction-box">
+                    
+                    <p class="lesson-text left-text">
+                        Toque no botão abaixo para abrir a videoaula. Depois de assistir, volte aqui e siga para o quiz.
+                    </p>
+                </div>
 
+                <a id="btn-yt-link" href="#" target="_blank" class="btn-youtube-call pulse">
+                    <div class="yt-left">
+                        <div class="yt-play-icon"><i class="fa-solid fa-play"></i></div>
+                        <div class="yt-text">
+                            <h3>Assistir à videoaula</h3>
+                            <span id="yt-desc-text">YouTube · abre em uma nova aba</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right yt-arrow"></i>
+                </a>
 
+                <div class="alert-warning-step5">
+                    <div class="alert-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+                    <p><strong>Importante:</strong> assistir à videoaula é essencial para responder corretamente às questões a seguir.</p>
+                </div>
 
-        <!-- =================================================
-             PASSOS CRIADOS PELO ADMIN
-             ================================================= -->
-
-        <div
-            id="dynamic-content-steps"
-        >
-        </div>
-
-
-
-        <!-- =================================================
-             VIDEOAULA
-             ================================================= -->
-
-        <div
-            id="step-video"
-            class="step-content"
-            data-step-title="Videoaula"
-            style="display:none;"
-        >
-
-
-            <div class="sub-badge">
-
-                <span class="dot"></span>
-
-                VIDEOAULA
-
+                <div class="card-navigation">
+                    <button type="button" class="btn-voltar" onclick="goPrevious()">← Voltar</button>
+                    <button type="button" class="btn-prossiga" onclick="goNext()">Já assisti, prossiga! →</button>
+                </div>
             </div>
 
-
-            <h1 class="lesson-title left-title">
-
-                Assista à aula antes de responder
-
-            </h1>
-
-
-
-            <div class="video-instruction-box">
-
+            <!-- PASSO 6 - QUIZ DINÂMICO -->
+            <div id="step-6" class="step-content" style="display: none;">
+                <div class="sub-badge"><span class="dot"></span> VAMOS TESTAR SEU CONHECIMENTO</div>
+                <h1 class="lesson-title left-title">Responda ao quiz</h1>
                 <p class="lesson-text left-text">
-
-                    Toque no botão abaixo para abrir a videoaula.
-                    Depois de assistir, volte aqui e siga para o quiz.
-
+                    Perguntas rápidas com correção na hora. Ao acertar, a opção fica verde.<br>
+                    Acerte todas para liberar o próximo passo.
                 </p>
 
+                <div class="quiz-container" id="quiz-dynamic-container"></div>
+
+                <div class="quiz-footer-nav">
+                    <div class="card-navigation">
+                        <button type="button" class="btn-voltar" onclick="goPrevious()">← Voltar</button>
+                        <button type="button" class="btn-prossiga btn-disabled" id="btn-next-quiz" disabled onclick="goNext()">Continuar →</button>
+                    </div>
+                    <p class="quiz-hint-text" id="quiz-hint">Responda corretamente às perguntas para liberar o botão.</p>
+                </div>
             </div>
 
+            <!-- PASSO 7 - AVALIAÇÃO DE SATISFAÇÃO -->
+            <div id="step-7" class="step-content" style="display: none;">
+                <div class="sub-badge"><span class="dot"></span> SUA AVALIAÇÃO</div>
+                <h1 class="lesson-title left-title">Avaliação de satisfação</h1>
+                <p class="lesson-text left-text">Sua opinião ajuda o NEP a melhorar os treinamentos. Marque uma opção em cada linha.</p>
 
+                <div class="rating-scale-legend">
+                    <span><strong>5</strong> Excelente</span>
+                    <span><strong>1</strong> Péssimo</span>
+                </div>
 
-            <a
-                id="btn-yt-link"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-youtube-call pulse"
-            >
+                <div class="rating-table-wrapper">
+                    <table class="rating-table">
+                        <thead>
+                            <tr>
+                                <th class="col-criteria"></th>
+                                <th>Excelente<br><span class="scale-num">(5)</span></th>
+                                <th>Bom<br><span class="scale-num">(4)</span></th>
+                                <th>Regular<br><span class="scale-num">(3)</span></th>
+                                <th>Ruim<br><span class="scale-num">(2)</span></th>
+                                <th>Péssimo<br><span class="scale-num">(1)</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="criteria-label">Clareza e relevância do conteúdo</td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item1" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                            <tr>
+                                <td class="criteria-label">Metodologia utilizada</td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item2" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                            <tr>
+                                <td class="criteria-label">Qualidade do material didático</td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item3" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                            <tr>
+                                <td class="criteria-label">Domínio do instrutor</td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item4" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                            <tr>
+                                <td class="criteria-label">Aplicabilidade na prática assistencial</td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="5" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="4" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="3" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="2" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                                <td><label class="radio-cell"><input type="radio" name="item5" value="1" onchange="checkRatingCompletion()"><span class="custom-radio"></span></label></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <div class="yt-left">
+                <div class="rating-footer-nav">
+                    <div class="card-navigation">
+                        <button type="button" class="btn-voltar" onclick="goPrevious()">← Voltar</button>
+                        <button type="button" class="btn-prossiga btn-disabled" id="btn-next-rating" disabled onclick="goNext()">Continuar →</button>
+                    </div>
+                    <p class="quiz-hint-text" id="rating-hint">Marque uma opção em cada linha para continuar.</p>
+                </div>
+            </div>
 
+            <!-- PASSO 8 - REGISTRO DE PRESENÇA -->
+            <div id="step-8" class="step-content" style="display: none;">
+                <div class="sub-badge"><span class="dot"></span> SEUS DADOS</div>
+                <h1 class="lesson-title left-title">Registre sua presença</h1>
+                <p class="lesson-text left-text">Por último, preencha seus dados. As respostas vão direto para o registro do NEP.</p>
 
-                    <div class="yt-play-icon">
-
-                        <i class="fa-solid fa-play"></i>
-
+                <form id="form-presence" class="presence-form" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="user-name">Nome completo <span class="required">*</span></label>
+                        <input type="text" id="user-name" class="form-input" placeholder="Digite seu nome completo" oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-matricula">Matrícula <span class="required">*</span></label>
+                        <input type="text" id="user-matricula" class="form-input" placeholder="Digite sua matrícula" oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-profession">Profissão <span class="required">*</span></label>
+                        <input type="text" id="user-profession" class="form-input" placeholder="Ex: Enfermeiro, Técnico, Médico..." oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-sector">Setor de lotação <span class="required">*</span></label>
+                        <input type="text" id="user-sector" class="form-input" placeholder="Seu setor atual" oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-shift">Turno <span class="required">*</span></label>
+                        <input type="text" id="user-shift" class="form-input" placeholder="Ex: Manhã, Tarde, Noturno, Integral" oninput="checkFormCompletion()">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-feedback">Dúvidas ou sugestões? <span class="optional">(opcional)</span></label>
+                        <textarea id="user-feedback" class="form-textarea" placeholder="Escreva aqui, se quiser" rows="3"></textarea>
                     </div>
 
-
-                    <div class="yt-text">
-
-                        <h3>
-                            Assistir à videoaula
-                        </h3>
-
-                        <span id="yt-desc-text">
-
-                            YouTube · abre em uma nova aba
-
-                        </span>
-
+                    <div class="card-navigation form-navigation">
+                        <button type="button" class="btn-voltar" onclick="goPrevious()">← Voltar</button>
+                        <button type="submit" class="btn-prossiga btn-disabled" id="btn-submit-presence" disabled>Enviar e registrar presença</button>
                     </div>
-
-
-                </div>
-
-
-                <i class="fa-solid fa-arrow-right yt-arrow"></i>
-
-            </a>
-
-
-
-            <div class="alert-warning-step5">
-
-                <div class="alert-icon">
-
-                    <i class="fa-solid fa-circle-exclamation"></i>
-
-                </div>
-
-
-                <p>
-
-                    <strong>Importante:</strong>
-
-                    assistir à videoaula é essencial
-                    para responder corretamente às questões a seguir.
-
-                </p>
-
+                </form>
             </div>
 
-
-
-            <div class="card-navigation">
-
-                <button
-                    type="button"
-                    class="btn-voltar nav-prev"
-                >
-
-                    ← Voltar
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="btn-prossiga nav-next"
-                >
-
-                    Já assisti, prossiga! →
-
-                </button>
-
+            <!-- MODAL DE SUCESSO -->
+            <div id="success-modal" class="modal-overlay" style="display: none;">
+                <div class="modal-card">
+                    <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h2>Presença registrada com sucesso!</h2>
+                    <p>Você concluiu todas as etapas do treinamento do NEP com êxito.</p>
+                    <button type="button" class="btn-prossiga" onclick="closeSuccessModal()">Concluir Módulo</button>
+                </div>
             </div>
-
 
         </div>
+    </main>
 
-
-
-        <!-- =================================================
-             QUIZ
-             ================================================= -->
-
-        <div
-            id="step-quiz"
-            class="step-content"
-            data-step-title="Quiz"
-            style="display:none;"
-        >
-
-
-            <div class="sub-badge">
-
-                <span class="dot"></span>
-
-                VAMOS TESTAR SEU CONHECIMENTO
-
-            </div>
-
-
-            <h1 class="lesson-title left-title">
-
-                Responda ao quiz
-
-            </h1>
-
-
-            <p class="lesson-text left-text">
-
-                Perguntas rápidas com correção na hora.
-                Ao acertar, a opção fica verde.
-
-                <br>
-
-                Acerte todas para liberar o próximo passo.
-
-            </p>
-
-
-
-            <div
-                class="quiz-container"
-                id="quiz-dynamic-container"
-            >
-            </div>
-
-
-
-            <div class="quiz-footer-nav">
-
-
-                <div class="card-navigation">
-
-                    <button
-                        type="button"
-                        class="btn-voltar nav-prev"
-                    >
-
-                        ← Voltar
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="btn-prossiga btn-disabled"
-                        id="btn-next-quiz"
-                        disabled
-                    >
-
-                        Continuar →
-
-                    </button>
-
-                </div>
-
-
-                <p
-                    class="quiz-hint-text"
-                    id="quiz-hint"
-                >
-
-                    Responda corretamente às perguntas
-                    para liberar o botão.
-
-                </p>
-
-
-            </div>
-
-
+    <!-- Rodapé no fim da página (Igual Tela 3) -->
+    <footer class="footer-bar">
+        <div class="footer-content">
+            <img src="../imgs/logos.png" alt="Logo do Rodapé" class="footer-logo">
+            <p>Departamento de Qualidade e Segurança do Paciente | HELN</p>
         </div>
-
-
-
-        <!-- =================================================
-             SATISFAÇÃO
-             ================================================= -->
-
-        <div
-            id="step-rating"
-            class="step-content"
-            data-step-title="Satisfação"
-            style="display:none;"
-        >
-
-
-            <div class="sub-badge">
-
-                <span class="dot"></span>
-
-                SUA AVALIAÇÃO
-
-            </div>
-
-
-            <h1 class="lesson-title left-title">
-
-                Avaliação de satisfação
-
-            </h1>
-
-
-            <p class="lesson-text left-text">
-
-                Sua opinião ajuda o NEP a melhorar os treinamentos.
-                Marque uma opção em cada linha.
-
-            </p>
-
-
-
-            <div class="rating-scale-legend">
-
-                <span>
-                    <strong>5</strong>
-                    Excelente
-                </span>
-
-                <span>
-                    <strong>1</strong>
-                    Péssimo
-                </span>
-
-            </div>
-
-
-
-            <div class="rating-table-wrapper">
-
-
-                <table class="rating-table">
-
-
-                    <thead>
-
-                        <tr>
-
-                            <th class="col-criteria"></th>
-
-                            <th>
-                                Excelente
-                                <br>
-                                <span class="scale-num">(5)</span>
-                            </th>
-
-                            <th>
-                                Bom
-                                <br>
-                                <span class="scale-num">(4)</span>
-                            </th>
-
-                            <th>
-                                Regular
-                                <br>
-                                <span class="scale-num">(3)</span>
-                            </th>
-
-                            <th>
-                                Ruim
-                                <br>
-                                <span class="scale-num">(2)</span>
-                            </th>
-
-                            <th>
-                                Péssimo
-                                <br>
-                                <span class="scale-num">(1)</span>
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-
-
-                    <tbody>
-
-
-                        <!-- ITEM 1 -->
-
-                        <tr>
-
-                            <td class="criteria-label">
-
-                                Clareza e relevância do conteúdo
-
-                            </td>
-
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item1" value="5" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item1" value="4" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item1" value="3" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item1" value="2" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item1" value="1" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- ITEM 2 -->
-
-                        <tr>
-
-                            <td class="criteria-label">
-                                Metodologia utilizada
-                            </td>
-
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item2" value="5" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item2" value="4" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item2" value="3" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item2" value="2" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item2" value="1" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- ITEM 3 -->
-
-                        <tr>
-
-                            <td class="criteria-label">
-                                Qualidade do material didático
-                            </td>
-
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item3" value="5" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item3" value="4" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item3" value="3" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item3" value="2" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item3" value="1" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- ITEM 4 -->
-
-                        <tr>
-
-                            <td class="criteria-label">
-                                Domínio do instrutor
-                            </td>
-
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item4" value="5" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item4" value="4" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item4" value="3" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item4" value="2" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item4" value="1" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- ITEM 5 -->
-
-                        <tr>
-
-                            <td class="criteria-label">
-
-                                Aplicabilidade na prática assistencial
-
-                            </td>
-
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item5" value="5" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item5" value="4" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item5" value="3" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item5" value="2" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                            <td>
-                                <label class="radio-cell">
-                                    <input type="radio" name="item5" value="1" onchange="checkRatingCompletion()">
-                                    <span class="custom-radio"></span>
-                                </label>
-                            </td>
-
-                        </tr>
-
-
-                    </tbody>
-
-
-                </table>
-
-
-            </div>
-
-
-
-            <div class="rating-footer-nav">
-
-
-                <div class="card-navigation">
-
-                    <button
-                        type="button"
-                        class="btn-voltar nav-prev"
-                    >
-
-                        ← Voltar
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="btn-prossiga btn-disabled"
-                        id="btn-next-rating"
-                        disabled
-                    >
-
-                        Continuar →
-
-                    </button>
-
-                </div>
-
-
-                <p
-                    class="quiz-hint-text"
-                    id="rating-hint"
-                >
-
-                    Marque uma opção em cada linha para continuar.
-
-                </p>
-
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             PRESENÇA
-             ================================================= -->
-
-        <div
-            id="step-presence"
-            class="step-content"
-            data-step-title="Conclusão"
-            style="display:none;"
-        >
-
-
-            <div class="sub-badge">
-
-                <span class="dot"></span>
-
-                SEUS DADOS
-
-            </div>
-
-
-            <h1 class="lesson-title left-title">
-
-                Registre sua presença
-
-            </h1>
-
-
-            <p class="lesson-text left-text">
-
-                Por último, preencha seus dados.
-                As respostas vão direto para o registro do NEP.
-
-            </p>
-
-
-
-            <form
-                id="form-presence"
-                class="presence-form"
-                onsubmit="submitForm(event)"
-            >
-
-
-                <div class="form-group">
-
-                    <label for="user-name">
-
-                        Nome completo
-
-                        <span class="required">*</span>
-
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="user-name"
-                        class="form-input"
-                        placeholder="Digite seu nome completo"
-                        oninput="checkFormCompletion()"
-                    >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                    <label for="user-matricula">
-
-                        Matrícula
-
-                        <span class="required">*</span>
-
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="user-matricula"
-                        class="form-input"
-                        placeholder="Digite sua matrícula"
-                        oninput="checkFormCompletion()"
-                    >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                    <label for="user-profession">
-
-                        Profissão
-
-                        <span class="required">*</span>
-
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="user-profession"
-                        class="form-input"
-                        placeholder="Ex: Enfermeiro, Técnico, Médico..."
-                        oninput="checkFormCompletion()"
-                    >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                    <label for="user-sector">
-
-                        Setor de lotação
-
-                        <span class="required">*</span>
-
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="user-sector"
-                        class="form-input"
-                        placeholder="Seu setor atual"
-                        oninput="checkFormCompletion()"
-                    >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                    <label for="user-shift">
-
-                        Turno
-
-                        <span class="required">*</span>
-
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="user-shift"
-                        class="form-input"
-                        placeholder="Ex: Manhã, Tarde, Noturno, Integral"
-                        oninput="checkFormCompletion()"
-                    >
-
-                </div>
-
-
-
-                <div class="form-group">
-
-                    <label for="user-feedback">
-
-                        Dúvidas ou sugestões?
-
-                        <span class="optional">
-                            (opcional)
-                        </span>
-
-                    </label>
-
-
-                    <textarea
-                        id="user-feedback"
-                        class="form-textarea"
-                        placeholder="Escreva aqui, se quiser"
-                        rows="3"
-                    ></textarea>
-
-                </div>
-
-
-
-                <div class="card-navigation form-navigation">
-
-
-                    <button
-                        type="button"
-                        class="btn-voltar nav-prev"
-                    >
-
-                        ← Voltar
-
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="btn-prossiga btn-disabled"
-                        id="btn-submit-presence"
-                        disabled
-                    >
-
-                        Enviar e registrar presença
-
-                    </button>
-
-
-                </div>
-
-
-            </form>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             MODAL
-             ================================================= -->
-
-        <div
-            id="success-modal"
-            class="modal-overlay"
-            style="display:none;"
-        >
-
-
-            <div class="modal-card">
-
-
-                <div class="modal-icon">
-
-                    <i class="fa-solid fa-circle-check"></i>
-
-                </div>
-
-
-                <h2>
-                    Presença registrada com sucesso!
-                </h2>
-
-
-                <p>
-                    Você concluiu todas as etapas
-                    do treinamento com êxito.
-                </p>
-
-
-                <button
-                    type="button"
-                    class="btn-prossiga"
-                    onclick="closeSuccessModal()"
-                >
-
-                    Concluir Módulo
-
-                </button>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</main>
-
-
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
-
-<footer class="footer-bar">
-
-    <div class="footer-content">
-
-        <img
-            src="../imgs/logos.png"
-            alt="Logo do Rodapé"
-            class="footer-logo"
-        >
-
-        <p>
-
-            Departamento de Qualidade e Segurança do Paciente | HELN
-
-        </p>
-
-    </div>
-
-</footer>
-
-
-
-<script>
-
-
-/* =========================================================
-   CONFIG
-   ========================================================= */
-
-const ADMIN_API =
-    "/api/admin";
-
-
-let currentModulo =
-    null;
-
-
-let quizScore =
-    {};
-
-
-let orderedSteps =
-    [];
-
-
-let currentStep =
-    1;
-
-
-
-/* =========================================================
-   API
-   ========================================================= */
-
-async function chamarAPI(
-    payload
-) {
-
-    const resposta =
-        await fetch(
-            ADMIN_API,
-            {
-
-                method:
-                    "POST",
-
-                headers: {
-
-                    "Content-Type":
-                        "application/json"
-
-                },
-
-                body:
-                    JSON.stringify(
-                        payload
-                    )
-
+    </footer>
+
+    <!-- SCRIPTS DE CARREGAMENTO -->
+    <script>
+        const ADMIN_API = "/api/admin";
+
+        let currentModulo = null;
+        let quizScore = {};
+        let steps = [];
+        let currentStep = 1;
+
+        window.addEventListener('DOMContentLoaded', carregarTreinamento);
+
+        async function chamarAPI(payload) {
+            const resposta = await fetch(ADMIN_API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const texto = await resposta.text();
+            let resultado;
+
+            try {
+                resultado = JSON.parse(texto);
+            } catch {
+                throw new Error('A API retornou uma resposta inválida.');
             }
-        );
 
+            if (!resposta.ok || resultado.success === false) {
+                throw new Error(resultado.message || 'Não foi possível carregar o treinamento.');
+            }
 
-    const texto =
-        await resposta.text();
-
-
-    let resultado;
-
-
-    try {
-
-        resultado =
-            JSON.parse(
-                texto
-            );
-
-    } catch {
-
-        console.error(
-            texto
-        );
-
-
-        throw new Error(
-            "A API retornou uma resposta inválida."
-        );
-    }
-
-
-    if (
-        !resposta.ok ||
-        resultado.success === false
-    ) {
-
-        throw new Error(
-
-            resultado.message ||
-
-            "Não foi possível carregar o treinamento."
-
-        );
-    }
-
-
-    return resultado;
-}
-
-
-
-/* =========================================================
-   ESCAPE
-   ========================================================= */
-
-function escapeHtml(
-    valor
-) {
-
-    return String(
-        valor ?? ""
-    )
-    .replace(
-        /[&<>"']/g,
-
-        caractere => ({
-
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#039;"
-
-        })[caractere]
-    );
-}
-
-
-
-/* =========================================================
-   CARREGAR MÓDULO
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
-
-
-        const params =
-            new URLSearchParams(
-                window.location.search
-            );
-
-
-        const moduloId =
-            params.get(
-                "id"
-            );
-
-
-        if (!moduloId) {
-
-            alert(
-                "Treinamento não informado."
-            );
-
-
-            window.location.href =
-                "tela3.html";
-
-
-            return;
+            return resultado;
         }
 
+        async function carregarTreinamento() {
+            const moduloId = new URLSearchParams(window.location.search).get('id');
 
-        try {
+            if (!moduloId) {
+                alert('Treinamento não informado.');
+                window.location.href = 'tela3.html';
+                return;
+            }
 
-
-            const resultado =
-                await chamarAPI({
-
-                    action:
-                        "getCourse",
-
-                    id:
-                        moduloId
-
+            try {
+                const resultado = await chamarAPI({
+                    action: 'getCourse',
+                    id: moduloId
                 });
 
+                currentModulo = resultado.course;
 
-            currentModulo =
-                resultado.course;
+                if (!currentModulo) {
+                    throw new Error('Treinamento não encontrado.');
+                }
 
+                if (currentModulo.status !== 'PUBLICADO') {
+                    throw new Error('Este treinamento ainda não está publicado.');
+                }
 
-            if (
-                !currentModulo
-            ) {
-
-                throw new Error(
-                    "Treinamento não encontrado."
-                );
+                renderModuloData(currentModulo);
+            } catch (erro) {
+                console.error(erro);
+                alert(erro.message || 'Erro ao carregar treinamento.');
+                window.location.href = 'tela3.html';
             }
-
-
-            /*
-             * Segurança:
-             * impede acesso público a rascunho.
-             */
-
-            if (
-                currentModulo.status !==
-                "PUBLICADO"
-            ) {
-
-                throw new Error(
-                    "Este treinamento ainda não está publicado."
-                );
-            }
-
-
-            renderModuloData(
-                currentModulo
-            );
-
-
-        } catch (erro) {
-
-
-            console.error(
-                erro
-            );
-
-
-            alert(
-                erro.message
-            );
-
-
-            window.location.href =
-                "tela3.html";
-
         }
 
-    }
-);
-
-
-
-/* =========================================================
-   RENDER PRINCIPAL
-   ========================================================= */
-
-function renderModuloData(
-    data
-) {
-
-
-    document.title =
-
-        `${data.meta || "Treinamento"} - QualiAcademy`;
-
-
-
-    document.getElementById(
-        "dynamic-meta-badge"
-    ).textContent =
-
-        data.meta ||
-        "Treinamento";
-
-
-
-    document.getElementById(
-        "dynamic-categoria-badge"
-    ).textContent =
-
-        data.categoria ||
-        "Capacitação";
-
-
-
-    document.getElementById(
-        "dynamic-hero-title"
-    ).innerHTML =
-
-        data.tituloHtml ||
-        "Treinamento";
-
-
-
-    document.getElementById(
-        "dynamic-hero-text"
-    ).textContent =
-
-        data.textoBoasVindas ||
-        "";
-
-
-
-    const heroImg =
-        document.getElementById(
-            "dynamic-hero-img"
-        );
-
-
-    if (
-        data.imagemHero
-    ) {
-
-        heroImg.src =
-            data.imagemHero;
-
-
-        heroImg.style.display =
-            "";
-
-    } else {
-
-        heroImg.style.display =
-            "none";
-
-    }
-
-
-
-    /*
-     * PASSOS CRIADOS
-     */
-
-    renderPassosDinamicos(
-
-        Array.isArray(
-            data.passos
-        )
-
-            ? data.passos
-
-            : []
-
-    );
-
-
-
-    /*
-     * VIDEO
-     */
-
-    const video =
-        data.video ||
-        {};
-
-
-    const btnVideo =
-        document.getElementById(
-            "btn-yt-link"
-        );
-
-
-    if (
-        video.videoUrl
-    ) {
-
-        btnVideo.href =
-            video.videoUrl;
-
-        btnVideo.style.display =
-            "flex";
-
-    } else {
-
-        btnVideo.style.display =
-            "none";
-
-    }
-
-
-
-    document.getElementById(
-        "yt-desc-text"
-    ).textContent =
-
-        video.descricaoVideo ||
-
-        "Videoaula · abre em uma nova aba";
-
-
-
-    /*
-     * QUIZ
-     */
-
-    renderQuiz(
-
-        Array.isArray(
-            data.quiz
-        )
-
-            ? data.quiz
-
-            : []
-
-    );
-
-
-
-    /*
-     * ORDEM E PROGRESSO
-     */
-
-    rebuildSteps();
-
-
-    buildProgress();
-
-
-    configureNavigation();
-
-
-    goToStep(
-        1
-    );
-}
-
-
-
-/* =========================================================
-   PASSOS DINÂMICOS
-   ========================================================= */
-
-function renderPassosDinamicos(
-    passos
-) {
-
-    const container =
-        document.getElementById(
-            "dynamic-content-steps"
-        );
-
-
-    container.innerHTML =
-        "";
-
-
-    passos
-
-        .sort(
-            (
-                a,
-                b
-            ) =>
-
-                Number(
-                    a.ordem || 0
-                )
-
-                -
-
-                Number(
-                    b.ordem || 0
-                )
-        )
-
-        .forEach(
-            (
-                passo,
-                index
-            ) => {
-
-
-                const element =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                element.className =
-                    "step-content dynamic-training-step";
-
-
-                element.style.display =
-                    "none";
-
-
-                element.dataset.stepTitle =
-
-                    passo.titulo ||
-
-                    `Conteúdo ${index + 1}`;
-
-
-
-                const tipo =
-                    passo.tipo ||
-                    "texto";
-
-
-                let cardsHtml =
-                    "";
-
-
-                let destaqueHtml =
-                    "";
-
-
-                /* =========================================
-                   CARDS
-                   ========================================= */
-
-                if (
-                    (
-                        tipo === "cards" ||
-                        tipo === "cards_destaque"
-                    )
-                    &&
-                    Array.isArray(
-                        passo.cards
-                    )
-                    &&
-                    passo.cards.length
-                ) {
-
-
-                    cardsHtml = `
-
-                        <div class="cards-grid">
-
-                            ${
-
-                                passo.cards
-
-                                    .map(
-                                        (
-                                            card,
-                                            cardIndex
-                                        ) => `
-
-                                            <div class="info-card">
-
-                                                <div class="card-number">
-
-                                                    ${cardIndex + 1}
-
-                                                </div>
-
-
-                                                <div class="card-icon">
-
-                                                    <i class="fa-solid ${escapeHtml(
-                                                        card.icon ||
-                                                        "fa-circle-check"
-                                                    )}"></i>
-
-                                                </div>
-
-
-                                                <h3>
-
-                                                    ${escapeHtml(
-                                                        card.titulo ||
-                                                        ""
-                                                    )}
-
-                                                </h3>
-
-                                            </div>
-
-                                        `
-                                    )
-
-                                    .join("")
-
-                            }
-
-                        </div>
-
-                    `;
-
-                }
-
-
-
-                /* =========================================
-                   DESTAQUE
-                   ========================================= */
-
-                if (
-                    (
-                        tipo === "destaque" ||
-                        tipo === "cards_destaque"
-                    )
-                    &&
-                    (
-                        passo.destaque?.titulo ||
-                        passo.destaque?.texto
-                    )
-                ) {
-
-
-                    destaqueHtml = `
-
-                        <div class="highlight-banner-step4">
-
-
-                            <div class="banner-icon">
-
-                                <i class="fa-solid fa-circle-check"></i>
-
-                            </div>
-
-
-                            <div class="banner-text">
-
-                                <h4>
-
-                                    ${escapeHtml(
-                                        passo.destaque?.titulo ||
-                                        ""
-                                    )}
-
-                                </h4>
-
-
-                                <p>
-
-                                    ${escapeHtml(
-                                        passo.destaque?.texto ||
-                                        ""
-                                    )}
-
-                                </p>
-
-                            </div>
-
-
-                        </div>
-
-                    `;
-
-                }
-
-
-
-                element.innerHTML = `
-
-                    ${
-
-                        passo.subBadge
-
-                            ? `
-
-                                <div class="sub-badge">
-
-                                    <span class="dot"></span>
-
-                                    ${escapeHtml(
-                                        passo.subBadge
-                                    )}
-
+        function escapeHtml(valor) {
+            return String(valor ?? '').replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+            })[c]);
+        }
+
+        function renderModuloData(data) {
+            document.title = `${data.meta || 'Treinamento'} - ${data.categoria || 'QualiAcademy'}`;
+
+            document.getElementById('dynamic-meta-badge').textContent = data.meta || 'Treinamento';
+            document.getElementById('dynamic-categoria-badge').textContent = data.categoria || 'Capacitação';
+            document.getElementById('dynamic-hero-title').innerHTML = data.tituloHtml || 'Treinamento';
+            document.getElementById('dynamic-hero-text').textContent = data.textoBoasVindas || '';
+
+            const heroImg = document.getElementById('dynamic-hero-img');
+            if (data.imagemHero) {
+                heroImg.src = data.imagemHero;
+                heroImg.style.display = '';
+            } else {
+                heroImg.style.display = 'none';
+            }
+
+            renderPassos(Array.isArray(data.passos) ? data.passos : []);
+
+            const video = data.video || {};
+            const btnVideo = document.getElementById('btn-yt-link');
+            if (video.videoUrl) {
+                btnVideo.href = video.videoUrl;
+                btnVideo.style.display = 'flex';
+            } else {
+                btnVideo.href = '#';
+                btnVideo.style.display = 'none';
+            }
+            document.getElementById('yt-desc-text').textContent =
+                video.descricaoVideo || 'YouTube · abre em uma nova aba';
+
+            renderQuiz(Array.isArray(data.quiz) ? data.quiz : []);
+            montarSequencia();
+            criarBarraProgresso();
+            goToStep(1);
+        }
+
+        function renderPassos(passos) {
+            const container = document.getElementById('dynamic-content-steps');
+            container.innerHTML = '';
+
+            [...passos]
+                .sort((a, b) => Number(a.ordem || 0) - Number(b.ordem || 0))
+                .forEach((passo, index) => {
+                    const el = document.createElement('div');
+
+                    // Mantém as referências visuais do CSS original:
+                    // primeiro conteúdo = antigo step 2, segundo = antigo step 3.
+                    if (index === 0) el.id = 'step-2';
+                    else if (index === 1) el.id = 'step-3';
+                    else el.id = `dynamic-step-${index + 1}`;
+
+                    el.className = 'step-content dynamic-training-step';
+                    el.style.display = 'none';
+                    el.dataset.title = passo.titulo || `Conteúdo ${index + 1}`;
+
+                    const tipo = passo.tipo || 'cards';
+                    const cards = Array.isArray(passo.cards) ? passo.cards : [];
+
+                    let cardsHtml = '';
+                    if ((tipo === 'cards' || tipo === 'cards_destaque') && cards.length) {
+                        if (index === 0) {
+                            cardsHtml = `
+                                <div class="cards-grid">
+                                    ${cards.map((c, i) => `
+                                        <div class="info-card">
+                                            <div class="card-number">${i + 1}</div>
+                                            <div class="card-icon"><i class="fa-solid ${escapeHtml(c.icon || 'fa-circle-check')}"></i></div>
+                                            <h3>${escapeHtml(c.titulo || '')}</h3>
+                                        </div>
+                                    `).join('')}
+                                </div>`;
+                        } else if (passo.destaque?.titulo || passo.destaque?.texto || tipo === 'cards_destaque') {
+                            cardsHtml = `
+                                <div class="cards-grid-step4">
+                                    ${cards.map(c => `
+                                        <div class="info-card-step4">
+                                            <div class="card-icon-step4"><i class="fa-solid ${escapeHtml(c.icon || 'fa-circle-check')}"></i></div>
+                                            <h3>${escapeHtml(c.titulo || '')}</h3>
+                                        </div>
+                                    `).join('')}
+                                </div>`;
+                        } else {
+                            cardsHtml = `
+                                <div class="cards-grid-5">
+                                    ${cards.map(c => `
+                                        <div class="info-card-step3">
+                                            <div class="card-icon-step3"><i class="fa-solid ${escapeHtml(c.icon || 'fa-circle-check')}"></i></div>
+                                            <h3>${escapeHtml(c.titulo || '')}</h3>
+                                        </div>
+                                    `).join('')}
+                                </div>`;
+                        }
+                    }
+
+                    let destaqueHtml = '';
+                    if ((tipo === 'destaque' || tipo === 'cards_destaque') &&
+                        (passo.destaque?.titulo || passo.destaque?.texto)) {
+                        destaqueHtml = `
+                            <div class="highlight-banner-step4">
+                                <div class="banner-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                <div class="banner-text">
+                                    <h4>${escapeHtml(passo.destaque?.titulo || '')}</h4>
+                                    <p>${escapeHtml(passo.destaque?.texto || '')}</p>
                                 </div>
-
-                            `
-
-                            : ""
-
+                            </div>`;
                     }
 
+                    el.innerHTML = `
+                        ${passo.subBadge ? `<div class="sub-badge"><span class="dot"></span> ${escapeHtml(passo.subBadge)}</div>` : ''}
+                        <h1 class="lesson-title left-title">${escapeHtml(passo.titulo || '')}</h1>
+                        ${passo.texto ? `<p class="lesson-text left-text">${escapeHtml(passo.texto)}</p>` : ''}
+                        ${cardsHtml}
+                        ${destaqueHtml}
+                        <div class="card-navigation">
+                            <button type="button" class="btn-voltar" onclick="goPrevious()">← Voltar</button>
+                            <button type="button" class="btn-prossiga" onclick="goNext()">Entendi, prossiga! →</button>
+                        </div>`;
 
-                    <h1 class="lesson-title left-title">
-
-                        ${escapeHtml(
-                            passo.titulo ||
-                            ""
-                        )}
-
-                    </h1>
-
-
-                    ${
-
-                        passo.texto
-
-                            ? `
-
-                                <p class="lesson-text left-text">
-
-                                    ${escapeHtml(
-                                        passo.texto
-                                    )}
-
-                                </p>
-
-                            `
-
-                            : ""
-
-                    }
-
-
-                    ${cardsHtml}
-
-
-                    ${destaqueHtml}
-
-
-                    <div class="card-navigation">
-
-                        <button
-                            type="button"
-                            class="btn-voltar nav-prev"
-                        >
-
-                            ← Voltar
-
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="btn-prossiga nav-next"
-                        >
-
-                            Entendi, prossiga! →
-
-                        </button>
-
-                    </div>
-
-                `;
-
-
-                container.appendChild(
-                    element
-                );
-
-            }
-        );
-}
-
-
-
-/* =========================================================
-   RECRIAR LISTA DE ETAPAS
-   ========================================================= */
-
-function rebuildSteps() {
-
-    orderedSteps = [
-
-        document.getElementById(
-            "step-welcome"
-        ),
-
-        ...document.querySelectorAll(
-            "#dynamic-content-steps .step-content"
-        ),
-
-        document.getElementById(
-            "step-video"
-        ),
-
-        document.getElementById(
-            "step-quiz"
-        ),
-
-        document.getElementById(
-            "step-rating"
-        ),
-
-        document.getElementById(
-            "step-presence"
-        )
-
-    ]
-    .filter(
-        Boolean
-    );
-}
-
-
-
-/* =========================================================
-   PROGRESSO
-   ========================================================= */
-
-function buildProgress() {
-
-    const container =
-        document.getElementById(
-            "progress-bars"
-        );
-
-
-    container.innerHTML =
-        "";
-
-
-    orderedSteps.forEach(
-        () => {
-
-
-            const bar =
-                document.createElement(
-                    "span"
-                );
-
-
-            bar.className =
-                "bar";
-
-
-            container.appendChild(
-                bar
-            );
-
+                    container.appendChild(el);
+                });
         }
-    );
-}
 
+        function montarSequencia() {
+            steps = [
+                document.getElementById('step-1'),
+                ...document.querySelectorAll('#dynamic-content-steps .step-content'),
+                document.getElementById('step-5'),
+                document.getElementById('step-6'),
+                document.getElementById('step-7'),
+                document.getElementById('step-8')
+            ].filter(Boolean);
 
+            // Nomes fixos das etapas finais; os conteúdos usam o título cadastrado.
+            document.getElementById('step-1').dataset.title = 'Boas Vindas';
+            document.getElementById('step-5').dataset.title = 'Videoaula';
+            document.getElementById('step-6').dataset.title = 'Quiz';
+            document.getElementById('step-7').dataset.title = 'Satisfação';
+            document.getElementById('step-8').dataset.title = 'Conclusão';
+        }
 
-/* =========================================================
-   NAVEGAÇÃO
-   ========================================================= */
+        function criarBarraProgresso() {
+            const container = document.getElementById('progress-bars');
+            container.innerHTML = steps.map(() => '<span class="bar"></span>').join('');
+        }
 
-function configureNavigation() {
+        function goNext() {
+            goToStep(currentStep + 1);
+        }
 
+        function goPrevious() {
+            goToStep(currentStep - 1);
+        }
 
-    orderedSteps.forEach(
-        (
-            step,
-            index
-        ) => {
+        function goToStep(stepNumber) {
+            if (stepNumber < 1 || stepNumber > steps.length) return;
 
+            currentStep = stepNumber;
 
-            const prev =
-                step.querySelector(
-                    ".nav-prev"
-                );
+            steps.forEach(step => {
+                step.style.setProperty('display', 'none', 'important');
+            });
 
+            const targetStep = steps[stepNumber - 1];
+            targetStep.style.setProperty('display', 'flex', 'important');
 
-            const next =
-                step.querySelector(
-                    ".nav-next"
-                );
+            // Mantém o mesmo comportamento visual do CSS antigo.
+            const card = document.getElementById('card-principal');
+            if (stepNumber === 1) card.classList.remove('align-left');
+            else card.classList.add('align-left');
 
+            const indicator = document.getElementById('step-indicator');
+            const titulo = targetStep.dataset.title || 'Treinamento';
+            indicator.textContent = `Passo ${stepNumber} de ${steps.length} - ${titulo}`;
 
-            if (prev) {
+            const bars = document.querySelectorAll('#progress-bars .bar');
+            bars.forEach((bar, index) => {
+                bar.classList.toggle('active', index < stepNumber);
+            });
 
-                prev.onclick =
-                    () =>
+            requestAnimationFrame(() => {
+                document.body.offsetHeight;
+                requestAnimationFrame(() => {
+                    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+                });
+            });
+        }
 
-                        goToStep(
-                            index
-                        );
+        function renderQuiz(quizArray) {
+            const container = document.getElementById('quiz-dynamic-container');
+            container.innerHTML = '';
+            quizScore = {};
 
+            if (!quizArray.length) {
+                container.innerHTML = '<div class="quiz-box"><p>Nenhuma pergunta cadastrada para este treinamento.</p></div>';
+                const btnNext = document.getElementById('btn-next-quiz');
+                btnNext.disabled = false;
+                btnNext.classList.remove('btn-disabled');
+                document.getElementById('quiz-hint').textContent = 'Sem perguntas cadastradas. Você pode continuar.';
+                return;
             }
 
+            quizArray.forEach((q, index) => {
+                const qid = q.id ?? (index + 1);
+                quizScore[qid] = false;
 
-            if (next) {
+                const qBox = document.createElement('div');
+                qBox.className = 'quiz-box';
+                qBox.id = `q${qid}-box`;
 
-                next.onclick =
-                    () =>
+                const optionsHtml = (q.opcoes || []).map(opt => `
+                    <label class="quiz-option" onclick="checkAnswer(${JSON.stringify(qid)}, ${opt.correta === true}, this)">
+                        <input type="radio" name="q${escapeHtml(qid)}" value="${opt.correta ? 'correct' : 'wrong'}">
+                        <span class="custom-radio"></span>
+                        <span class="option-text">${escapeHtml(opt.texto || '')}</span>
+                    </label>
+                `).join('');
 
-                        goToStep(
-                            index + 2
-                        );
+                qBox.innerHTML = `
+                    <h3 class="quiz-question">${escapeHtml(q.pergunta || '')}</h3>
+                    <div class="quiz-options">${optionsHtml}</div>`;
 
+                container.appendChild(qBox);
+            });
+        }
+
+        function checkAnswer(questionNum, isCorrect, element) {
+            const parentBox = document.getElementById(`q${questionNum}-box`);
+            const options = parentBox.querySelectorAll('.quiz-option');
+
+            if (quizScore[questionNum]) return;
+
+            const oldFeedback = parentBox.querySelector('.quiz-feedback');
+            if (oldFeedback) oldFeedback.remove();
+
+            const radio = element.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+
+            if (isCorrect) {
+                options.forEach(opt => opt.classList.remove('option-wrong'));
+                element.classList.add('option-correct');
+                quizScore[questionNum] = true;
+                options.forEach(opt => opt.style.pointerEvents = 'none');
+
+                const feedback = document.createElement('div');
+                feedback.className = 'quiz-feedback';
+                feedback.innerHTML = '<span class="feedback-badge feedback-success"><i class="fa-solid fa-check"></i> Isso mesmo!</span>';
+                parentBox.appendChild(feedback);
+            } else {
+                element.classList.add('option-wrong');
+                quizScore[questionNum] = false;
+
+                const feedback = document.createElement('div');
+                feedback.className = 'quiz-feedback';
+                feedback.innerHTML = '<span class="feedback-badge feedback-wrong"><i class="fa-solid fa-circle-exclamation"></i> Ainda não. Tente outra opção!</span>';
+                parentBox.appendChild(feedback);
             }
 
+            const allCorrect = Object.values(quizScore).every(val => val === true);
+            if (allCorrect) {
+                const btnNext = document.getElementById('btn-next-quiz');
+                const hint = document.getElementById('quiz-hint');
+                btnNext.disabled = false;
+                btnNext.classList.remove('btn-disabled');
+                hint.textContent = 'Parabéns! Você acertou todas as perguntas.';
+                hint.style.color = '#15803d';
+                hint.style.fontWeight = '600';
+            }
         }
-    );
 
+        function checkRatingCompletion() {
+            const nomes = ['item1', 'item2', 'item3', 'item4', 'item5'];
+            const completo = nomes.every(nome => document.querySelector(`input[name="${nome}"]:checked`));
 
+            const btnNext = document.getElementById('btn-next-rating');
+            const hint = document.getElementById('rating-hint');
 
-    /*
-     * QUIZ precisa liberar botão
-     * antes de avançar.
-     */
-
-    const quizIndex =
-        orderedSteps.findIndex(
-            step =>
-                step.id ===
-                "step-quiz"
-        );
-
-
-    const btnQuiz =
-        document.getElementById(
-            "btn-next-quiz"
-        );
-
-
-    if (
-        btnQuiz &&
-        quizIndex >= 0
-    ) {
-
-        btnQuiz.onclick =
-            () =>
-
-                goToStep(
-                    quizIndex + 2
-                );
-
-    }
-
-
-
-    /*
-     * SATISFAÇÃO
-     */
-
-    const ratingIndex =
-        orderedSteps.findIndex(
-            step =>
-                step.id ===
-                "step-rating"
-        );
-
-
-    const btnRating =
-        document.getElementById(
-            "btn-next-rating"
-        );
-
-
-    if (
-        btnRating &&
-        ratingIndex >= 0
-    ) {
-
-        btnRating.onclick =
-            () =>
-
-                goToStep(
-                    ratingIndex + 2
-                );
-
-    }
-}
-
-
-
-/* =========================================================
-   TROCAR ETAPA
-   ========================================================= */
-
-function goToStep(
-    stepNumber
-) {
-
-
-    if (
-        stepNumber < 1 ||
-        stepNumber >
-        orderedSteps.length
-    ) {
-
-        return;
-    }
-
-
-    currentStep =
-        stepNumber;
-
-
-
-    orderedSteps.forEach(
-        step => {
-
-            step.style.setProperty(
-                "display",
-                "none",
-                "important"
-            );
-
+            if (completo) {
+                btnNext.disabled = false;
+                btnNext.classList.remove('btn-disabled');
+                hint.textContent = 'Obrigado por avaliar!';
+                hint.style.color = '#15803d';
+                hint.style.fontWeight = '600';
+            }
         }
-    );
 
+        function checkFormCompletion() {
+            const ids = ['user-name', 'user-matricula', 'user-profession', 'user-sector', 'user-shift'];
+            const completo = ids.every(id => document.getElementById(id)?.value.trim());
+            const btnSubmit = document.getElementById('btn-submit-presence');
+            if (!btnSubmit) return;
 
-
-    const atual =
-        orderedSteps[
-            stepNumber - 1
-        ];
-
-
-    atual.style.setProperty(
-        "display",
-        "flex",
-        "important"
-    );
-
-
-
-    /*
-     * INDICADOR
-     */
-
-    const titulo =
-        atual.dataset.stepTitle ||
-        "Treinamento";
-
-
-    document.getElementById(
-        "step-indicator"
-    ).textContent =
-
-        `Passo ${stepNumber} de ${orderedSteps.length} - ${titulo}`;
-
-
-
-    /*
-     * BARRAS
-     */
-
-    const bars =
-        document.querySelectorAll(
-            "#progress-bars .bar"
-        );
-
-
-    bars.forEach(
-        (
-            bar,
-            index
-        ) => {
-
-            bar.classList.toggle(
-
-                "active",
-
-                index <
-                stepNumber
-
-            );
-
+            btnSubmit.disabled = !completo;
+            btnSubmit.classList.toggle('btn-disabled', !completo);
         }
-    );
 
+        async function submitForm(event) {
+            event.preventDefault();
 
+            const btn = document.getElementById('btn-submit-presence');
+            if (btn) {
+                btn.disabled = true;
+                btn.classList.add('btn-disabled');
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
+            }
 
-    /*
-     * Scroll igual ao comportamento antigo
-     */
+            const avaliacaoConteudo = document.querySelector('input[name="item1"]:checked')?.value || '';
+            const avaliacaoMetodologia = document.querySelector('input[name="item2"]:checked')?.value || '';
+            const avaliacaoMaterial = document.querySelector('input[name="item3"]:checked')?.value || '';
+            const avaliacaoInstrutor = document.querySelector('input[name="item4"]:checked')?.value || '';
+            const avaliacaoAplicabilidade = document.querySelector('input[name="item5"]:checked')?.value || '';
 
-    requestAnimationFrame(
-        () => {
+            const notas = [
+                avaliacaoConteudo,
+                avaliacaoMetodologia,
+                avaliacaoMaterial,
+                avaliacaoInstrutor,
+                avaliacaoAplicabilidade
+            ].map(Number).filter(n => !isNaN(n));
 
+            const avaliacaoMedia = notas.length
+                ? (notas.reduce((a, b) => a + b, 0) / notas.length).toFixed(1)
+                : '';
 
-            document.body.offsetHeight;
+            const dados = {
+                meta: currentModulo?.meta || '',
+                treinamentoId: currentModulo?.id || '',
+                treinamentoTitulo: removerHtml(currentModulo?.tituloHtml || ''),
+                nome: document.getElementById('user-name')?.value.trim() || '',
+                matricula: document.getElementById('user-matricula')?.value.trim() || '',
+                profissao: document.getElementById('user-profession')?.value.trim() || '',
+                setor: document.getElementById('user-sector')?.value.trim() || '',
+                turno: document.getElementById('user-shift')?.value.trim() || '',
+                observacao: document.getElementById('user-feedback')?.value.trim() || '',
+                avaliacaoConteudo,
+                avaliacaoMetodologia,
+                avaliacaoMaterial,
+                avaliacaoInstrutor,
+                avaliacaoAplicabilidade,
+                avaliacaoMedia
+            };
 
+            try {
+                const resposta = await fetch('/api/presenca', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                });
 
-            requestAnimationFrame(
-                () => {
-
-
-                    window.scrollTo({
-
-                        top: 0,
-
-                        left: 0,
-
-                        behavior:
-                            "auto"
-
-                    });
-
+                const resultado = await resposta.json();
+                if (!resposta.ok) {
+                    throw new Error(resultado.message || 'Erro ao registrar presença.');
                 }
-            );
 
-        }
-    );
-}
-
-
-
-/* =========================================================
-   QUIZ
-   ========================================================= */
-
-function renderQuiz(
-    quizArray
-) {
-
-    const container =
-        document.getElementById(
-            "quiz-dynamic-container"
-        );
-
-
-    container.innerHTML =
-        "";
-
-
-    quizScore =
-        {};
-
-
-
-    if (
-        !quizArray.length
-    ) {
-
-
-        container.innerHTML = `
-
-            <div class="quiz-box">
-
-                <p>
-
-                    Este treinamento não possui
-                    perguntas cadastradas.
-
-                </p>
-
-            </div>
-
-        `;
-
-
-        const btn =
-            document.getElementById(
-                "btn-next-quiz"
-            );
-
-
-        btn.disabled =
-            false;
-
-
-        btn.classList.remove(
-            "btn-disabled"
-        );
-
-
-        document.getElementById(
-            "quiz-hint"
-        ).textContent =
-
-            "Nenhuma questão cadastrada. Você pode prosseguir.";
-
-
-        return;
-    }
-
-
-
-    quizArray.forEach(
-        (
-            q,
-            index
-        ) => {
-
-
-            const questionId =
-                q.id ??
-                index + 1;
-
-
-            quizScore[
-                questionId
-            ] =
-                false;
-
-
-
-            const qBox =
-                document.createElement(
-                    "div"
-                );
-
-
-            qBox.className =
-                "quiz-box";
-
-
-            qBox.id =
-                `q${questionId}-box`;
-
-
-
-            const optionsHtml =
-
-                (
-                    q.opcoes ||
-                    []
-                )
-
-                .map(
-                    (
-                        opt,
-                        optionIndex
-                    ) => `
-
-                        <label
-                            class="quiz-option"
-                            data-question="${escapeHtml(questionId)}"
-                            data-correct="${opt.correta ? "true" : "false"}"
-                        >
-
-                            <input
-                                type="radio"
-                                name="q${escapeHtml(questionId)}"
-                                value="${optionIndex}"
-                            >
-
-                            <span class="custom-radio"></span>
-
-                            <span class="option-text">
-
-                                ${escapeHtml(
-                                    opt.texto ||
-                                    ""
-                                )}
-
-                            </span>
-
-                        </label>
-
-                    `
-                )
-
-                .join("");
-
-
-
-            qBox.innerHTML = `
-
-                <h3 class="quiz-question">
-
-                    ${escapeHtml(
-                        q.pergunta ||
-                        ""
-                    )}
-
-                </h3>
-
-
-                <div class="quiz-options">
-
-                    ${optionsHtml}
-
-                </div>
-
-            `;
-
-
-            container.appendChild(
-                qBox
-            );
-
-
-            qBox
-                .querySelectorAll(
-                    ".quiz-option"
-                )
-                .forEach(
-                    option => {
-
-
-                        option.addEventListener(
-                            "click",
-                            () => {
-
-
-                                const correto =
-
-                                    option.dataset.correct ===
-                                    "true";
-
-
-                                checkAnswer(
-
-                                    questionId,
-
-                                    correto,
-
-                                    option
-
-                                );
-
-                            }
-                        );
-
-                    }
-                );
-
-        }
-    );
-}
-
-
-
-/* =========================================================
-   VERIFICAR RESPOSTA
-   ========================================================= */
-
-function checkAnswer(
-    questionNum,
-    isCorrect,
-    element
-) {
-
-
-    const parentBox =
-        document.getElementById(
-            `q${questionNum}-box`
-        );
-
-
-    const options =
-        parentBox.querySelectorAll(
-            ".quiz-option"
-        );
-
-
-    if (
-        quizScore[
-            questionNum
-        ]
-    ) {
-
-        return;
-    }
-
-
-
-    const oldFeedback =
-        parentBox.querySelector(
-            ".quiz-feedback"
-        );
-
-
-    if (oldFeedback) {
-
-        oldFeedback.remove();
-
-    }
-
-
-
-    const radio =
-        element.querySelector(
-            'input[type="radio"]'
-        );
-
-
-    if (radio) {
-
-        radio.checked =
-            true;
-
-    }
-
-
-
-    if (isCorrect) {
-
-
-        options.forEach(
-            option =>
-
-                option.classList.remove(
-                    "option-wrong"
-                )
-        );
-
-
-        element.classList.add(
-            "option-correct"
-        );
-
-
-        quizScore[
-            questionNum
-        ] =
-            true;
-
-
-        options.forEach(
-            option =>
-
-                option.style.pointerEvents =
-                    "none"
-        );
-
-
-
-        const feedback =
-            document.createElement(
-                "div"
-            );
-
-
-        feedback.className =
-            "quiz-feedback";
-
-
-        feedback.innerHTML = `
-
-            <span class="feedback-badge feedback-success">
-
-                <i class="fa-solid fa-check"></i>
-
-                Isso mesmo!
-
-            </span>
-
-        `;
-
-
-        parentBox.appendChild(
-            feedback
-        );
-
-
-    } else {
-
-
-        element.classList.add(
-            "option-wrong"
-        );
-
-
-        quizScore[
-            questionNum
-        ] =
-            false;
-
-
-
-        const feedback =
-            document.createElement(
-                "div"
-            );
-
-
-        feedback.className =
-            "quiz-feedback";
-
-
-        feedback.innerHTML = `
-
-            <span class="feedback-badge feedback-wrong">
-
-                <i class="fa-solid fa-circle-exclamation"></i>
-
-                Ainda não. Tente outra opção!
-
-            </span>
-
-        `;
-
-
-        parentBox.appendChild(
-            feedback
-        );
-
-    }
-
-
-
-    const allCorrect =
-
-        Object.values(
-            quizScore
-        )
-        .every(
-            value =>
-                value === true
-        );
-
-
-
-    if (allCorrect) {
-
-
-        const btn =
-            document.getElementById(
-                "btn-next-quiz"
-            );
-
-
-        const hint =
-            document.getElementById(
-                "quiz-hint"
-            );
-
-
-        btn.disabled =
-            false;
-
-
-        btn.classList.remove(
-            "btn-disabled"
-        );
-
-
-        hint.textContent =
-            "Parabéns! Você acertou todas as perguntas.";
-
-
-        hint.style.color =
-            "#15803d";
-
-
-        hint.style.fontWeight =
-            "600";
-
-    }
-}
-
-
-
-/* =========================================================
-   SATISFAÇÃO
-   ========================================================= */
-
-function checkRatingCompletion() {
-
-
-    const campos = [
-
-        "item1",
-        "item2",
-        "item3",
-        "item4",
-        "item5"
-
-    ];
-
-
-    const completo =
-        campos.every(
-            nome =>
-
-                document.querySelector(
-                    `input[name="${nome}"]:checked`
-                )
-        );
-
-
-    const btn =
-        document.getElementById(
-            "btn-next-rating"
-        );
-
-
-    const hint =
-        document.getElementById(
-            "rating-hint"
-        );
-
-
-
-    if (completo) {
-
-
-        btn.disabled =
-            false;
-
-
-        btn.classList.remove(
-            "btn-disabled"
-        );
-
-
-        hint.textContent =
-            "Obrigado por avaliar!";
-
-
-        hint.style.color =
-            "#15803d";
-
-
-        hint.style.fontWeight =
-            "600";
-
-
-    } else {
-
-
-        btn.disabled =
-            true;
-
-
-        btn.classList.add(
-            "btn-disabled"
-        );
-
-    }
-}
-
-
-
-/* =========================================================
-   FORM PRESENÇA
-   ========================================================= */
-
-function checkFormCompletion() {
-
-
-    const campos = [
-
-        "user-name",
-        "user-matricula",
-        "user-profession",
-        "user-sector",
-        "user-shift"
-
-    ];
-
-
-    const completo =
-        campos.every(
-            id =>
-
-                document
-                    .getElementById(
-                        id
-                    )
-                    ?.value
-                    .trim()
-        );
-
-
-    const btn =
-        document.getElementById(
-            "btn-submit-presence"
-        );
-
-
-    if (!btn) {
-        return;
-    }
-
-
-    btn.disabled =
-        !completo;
-
-
-    btn.classList.toggle(
-
-        "btn-disabled",
-
-        !completo
-
-    );
-}
-
-
-
-/* =========================================================
-   ENVIAR PRESENÇA
-   ========================================================= */
-
-async function submitForm(
-    event
-) {
-
-
-    event.preventDefault();
-
-
-    const btn =
-        document.getElementById(
-            "btn-submit-presence"
-        );
-
-
-    if (btn) {
-
-
-        btn.disabled =
-            true;
-
-
-        btn.classList.add(
-            "btn-disabled"
-        );
-
-
-        btn.innerHTML = `
-
-            <i class="fa-solid fa-spinner fa-spin"></i>
-
-            Registrando...
-
-        `;
-
-    }
-
-
-
-    const nome =
-        document.getElementById(
-            "user-name"
-        )?.value.trim() ||
-        "";
-
-
-    const matricula =
-        document.getElementById(
-            "user-matricula"
-        )?.value.trim() ||
-        "";
-
-
-    const profissao =
-        document.getElementById(
-            "user-profession"
-        )?.value.trim() ||
-        "";
-
-
-    const setor =
-        document.getElementById(
-            "user-sector"
-        )?.value.trim() ||
-        "";
-
-
-    const turno =
-        document.getElementById(
-            "user-shift"
-        )?.value.trim() ||
-        "";
-
-
-    const observacao =
-        document.getElementById(
-            "user-feedback"
-        )?.value.trim() ||
-        "";
-
-
-
-    const avaliacaoConteudo =
-        document.querySelector(
-            'input[name="item1"]:checked'
-        )?.value ||
-        "";
-
-
-    const avaliacaoMetodologia =
-        document.querySelector(
-            'input[name="item2"]:checked'
-        )?.value ||
-        "";
-
-
-    const avaliacaoMaterial =
-        document.querySelector(
-            'input[name="item3"]:checked'
-        )?.value ||
-        "";
-
-
-    const avaliacaoInstrutor =
-        document.querySelector(
-            'input[name="item4"]:checked'
-        )?.value ||
-        "";
-
-
-    const avaliacaoAplicabilidade =
-        document.querySelector(
-            'input[name="item5"]:checked'
-        )?.value ||
-        "";
-
-
-
-    const notasAvaliacao = [
-
-        avaliacaoConteudo,
-
-        avaliacaoMetodologia,
-
-        avaliacaoMaterial,
-
-        avaliacaoInstrutor,
-
-        avaliacaoAplicabilidade
-
-    ]
-
-    .map(
-        Number
-    )
-
-    .filter(
-        nota =>
-            !isNaN(
-                nota
-            )
-    );
-
-
-
-    let avaliacaoMedia =
-        "";
-
-
-    if (
-        notasAvaliacao.length
-    ) {
-
-
-        const soma =
-            notasAvaliacao.reduce(
-                (
-                    total,
-                    nota
-                ) =>
-
-                    total +
-                    nota,
-
-                0
-            );
-
-
-        avaliacaoMedia =
-
-            (
-                soma /
-                notasAvaliacao.length
-            )
-            .toFixed(
-                1
-            );
-
-    }
-
-
-
-    const dados = {
-
-
-        /*
-         * Mantemos a coluna META
-         * compatível com sua planilha.
-         */
-
-        meta:
-            currentModulo?.meta ||
-            "",
-
-
-        treinamentoId:
-            currentModulo?.id ||
-            "",
-
-
-        treinamentoTitulo:
-            removerHtmlSeguro(
-                currentModulo?.tituloHtml ||
-                ""
-            ),
-
-
-        nome,
-
-        matricula,
-
-        profissao,
-
-        setor,
-
-        turno,
-
-        observacao,
-
-        avaliacaoConteudo,
-
-        avaliacaoMetodologia,
-
-        avaliacaoMaterial,
-
-        avaliacaoInstrutor,
-
-        avaliacaoAplicabilidade,
-
-        avaliacaoMedia
-
-    };
-
-
-
-    console.log(
-        "Dados enviados:",
-        dados
-    );
-
-
-
-    try {
-
-
-        const resposta =
-            await fetch(
-                "/api/presenca",
-                {
-
-                    method:
-                        "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "application/json"
-
-                    },
-
-                    body:
-                        JSON.stringify(
-                            dados
-                        )
-
+                document.getElementById('success-modal').style.display = 'flex';
+            } catch (erro) {
+                console.error('Erro ao registrar:', erro);
+                alert(erro.message || 'Erro ao registrar presença. Tente novamente.');
+                if (btn) {
+                    btn.disabled = false;
+                    btn.classList.remove('btn-disabled');
                 }
-            );
-
-
-
-        const resultado =
-            await resposta.json();
-
-
-
-        if (!resposta.ok) {
-
-
-            console.error(
-                resultado
-            );
-
-
-            throw new Error(
-
-                resultado.message ||
-
-                "Erro ao registrar presença."
-
-            );
-
+            } finally {
+                if (btn) btn.innerHTML = 'Enviar e registrar presença';
+            }
         }
 
-
-
-        document.getElementById(
-            "success-modal"
-        ).style.display =
-            "flex";
-
-
-    } catch (erro) {
-
-
-        console.error(
-            erro
-        );
-
-
-        alert(
-
-            erro.message ||
-
-            "Erro ao registrar presença."
-
-        );
-
-
-        if (btn) {
-
-
-            btn.disabled =
-                false;
-
-
-            btn.classList.remove(
-                "btn-disabled"
-            );
-
+        function removerHtml(html) {
+            const div = document.createElement('div');
+            div.innerHTML = html || '';
+            return div.textContent || div.innerText || '';
         }
 
-
-    } finally {
-
-
-        if (btn) {
-
-            btn.innerHTML =
-                "Enviar e registrar presença";
-
+        function closeSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            if (modal) modal.style.display = 'none';
+            window.location.href = 'tela3.html';
         }
-
-    }
-}
-
-
-
-/* =========================================================
-   REMOVER HTML
-   ========================================================= */
-
-function removerHtmlSeguro(
-    html
-) {
-
-
-    const temp =
-        document.createElement(
-            "div"
-        );
-
-
-    temp.innerHTML =
-        html ||
-        "";
-
-
-    return (
-        temp.textContent ||
-        temp.innerText ||
-        ""
-    );
-}
-
-
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-function closeSuccessModal() {
-
-
-    const modal =
-        document.getElementById(
-            "success-modal"
-        );
-
-
-    if (modal) {
-
-        modal.style.display =
-            "none";
-
-    }
-
-
-    window.location.href =
-        "tela3.html";
-}
-
-
-</script>
-
-
+    </script>
 </body>
-
 </html>
