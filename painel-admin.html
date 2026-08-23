@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel Administrativo - QualiAcademy</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+</head>
+
+<body class="admin-body">
+
+    <!-- Proteção simples do painel -->
+    <script>
+        const adminLogado =
+            sessionStorage.getItem("qualiacademy_admin");
+
+        if (adminLogado !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="admin-header">
+
+        <div class="admin-header-container">
+
+            <div class="admin-brand">
+                <h1>
+                    Quali<span>Academy</span>
+                </h1>
+
+                <span class="admin-badge">
+                    Administração
+                </span>
+            </div>
+
+            <div class="admin-header-actions">
+
+                <button
+                    type="button"
+                    class="btn-header"
+                    onclick="irParaPortal()"
+                >
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Portal
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-sair"
+                    onclick="logoutAdmin()"
+                    title="Sair"
+                >
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= LAYOUT ================= -->
+
+    <div class="admin-layout">
+
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="admin-sidebar">
+
+            <nav class="sidebar-nav">
+
+                <button
+                    class="sidebar-item active"
+                    data-section="dashboard"
+                    onclick="abrirSecao('dashboard', this)"
+                >
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Visão geral</span>
+                </button>
+
+
+                <button
+                    class="sidebar-item"
+                    data-section="treinamentos"
+                    onclick="abrirSecao('treinamentos', this)"
+                >
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Treinamentos</span>
+                </button>
+
+
+                <button
+                    class="sidebar-item"
+                    data-section="presencas"
+                    onclick="abrirSecao('presencas', this)"
+                >
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    <span>Presenças</span>
+                </button>
+
+
+                <button
+                    class="sidebar-item"
+                    data-section="avaliacoes"
+                    onclick="abrirSecao('avaliacoes', this)"
+                >
+                    <i class="fa-solid fa-star"></i>
+                    <span>Avaliações</span>
+                </button>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- ================= CONTEÚDO ================= -->
+
+        <main class="admin-main">
+
+
+            <!-- =================================================
+                 DASHBOARD
+                 ================================================= -->
+
+            <section
+                id="section-dashboard"
+                class="admin-section active"
+            >
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="page-kicker">
+                            PAINEL ADMINISTRATIVO
+                        </span>
+
+                        <h2>Visão geral</h2>
+
+                        <p>
+                            Gerencie os treinamentos e acompanhe
+                            os registros da plataforma.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        onclick="novoTreinamento()"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Novo treinamento
+                    </button>
+
+                </div>
+
+
+                <!-- KPIs -->
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                        <div>
+                            <span class="stat-label">
+                                Treinamentos
+                            </span>
+
+                            <strong
+                                class="stat-value"
+                                id="stat-total"
+                            >
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div>
+                            <span class="stat-label">
+                                Publicados
+                            </span>
+
+                            <strong
+                                class="stat-value"
+                                id="stat-publicados"
+                            >
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </div>
+
+                        <div>
+                            <span class="stat-label">
+                                Rascunhos
+                            </span>
+
+                            <strong
+                                class="stat-value"
+                                id="stat-rascunhos"
+                            >
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+
+                        <div>
+                            <span class="stat-label">
+                                Participações
+                            </span>
+
+                            <strong
+                                class="stat-value"
+                                id="stat-presencas"
+                            >
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TREINAMENTOS RECENTES -->
+
+                <div class="admin-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>
+                                Treinamentos recentes
+                            </h3>
+
+                            <p>
+                                Últimos cursos cadastrados na plataforma.
+                            </p>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="btn-secondary"
+                            onclick="abrirTreinamentos()"
+                        >
+                            Ver todos
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="course-list"
+                        id="dashboard-course-list"
+                    >
+
+                        <!-- conteúdo carregado pelo JS -->
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 TREINAMENTOS
+                 ================================================= -->
+
+            <section
+                id="section-treinamentos"
+                class="admin-section"
+            >
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="page-kicker">
+                            CONTEÚDO
+                        </span>
+
+                        <h2>Treinamentos</h2>
+
+                        <p>
+                            Cadastre, edite e publique os cursos
+                            disponíveis no QualiAcademy.
+                        </p>
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn-primary"
+                        onclick="novoTreinamento()"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Novo treinamento
+                    </button>
+
+                </div>
+
+
+                <!-- FILTROS -->
+
+                <div class="filters-card">
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="search-training"
+                            placeholder="Buscar treinamento..."
+                            oninput="filtrarCursos()"
+                        >
+                    </div>
+
+
+                    <select
+                        id="filter-status"
+                        class="filter-select"
+                        onchange="filtrarCursos()"
+                    >
+                        <option value="">
+                            Todos os status
+                        </option>
+
+                        <option value="PUBLICADO">
+                            Publicado
+                        </option>
+
+                        <option value="RASCUNHO">
+                            Rascunho
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="course-list"
+                    id="training-list"
+                >
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PRESENÇAS
+                 ================================================= -->
+
+            <section
+                id="section-presencas"
+                class="admin-section"
+            >
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="page-kicker">
+                            REGISTROS
+                        </span>
+
+                        <h2>Presenças</h2>
+
+                        <p>
+                            Consulte os colaboradores que concluíram
+                            os treinamentos.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+
+                    <h3>
+                        Consulta de presenças
+                    </h3>
+
+                    <p>
+                        Essa área será ligada à aba
+                        PRESENCAS do Google Sheets.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 AVALIAÇÕES
+                 ================================================= -->
+
+            <section
+                id="section-avaliacoes"
+                class="admin-section"
+            >
+
+                <div class="page-header">
+
+                    <div>
+                        <span class="page-kicker">
+                            QUALIDADE
+                        </span>
+
+                        <h2>Avaliações</h2>
+
+                        <p>
+                            Acompanhe as notas de satisfação
+                            dos treinamentos.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+
+                    <h3>
+                        Indicadores de satisfação
+                    </h3>
+
+                    <p>
+                        Aqui entraremos depois com as médias
+                        coletadas no formulário final.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================= JS ================= -->
+
+    <script>
+
+        /*
+         * Mock temporário.
+         * Depois será substituído pelos dados do Google Sheets.
+         */
+
+        const cursosAdmin = [
+            {
+                id: "meta1",
+                meta: "META 1",
+                titulo: "Identificação Segura do Paciente",
+                categoria: "Segurança do Paciente",
+                status: "PUBLICADO"
+            },
+
+            {
+                id: "meta2",
+                meta: "META 2",
+                titulo: "Comunicação Efetiva",
+                categoria: "Segurança do Paciente",
+                status: "RASCUNHO"
+            },
+
+            {
+                id: "meta3",
+                meta: "META 3",
+                titulo: "Segurança na Prescrição",
+                categoria: "Segurança do Paciente",
+                status: "RASCUNHO"
+            }
+        ];
+
+
+        function renderCursos(lista, containerId) {
+
+            const container =
+                document.getElementById(containerId);
+
+            if (!container) return;
+
+
+            if (!lista.length) {
+
+                container.innerHTML = `
+                    <div class="empty-list">
+                        Nenhum treinamento encontrado.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            container.innerHTML =
+                lista.map(curso => {
+
+                    const publicado =
+                        curso.status === "PUBLICADO";
+
+                    return `
+                        <article class="course-admin-card">
+
+                            <div class="course-admin-main">
+
+                                <div class="course-admin-icon">
+                                    <i class="fa-solid fa-book-open"></i>
+                                </div>
+
+
+                                <div class="course-admin-info">
+
+                                    <div class="course-meta-row">
+
+                                        <span class="meta-chip">
+                                            ${curso.meta}
+                                        </span>
+
+                                        <span class="
+                                            status-chip
+                                            ${publicado
+                                                ? "status-published"
+                                                : "status-draft"
+                                            }
+                                        ">
+                                            ${publicado
+                                                ? "Publicado"
+                                                : "Rascunho"
+                                            }
+                                        </span>
+
+                                    </div>
+
+
+                                    <h3>
+                                        ${curso.titulo}
+                                    </h3>
+
+                                    <p>
+                                        ${curso.categoria}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="course-admin-actions">
+
+                                <button
+                                    type="button"
+                                    class="action-btn"
+                                    onclick="editarCurso('${curso.id}')"
+                                    title="Editar"
+                                >
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="action-btn"
+                                    onclick="alternarPublicacao('${curso.id}')"
+                                    title="${publicado
+                                        ? "Despublicar"
+                                        : "Publicar"
+                                    }"
+                                >
+                                    <i class="fa-solid ${
+                                        publicado
+                                            ? "fa-eye-slash"
+                                            : "fa-eye"
+                                    }"></i>
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    class="action-btn danger"
+                                    onclick="excluirCurso('${curso.id}')"
+                                    title="Excluir"
+                                >
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+
+                            </div>
+
+                        </article>
+                    `;
+
+                }).join("");
+        }
+
+
+        function atualizarDashboard() {
+
+            document.getElementById("stat-total").textContent =
+                cursosAdmin.length;
+
+            document.getElementById("stat-publicados").textContent =
+                cursosAdmin.filter(
+                    c => c.status === "PUBLICADO"
+                ).length;
+
+            document.getElementById("stat-rascunhos").textContent =
+                cursosAdmin.filter(
+                    c => c.status === "RASCUNHO"
+                ).length;
+
+
+            renderCursos(
+                cursosAdmin.slice(0, 3),
+                "dashboard-course-list"
+            );
+
+            renderCursos(
+                cursosAdmin,
+                "training-list"
+            );
+        }
+
+
+        function abrirSecao(secao, botao) {
+
+            document
+                .querySelectorAll(".admin-section")
+                .forEach(el => {
+                    el.classList.remove("active");
+                });
+
+
+            document
+                .querySelectorAll(".sidebar-item")
+                .forEach(el => {
+                    el.classList.remove("active");
+                });
+
+
+            document
+                .getElementById(
+                    `section-${secao}`
+                )
+                ?.classList.add("active");
+
+
+            botao?.classList.add("active");
+        }
+
+
+        function abrirTreinamentos() {
+
+            const btn =
+                document.querySelector(
+                    '[data-section="treinamentos"]'
+                );
+
+            abrirSecao(
+                "treinamentos",
+                btn
+            );
+        }
+
+
+        function filtrarCursos() {
+
+            const termo =
+                document
+                    .getElementById("search-training")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const status =
+                document
+                    .getElementById("filter-status")
+                    .value;
+
+
+            const filtrados =
+                cursosAdmin.filter(curso => {
+
+                    const texto =
+                        `${curso.meta} ${curso.titulo} ${curso.categoria}`
+                            .toLowerCase();
+
+
+                    const bateTexto =
+                        !termo ||
+                        texto.includes(termo);
+
+
+                    const bateStatus =
+                        !status ||
+                        curso.status === status;
+
+
+                    return (
+                        bateTexto &&
+                        bateStatus
+                    );
+                });
+
+
+            renderCursos(
+                filtrados,
+                "training-list"
+            );
+        }
+
+
+        function novoTreinamento() {
+
+            /*
+             * Depois apontaremos para:
+             * cadastro-treinamento.html
+             */
+
+            alert(
+                "Próximo passo: formulário de novo treinamento."
+            );
+        }
+
+
+        function editarCurso(id) {
+
+            console.log(
+                "Editar:",
+                id
+            );
+
+            alert(
+                `Editar treinamento ${id}`
+            );
+        }
+
+
+        function alternarPublicacao(id) {
+
+            const curso =
+                cursosAdmin.find(
+                    c => c.id === id
+                );
+
+
+            if (!curso) return;
+
+
+            curso.status =
+                curso.status === "PUBLICADO"
+                    ? "RASCUNHO"
+                    : "PUBLICADO";
+
+
+            atualizarDashboard();
+        }
+
+
+        function excluirCurso(id) {
+
+            const confirmar =
+                confirm(
+                    "Deseja realmente excluir este treinamento?"
+                );
+
+
+            if (!confirmar) return;
+
+
+            const indice =
+                cursosAdmin.findIndex(
+                    c => c.id === id
+                );
+
+
+            if (indice >= 0) {
+                cursosAdmin.splice(
+                    indice,
+                    1
+                );
+            }
+
+
+            atualizarDashboard();
+        }
+
+
+        function irParaPortal() {
+
+            window.location.href =
+                "tela3.html";
+        }
+
+
+        function logoutAdmin() {
+
+            sessionStorage.removeItem(
+                "qualiacademy_admin"
+            );
+
+            window.location.href =
+                "login.html";
+        }
+
+
+        atualizarDashboard();
+
+    </script>
+
+</body>
+</html>

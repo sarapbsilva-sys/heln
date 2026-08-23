@@ -58,9 +58,14 @@
     </div>
 </footer>
 <script
-
 <script>
+    /* =========================
+       CHAVES DE ACESSO
+       ========================= */
+
     const CHAVE_ACESSO = "HELN2026";
+    const CHAVE_ADMIN = "ADMIN2026";
+
 
     document
         .getElementById("loginForm")
@@ -74,17 +79,52 @@
                 .trim()
                 .toUpperCase();
 
+
+            /* =========================
+               ADMINISTRADOR
+               ========================= */
+
+            if (chaveDigitada === CHAVE_ADMIN) {
+
+                sessionStorage.setItem(
+                    "qualiacademy_admin",
+                    "true"
+                );
+
+                window.location.href = "painel-admin.html";
+
+                return;
+            }
+
+
+            /* =========================
+               USUÁRIO NORMAL
+               ========================= */
+
             if (chaveDigitada === CHAVE_ACESSO) {
+
+                sessionStorage.setItem(
+                    "qualiacademy_acesso",
+                    "true"
+                );
 
                 window.location.href = "tela3.html";
 
-            } else {
-
-                alert("Chave de integração inválida.");
-
-                document.getElementById("chave").value = "";
-                document.getElementById("chave").focus();
+                return;
             }
+
+
+            /* =========================
+               CHAVE INVÁLIDA
+               ========================= */
+
+            alert("Chave de integração inválida.");
+
+            const input = document.getElementById("chave");
+
+            input.value = "";
+            input.focus();
+
         });
 </script>
 </body>
