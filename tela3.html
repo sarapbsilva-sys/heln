@@ -1,286 +1,1222 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEP Academy</title>
-    <link rel="stylesheet" href="css/tela3.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>QualiAcademy</title>
+
+    <link
+        rel="stylesheet"
+        href="css/tela3.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
 </head>
+
+
 <body class="system-body">
 
-   <header class="lms-header-universal">
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header class="lms-header-universal">
+
     <div class="header-container">
+
+
         <div class="brand-box">
-            <h2 class="system-top-title">Quali<span>Academy</span></h2>
+
+            <h2 class="system-top-title">
+
+                Quali<span>Academy</span>
+
+            </h2>
+
         </div>
+
 
         <div class="header-actions">
-            <span class="nep-tag-badge">Hospital Estadual do Litoral Norte</span>
+
+            <span class="nep-tag-badge">
+
+                Hospital Estadual do Litoral Norte
+
+            </span>
+
         </div>
+
+
     </div>
+
 </header>
 
-    <main class="lms-content-universal">
 
-        <section class="hero-learning-banner">
-            <div class="hero-text-content">
-                <h1 class="hero-title">Bem-vindo(a) ao Portal de Treinamentos</h1>
-                <p class="hero-subtitle">Módulo em destaque: <strong>Identificação Segura do Paciente</strong>. Assista à videoaula, responda ao quiz e garanta seu registro de presença.</p>
-                
-                <a href="modulo.html?id=meta1" class="btn-continuar-hero">
-                    Iniciar Treinamento <i class="fa-solid fa-play"></i>
-                </a>
-            </div>
 
-            <div class="hero-img-box">
-                <img src="../imgs/logonep.png" alt="Personagens" class="hero-img">
-            </div>
-        </section>
+<!-- =====================================================
+     CONTEÚDO
+     ===================================================== -->
 
-      <div class="catalog-section-header">
-    <div class="section-title-wrapper">
-        <div class="section-accent-bar"></div>
-        <h2 class="section-heading">Catálogo de Treinamentos</h2>
-    </div>
-</div>
+<main class="lms-content-universal">
 
-        <div class="courses-list-coursera">
 
-    <!-- Meta 1 - Liberada -->
-    <article class="coursera-card featured-course">
-        <div class="coursera-card-thumb">
-            <img src="../imgs/bonecos.png" alt="Meta 1" class="coursera-img">
-            <span class="coursera-badge-overlay">Meta 1</span>
-        </div>
+    <!-- =================================================
+         HERO
+         O primeiro treinamento publicado vira destaque.
+         ================================================= -->
 
-        <div class="coursera-card-body">
-            <div class="course-institution">NEP • Hospital Estadual do Litoral Norte</div>
-            <h3 class="course-title-coursera">Identificação <span class="highlight-green">Segura</span> do Paciente</h3>
-            <p class="course-desc-coursera">
-                Aprenda passo a passo como identificar com segurança nossas crianças e os 3 identificadores obrigatórios do hospital.
+    <section
+        class="hero-learning-banner"
+        id="hero-learning-banner"
+    >
+
+
+        <div class="hero-text-content">
+
+
+            <h1 class="hero-title">
+
+                Bem-vindo(a) ao Portal de Treinamentos
+
+            </h1>
+
+
+            <p
+                class="hero-subtitle"
+                id="hero-subtitle"
+            >
+
+                Carregando treinamentos disponíveis...
+
             </p>
 
-            <div class="course-meta-tags">
-                <span><i class="fa-solid fa-layer-group"></i> 8 Passos</span>
-                <span><i class="fa-regular fa-clock"></i> 15 min</span>
-                <span class="tag-level"><i class="fa-solid fa-signal"></i> Obrigatório</span>
-            </div>
-        </div>
 
-        <div class="coursera-card-action">
-            <a href="modulo.html?id=meta1" class="btn-vamos-comecar">
-                Acessar Módulo <i class="fa-solid fa-chevron-right"></i>
+            <a
+                href="#"
+                id="hero-button"
+                class="btn-continuar-hero"
+                style="display:none;"
+            >
+
+                Iniciar Treinamento
+
+                <i class="fa-solid fa-play"></i>
+
             </a>
-        </div>
-    </article>
 
-    <!-- Meta 2 - Bloqueada -->
-<article class="coursera-card featured-course">        
-    <div class="coursera-card-thumb placeholder-bg">
-            <i class="fa-solid fa-comments thumb-icon"></i>
-            <span class="coursera-badge-overlay tag-disabled">Meta 2</span>
+
         </div>
 
-        <div class="coursera-card-body">
-            <div class="course-institution">NEP • Hospital Estadual do Litoral Norte</div>
-            <h3 class="course-title-coursera">Comunicação <span class="highlight-muted">Efetiva</span> na Saúde</h3>
-            <p class="course-desc-coursera">
-                Diretrizes e protocolos para passagem de plantão com SBAR, chamados verbais e transferência segura de informações.
-            </p>
 
-            <div class="course-meta-tags">
-                <span><i class="fa-solid fa-layer-group"></i> 8 Passos</span>
-                <span><i class="fa-regular fa-clock"></i> 12 min</span>
-                <span class="tag-level"><i class="fa-solid fa-lock"></i> Em breve</span>
-            </div>
+        <div class="hero-img-box">
+
+            <img
+                src="../imgs/logonep.png"
+                alt="Personagens"
+                class="hero-img"
+            >
+
         </div>
 
-        <div class="coursera-card-action">
-            <button type="button" class="btn-vamos-comecar btn-off" disabled>
-                Indisponível <i class="fa-solid fa-lock"></i>
-            </button>
-        </div>
-    </article>
 
-    <!-- Meta 3 - Bloqueada -->
-    <article class="coursera-card card-locked">
-        <div class="coursera-card-thumb placeholder-bg">
-            <i class="fa-solid fa-pills thumb-icon"></i>
-            <span class="coursera-badge-overlay tag-disabled">Meta 3</span>
-        </div>
+    </section>
 
-        <div class="coursera-card-body">
-            <div class="course-institution">NEP • Hospital Estadual do Litoral Norte</div>
-            <h3 class="course-title-coursera">Segurança no Uso de <span class="highlight-muted">Medicamentos</span></h3>
-            <p class="course-desc-coursera">
-                Boas práticas no manuseio, os 9 certos, drogas de alta vigilância e administração segura.
-            </p>
 
-            <div class="course-meta-tags">
-                <span><i class="fa-solid fa-layer-group"></i> 8 Passos</span>
-                <span><i class="fa-regular fa-clock"></i> 15 min</span>
-                <span class="tag-level"><i class="fa-solid fa-lock"></i> Em breve</span>
-            </div>
+
+    <!-- =================================================
+         CATÁLOGO
+         ================================================= -->
+
+    <div class="catalog-section-header">
+
+        <div class="section-title-wrapper">
+
+            <div class="section-accent-bar"></div>
+
+            <h2 class="section-heading">
+
+                Catálogo de Treinamentos
+
+            </h2>
+
         </div>
 
-        <div class="coursera-card-action">
-            <button type="button" class="btn-vamos-comecar btn-off" disabled>
-                Indisponível <i class="fa-solid fa-lock"></i>
-            </button>
-        </div>
-    </article>
-
-    <!-- Meta 4 - Bloqueada -->
-    <article class="coursera-card card-locked">
-        <div class="coursera-card-thumb placeholder-bg">
-            <i class="fa-solid fa-scalpel thumb-icon"></i>
-            <span class="coursera-badge-overlay tag-disabled">Meta 4</span>
-        </div>
-
-        <div class="coursera-card-body">
-            <div class="course-institution">NEP • Hospital Estadual do Litoral Norte</div>
-            <h3 class="course-title-coursera">Protocolo de <span class="highlight-muted">Cirurgia Segura</span></h3>
-            <p class="course-desc-coursera">
-                Checklist da OMS, etapas operacionais, marcação do local cirúrgico e pausa (Time-out).
-            </p>
-
-            <div class="course-meta-tags">
-                <span><i class="fa-solid fa-layer-group"></i> 8 Passos</span>
-                <span><i class="fa-regular fa-clock"></i> 12 min</span>
-                <span class="tag-level"><i class="fa-solid fa-lock"></i> Em breve</span>
-            </div>
-        </div>
-
-        <div class="coursera-card-action">
-            <button type="button" class="btn-vamos-comecar btn-off" disabled>
-                Indisponível <i class="fa-solid fa-lock"></i>
-            </button>
-        </div>
-    </article>
-
-    <!-- Meta 5 - Bloqueada -->
-    <article class="coursera-card card-locked">
-        <div class="coursera-card-thumb placeholder-bg">
-            <i class="fa-solid fa-hand-holding-droplet thumb-icon"></i>
-            <span class="coursera-badge-overlay tag-disabled">Meta 5</span>
-        </div>
-
-        <div class="coursera-card-body">
-            <div class="course-institution">NEP • Hospital Estadual do Litoral Norte</div>
-            <h3 class="course-title-coursera">Prevenção de <span class="highlight-muted">Infecções</span></h3>
-            <p class="course-desc-coursera">
-                Os 5 momentos de higienização das mãos, técnica correta e protocolos institucionais de segurança.
-            </p>
-
-            <div class="course-meta-tags">
-                <span><i class="fa-solid fa-layer-group"></i> 8 Passos</span>
-                <span><i class="fa-regular fa-clock"></i> 12 min</span>
-                <span class="tag-level"><i class="fa-solid fa-lock"></i> Em breve</span>
-            </div>
-        </div>
-
-        <div class="coursera-card-action">
-            <button type="button" class="btn-vamos-comecar btn-off" disabled>
-                Indisponível <i class="fa-solid fa-lock"></i>
-            </button>
-        </div>
-    </article>
-
-    <!-- Meta 6 - Bloqueada -->
-    <article class="coursera-card card-locked">
-        <div class="coursera-card-thumb placeholder-bg">
-            <i class="fa-solid fa-person-falling thumb-icon"></i>
-            <span class="coursera-badge-overlay tag-disabled">Meta 6</span>
-        </div>
-
-        <div class="coursera-card-body">
-            <div class="course-institution">NEP • Hospital Estadual do Litoral Norte</div>
-            <h3 class="course-title-coursera">Prevenção de <span class="highlight-muted">Quedas</span></h3>
-            <p class="course-desc-coursera">
-                Avaliação sistemática de risco pediátrico, barreiras físicas e monitoramento preventivo.
-            </p>
-
-            <div class="course-meta-tags">
-                <span><i class="fa-solid fa-layer-group"></i> 8 Passos</span>
-                <span><i class="fa-regular fa-clock"></i> 12 min</span>
-                <span class="tag-level"><i class="fa-solid fa-lock"></i> Em breve</span>
-            </div>
-        </div>
-
-        <div class="coursera-card-action">
-            <button type="button" class="btn-vamos-comecar btn-off" disabled>
-                Indisponível <i class="fa-solid fa-lock"></i>
-            </button>
-        </div>
-    </article>
-
-</div>
+    </div>
 
 
-            <div class="catalog-pagination" id="catalog-pagination" style="display: flex; justify-content: center; gap: 15px; margin-top: 30px;">
-    <button type="button" class="btn-voltar" onclick="changePage(-1)" id="btn-prev-page" disabled>← Anterior</button>
-    <span style="display: flex; align-items: center; font-size: 14px; color: #555; font-weight: 600;" id="page-indicator">Página 1 de 1</span>
-    <button type="button" class="btn-prossiga" onclick="changePage(1)" id="btn-next-page">Próxima →</button>
-</div>
-        </div>
-    </main>
 
-    <footer class="footer-bar">
-        <div class="footer-content">
-            <img src="../imgs/logos.png" alt="Logo do Rodapé" class="footer-logo">
-            <p>Departamento de Qualidade e Segurança do Paciente | HELN</p>
-        </div>
-    </footer>
-<script> 
+    <!-- =================================================
+         CARREGANDO
+         ================================================= -->
 
-    let currentPage = 1;
-const itemsPerPage = 4; // Quantos treinamentos aparecem por página
+    <div
+        id="catalog-loading"
+        style="
+            padding: 50px 20px;
+            text-align: center;
+            color: #647067;
+        "
+    >
 
-function setupPagination() {
-    const cards = document.querySelectorAll('.coursera-card');
-    const totalPages = Math.ceil(cards.length / itemsPerPage);
-    
-    // Esconde todos e mostra apenas os da página atual
-    cards.forEach((card, index) => {
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        if (index >= start && index < end) {
-            card.style.display = 'flex';
-        } else {
-            card.style.display = 'none';
+        <i
+            class="fa-solid fa-spinner fa-spin"
+            style="
+                font-size: 24px;
+                color: #558b2f;
+                margin-bottom: 12px;
+            "
+        ></i>
+
+        <p>
+            Carregando treinamentos...
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         LISTA DINÂMICA
+         ================================================= -->
+
+    <div
+        class="courses-list-coursera"
+        id="courses-list"
+    >
+    </div>
+
+
+
+    <!-- =================================================
+         PAGINAÇÃO
+         ================================================= -->
+
+    <div
+        class="catalog-pagination"
+        id="catalog-pagination"
+        style="
+            display:none;
+            justify-content:center;
+            gap:15px;
+            margin-top:30px;
+        "
+    >
+
+
+        <button
+            type="button"
+            class="btn-voltar"
+            onclick="changePage(-1)"
+            id="btn-prev-page"
+        >
+
+            ← Anterior
+
+        </button>
+
+
+        <span
+            id="page-indicator"
+            style="
+                display:flex;
+                align-items:center;
+                font-size:14px;
+                color:#555;
+                font-weight:600;
+            "
+        >
+
+            Página 1 de 1
+
+        </span>
+
+
+        <button
+            type="button"
+            class="btn-prossiga"
+            onclick="changePage(1)"
+            id="btn-next-page"
+        >
+
+            Próxima →
+
+        </button>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="footer-bar">
+
+    <div class="footer-content">
+
+        <img
+            src="../imgs/logos.png"
+            alt="Logo do Rodapé"
+            class="footer-logo"
+        >
+
+        <p>
+
+            Departamento de Qualidade e Segurança do Paciente | HELN
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       CONFIGURAÇÃO
+       ===================================================== */
+
+    const API_URL =
+        "/api/admin";
+
+
+    let treinamentosPublicados =
+        [];
+
+
+    let currentPage =
+        1;
+
+
+    const itemsPerPage =
+        4;
+
+
+
+    /* =====================================================
+       API
+       ===================================================== */
+
+    async function chamarAPI(
+        payload
+    ) {
+
+        const resposta =
+            await fetch(
+                API_URL,
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+
+                }
+            );
+
+
+        const texto =
+            await resposta.text();
+
+
+        let resultado;
+
+
+        try {
+
+            resultado =
+                JSON.parse(
+                    texto
+                );
+
+        } catch (erro) {
+
+            console.error(
+                "Resposta da API:",
+                texto
+            );
+
+
+            throw new Error(
+                "A API retornou uma resposta inválida."
+            );
+
         }
-    });
 
-    // Atualiza textos e estados dos botões
-    const indicator = document.getElementById('page-indicator');
-    if (indicator) indicator.textContent = `Página ${currentPage} de ${totalPages}`;
 
-    const btnPrev = document.getElementById('btn-prev-page');
-    const btnNext = document.getElementById('btn-next-page');
+        if (
+            !resposta.ok ||
+            resultado.success === false
+        ) {
 
-    if (btnPrev) btnPrev.disabled = currentPage === 1;
-    if (btnNext) btnNext.disabled = currentPage === totalPages;
-}
+            throw new Error(
 
-function changePage(direction) {
-    const cards = document.querySelectorAll('.coursera-card');
-    const totalPages = Math.ceil(cards.length / itemsPerPage);
-    
-    currentPage += direction;
-    if (currentPage < 1) currentPage = 1;
-    if (currentPage > totalPages) currentPage = totalPages;
+                resultado.message ||
 
-    setupPagination();
-    window.scrollTo({ top: 400, behavior: 'smooth' });
-}
+                "Não foi possível carregar os treinamentos."
 
-// Chame a função assim que a página carregar
-window.addEventListener('DOMContentLoaded', () => {
-    setupPagination();
-});
+            );
+        }
+
+
+        return resultado;
+    }
+
+
+
+    /* =====================================================
+       ESCAPE HTML
+       ===================================================== */
+
+    function escapeHtml(
+        valor
+    ) {
+
+        return String(
+            valor ?? ""
+        )
+        .replace(
+            /[&<>"']/g,
+
+            caractere => ({
+
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+
+            })[caractere]
+        );
+    }
+
+
+
+    /* =====================================================
+       REMOVER HTML
+       ===================================================== */
+
+    function removerHtml(
+        valor
+    ) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.innerHTML =
+            valor || "";
+
+
+        return (
+            div.textContent ||
+            div.innerText ||
+            ""
+        );
+    }
+
+
+
+    /* =====================================================
+       LIMITAR TEXTO
+       ===================================================== */
+
+    function limitarTexto(
+        texto,
+        limite = 170
+    ) {
+
+        texto =
+            removerHtml(
+                texto || ""
+            );
+
+
+        if (
+            texto.length <=
+            limite
+        ) {
+
+            return texto;
+
+        }
+
+
+        return (
+            texto.substring(
+                0,
+                limite
+            )
+            .trim()
+
+            + "..."
+        );
+    }
+
+
+
+    /* =====================================================
+       QUANTIDADE TOTAL DE PASSOS
+
+       Passos criados pelo admin
+       +
+       Videoaula
+       Quiz
+       Satisfação
+       Conclusão
+       ===================================================== */
+
+    function calcularTotalPassos(
+        curso
+    ) {
+
+        const passosConteudo =
+            Array.isArray(
+                curso.passos
+            )
+
+                ? curso.passos.length
+
+                : 0;
+
+
+        return (
+            passosConteudo +
+            4
+        );
+    }
+
+
+
+    /* =====================================================
+       IMAGEM
+       ===================================================== */
+
+    function obterImagemCurso(
+        curso
+    ) {
+
+        if (
+            curso.imagemHero &&
+            curso.imagemHero.trim()
+        ) {
+
+            return curso.imagemHero;
+
+        }
+
+
+        return "../imgs/bonecos.png";
+    }
+
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    function atualizarHero() {
+
+        const subtitle =
+            document.getElementById(
+                "hero-subtitle"
+            );
+
+
+        const button =
+            document.getElementById(
+                "hero-button"
+            );
+
+
+        if (
+            treinamentosPublicados.length ===
+            0
+        ) {
+
+            subtitle.innerHTML = `
+
+                Nenhum treinamento está disponível
+                no momento.
+
+            `;
+
+
+            button.style.display =
+                "none";
+
+
+            return;
+        }
+
+
+
+        /*
+         * Primeiro treinamento da lista
+         * vira destaque.
+         */
+
+        const destaque =
+            treinamentosPublicados[0];
+
+
+        const titulo =
+            removerHtml(
+                destaque.tituloHtml ||
+                ""
+            );
+
+
+        subtitle.innerHTML = `
+
+            Módulo em destaque:
+
+            <strong>
+                ${escapeHtml(titulo)}
+            </strong>.
+
+            Acesse o treinamento,
+            assista à videoaula,
+            responda ao quiz
+            e registre sua presença.
+
+        `;
+
+
+        button.href =
+
+            "modulo.html?id=" +
+
+            encodeURIComponent(
+                destaque.id
+            );
+
+
+        button.style.display =
+            "inline-flex";
+    }
+
+
+
+    /* =====================================================
+       CRIAR CARD
+       ===================================================== */
+
+    function criarCardCurso(
+        curso
+    ) {
+
+        const totalPassos =
+            calcularTotalPassos(
+                curso
+            );
+
+
+        const titulo =
+            curso.tituloHtml ||
+
+            escapeHtml(
+                curso.titulo ||
+                ""
+            );
+
+
+        const descricao =
+            limitarTexto(
+                curso.textoBoasVindas,
+                180
+            );
+
+
+        const imagem =
+            obterImagemCurso(
+                curso
+            );
+
+
+        return `
+
+            <article
+                class="coursera-card featured-course"
+            >
+
+
+                <!-- IMAGEM -->
+
+                <div class="coursera-card-thumb">
+
+
+                    <img
+                        src="${escapeHtml(imagem)}"
+                        alt="${escapeHtml(removerHtml(titulo))}"
+                        class="coursera-img"
+
+                        onerror="
+                            this.onerror=null;
+                            this.src='../imgs/bonecos.png';
+                        "
+                    >
+
+
+                    <span class="coursera-badge-overlay">
+
+                        ${escapeHtml(
+                            curso.meta ||
+                            curso.id ||
+                            "Treinamento"
+                        )}
+
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- CONTEÚDO -->
+
+                <div class="coursera-card-body">
+
+
+                    <div class="course-institution">
+
+                        QualiAcademy • Hospital Estadual do Litoral Norte
+
+                    </div>
+
+
+
+                    <h3 class="course-title-coursera">
+
+                        ${titulo}
+
+                    </h3>
+
+
+
+                    <p class="course-desc-coursera">
+
+                        ${escapeHtml(
+                            descricao
+                        )}
+
+                    </p>
+
+
+
+                    <div class="course-meta-tags">
+
+
+                        <span>
+
+                            <i class="fa-solid fa-layer-group"></i>
+
+                            ${totalPassos}
+                            ${
+                                totalPassos === 1
+                                    ? "Passo"
+                                    : "Passos"
+                            }
+
+                        </span>
+
+
+
+                        <span>
+
+                            <i class="fa-solid fa-folder-open"></i>
+
+                            ${escapeHtml(
+                                curso.categoria ||
+                                "Treinamento"
+                            )}
+
+                        </span>
+
+
+
+                        <span class="tag-level">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Disponível
+
+                        </span>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- BOTÃO -->
+
+                <div class="coursera-card-action">
+
+
+                    <a
+                        href="modulo.html?id=${encodeURIComponent(curso.id)}"
+                        class="btn-vamos-comecar"
+                    >
+
+                        Acessar Módulo
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </a>
+
+
+                </div>
+
+
+            </article>
+
+        `;
+    }
+
+
+
+    /* =====================================================
+       RENDER DA PÁGINA
+       ===================================================== */
+
+    function renderPagina() {
+
+        const container =
+            document.getElementById(
+                "courses-list"
+            );
+
+
+        const pagination =
+            document.getElementById(
+                "catalog-pagination"
+            );
+
+
+        if (
+            treinamentosPublicados.length ===
+            0
+        ) {
+
+            container.innerHTML = `
+
+                <div
+                    style="
+                        width:100%;
+                        min-height:220px;
+                        display:flex;
+                        flex-direction:column;
+                        align-items:center;
+                        justify-content:center;
+                        text-align:center;
+                        gap:10px;
+                        color:#748074;
+                    "
+                >
+
+                    <i
+                        class="fa-solid fa-book-open"
+                        style="
+                            font-size:32px;
+                            color:#87ad77;
+                        "
+                    ></i>
+
+                    <strong
+                        style="
+                            color:#42643d;
+                        "
+                    >
+
+                        Nenhum treinamento publicado
+
+                    </strong>
+
+                    <span
+                        style="
+                            font-size:12px;
+                        "
+                    >
+
+                        Assim que novos treinamentos forem publicados,
+                        eles aparecerão aqui.
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            pagination.style.display =
+                "none";
+
+
+            return;
+        }
+
+
+
+        const totalPages =
+            Math.ceil(
+
+                treinamentosPublicados.length /
+
+                itemsPerPage
+
+            );
+
+
+        /*
+         * Evita página fora do limite.
+         */
+
+        if (
+            currentPage >
+            totalPages
+        ) {
+
+            currentPage =
+                totalPages;
+        }
+
+
+        if (
+            currentPage <
+            1
+        ) {
+
+            currentPage =
+                1;
+        }
+
+
+
+        const inicio =
+
+            (
+                currentPage -
+                1
+            )
+
+            *
+
+            itemsPerPage;
+
+
+        const fim =
+
+            inicio +
+
+            itemsPerPage;
+
+
+
+        const pagina =
+            treinamentosPublicados.slice(
+
+                inicio,
+
+                fim
+
+            );
+
+
+
+        container.innerHTML =
+
+            pagina
+
+                .map(
+                    criarCardCurso
+                )
+
+                .join("");
+
+
+
+        /*
+         * Paginação
+         */
+
+        pagination.style.display =
+
+            totalPages > 1
+
+                ? "flex"
+
+                : "none";
+
+
+
+        document.getElementById(
+            "page-indicator"
+        ).textContent =
+
+            `Página ${currentPage} de ${totalPages}`;
+
+
+
+        document.getElementById(
+            "btn-prev-page"
+        ).disabled =
+
+            currentPage ===
+            1;
+
+
+
+        document.getElementById(
+            "btn-next-page"
+        ).disabled =
+
+            currentPage ===
+            totalPages;
+    }
+
+
+
+    /* =====================================================
+       MUDAR PÁGINA
+       ===================================================== */
+
+    function changePage(
+        direction
+    ) {
+
+        const totalPages =
+            Math.ceil(
+
+                treinamentosPublicados.length /
+
+                itemsPerPage
+
+            );
+
+
+        currentPage +=
+            direction;
+
+
+        if (
+            currentPage <
+            1
+        ) {
+
+            currentPage =
+                1;
+        }
+
+
+        if (
+            currentPage >
+            totalPages
+        ) {
+
+            currentPage =
+                totalPages;
+        }
+
+
+        renderPagina();
+
+
+        window.scrollTo({
+
+            top:
+                400,
+
+            behavior:
+                "smooth"
+
+        });
+    }
+
+
+
+    /* =====================================================
+       CARREGAR PUBLICADOS
+       ===================================================== */
+
+    async function carregarTreinamentosPublicados() {
+
+        const loading =
+            document.getElementById(
+                "catalog-loading"
+            );
+
+
+        try {
+
+
+            const resultado =
+                await chamarAPI({
+
+                    action:
+                        "listPublishedCourses"
+
+                });
+
+
+
+            treinamentosPublicados =
+
+                (
+                    resultado.courses ||
+                    []
+                )
+
+                /*
+                 * Segurança extra.
+                 * Mesmo o Apps Script já filtrando,
+                 * mostramos somente PUBLICADO.
+                 */
+
+                .filter(
+                    curso =>
+                        curso.status ===
+                        "PUBLICADO"
+                )
+
+                .sort(
+                    (
+                        a,
+                        b
+                    ) =>
+
+                        Number(
+                            a.ordem ||
+                            999
+                        )
+
+                        -
+
+                        Number(
+                            b.ordem ||
+                            999
+                        )
+                );
+
+
+
+            loading.style.display =
+                "none";
+
+
+            atualizarHero();
+
+
+            renderPagina();
+
+
+        } catch (erro) {
+
+
+            console.error(
+                "Erro ao carregar treinamentos:",
+                erro
+            );
+
+
+            loading.innerHTML = `
+
+                <div
+                    style="
+                        color:#b91c1c;
+                        padding:20px;
+                    "
+                >
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                    Não foi possível carregar os treinamentos.
+
+                    <br><br>
+
+                    <small>
+
+                        ${escapeHtml(
+                            erro.message
+                        )}
+
+                    </small>
+
+                </div>
+
+            `;
+
+
+            document.getElementById(
+                "hero-subtitle"
+            ).textContent =
+
+                "Não foi possível consultar os treinamentos disponíveis.";
+
+        }
+    }
+
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+       ===================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            carregarTreinamentosPublicados();
+
+        }
+    );
+
+
 </script>
-</body>
-</html>
 
+
+</body>
+
+</html>
