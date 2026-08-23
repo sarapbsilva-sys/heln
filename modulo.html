@@ -10,6 +10,55 @@
 </head>
 <body class="system-body">
 
+    <!-- =====================================================
+     LOADER DA PÁGINA
+     ===================================================== -->
+
+<div id="page-loader" class="page-loader">
+
+    <div class="page-loader-content">
+
+        <div class="loader-hero">
+
+            <img
+                src="../imgs/logonep.png"
+                alt="Logotipo NEP"
+                class="loader-hero-logo"
+            >
+
+            <h1>
+                Quali<span>Academy</span>
+            </h1>
+
+            <span class="loader-platform-subtitle">
+                Plataforma de Treinamentos
+            </span>
+
+        </div>
+
+
+        <div class="loader-status">
+
+            <div class="loader-text">
+                Preparando seu treinamento
+            </div>
+
+            <div class="loader-subtext">
+                Carregando conteúdo...
+            </div>
+
+            <div class="loader-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
     <!-- Topo da Tela do Sistema Padronizado (Padrão Tela 3) -->
    <header class="lms-header-universal">
     <div class="header-container">
@@ -301,7 +350,11 @@
                     id: moduloId
                 });
 
-                currentModulo = resultado.course;
+               currentModulo = resultado.course;
+
+renderModuloData(currentModulo);
+
+esconderPageLoader();
 
                 if (!currentModulo) {
                     throw new Error('Treinamento não encontrado.');
@@ -1044,6 +1097,27 @@ async function submitForm(event) {
     }
 
     return url;
+}
+
+
+function esconderPageLoader() {
+
+    const loader =
+        document.getElementById('page-loader');
+
+    if (!loader) {
+        return;
+    }
+
+    setTimeout(() => {
+
+        loader.classList.add('loader-hidden');
+
+        setTimeout(() => {
+            loader.remove();
+        }, 500);
+
+    }, 250);
 }
     </script>
 </body>
