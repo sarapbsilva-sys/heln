@@ -601,13 +601,16 @@
         const resultado = await resposta.json();
 
 
-        if (!resposta.ok) {
-            throw new Error(
-                resultado.message ||
-                "Não foi possível registrar a presença."
-            );
-        }
+       if (!resposta.ok) {
 
+    console.error("Resposta da API:", resultado);
+
+    throw new Error(
+        resultado.error ||
+        resultado.message ||
+        "Não foi possível registrar a presença."
+    );
+}
 
         /* =========================
            SUCESSO
