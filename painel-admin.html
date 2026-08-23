@@ -437,8 +437,8 @@
                  ================================================= -->
 
             <section
-                id="section-presencas"
-                class="admin-section"
+               id="section-presencas"
+    class="admin-section"
             >
 
                 <div class="page-header">
@@ -462,23 +462,128 @@
 
                 </div>
 
+<div class="filters-card">
 
-                <div class="empty-state">
+    <div class="search-box">
 
-                    <div class="empty-icon">
-                        <i class="fa-solid fa-clipboard-check"></i>
-                    </div>
+        <i class="fa-solid fa-magnifying-glass"></i>
 
-                    <h3>
-                        Consulta de presenças
-                    </h3>
+        <input
+            type="text"
+            id="search-presence"
+            placeholder="Buscar nome, matrícula, setor..."
+            oninput="filtrarPresencas()"
+        >
 
-                    <p>
-                        Essa área será ligada à aba
-                        PRESENCAS do Google Sheets.
-                    </p>
+    </div>
 
-                </div>
+
+    <select
+        id="filter-presence-course"
+        class="filter-select"
+        onchange="filtrarPresencas()"
+    >
+
+        <option value="">
+            Todos os treinamentos
+        </option>
+
+    </select>
+
+</div>
+
+
+<div class="presence-summary-grid">
+
+    <div class="presence-summary-card">
+
+        <span>
+            Registros
+        </span>
+
+        <strong id="presence-total">
+            0
+        </strong>
+
+    </div>
+
+
+    <div class="presence-summary-card">
+
+        <span>
+            Colaboradores
+        </span>
+
+        <strong id="presence-people">
+            0
+        </strong>
+
+    </div>
+
+
+    <div class="presence-summary-card">
+
+        <span>
+            Média de satisfação
+        </span>
+
+        <strong id="presence-rating">
+            -
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="admin-panel">
+
+    <div class="panel-header">
+
+        <div>
+
+            <h3>
+                Registros de conclusão
+            </h3>
+
+            <p id="presence-result-count">
+                0 registros
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-table-wrapper">
+
+        <table class="admin-data-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Data</th>
+                    <th>Treinamento</th>
+                    <th>Colaborador</th>
+                    <th>Matrícula</th>
+                    <th>Setor</th>
+                    <th>Turno</th>
+                    <th>Avaliação</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="presence-table-body">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
 
             </section>
@@ -594,6 +699,8 @@
 
 
         let cursosAdmin = [];
+        let presencasAdmin = [];
+let graficoAvaliacoes = null;
 
 
 
@@ -1635,8 +1742,489 @@ Essa ação não pode ser desfeita.`
            INICIA
            ========================================================= */
 
-        carregarCursos();
+async function iniciarPainel() {
 
+    await carregarCursos();
+
+    await carregarPresencas();
+
+}
+
+
+iniciarPainel();
+        async function carregarPresencas() {
+
+    try {
+
+        const resultado =
+            await chamarAdminAPI({
+                action: "listPresences"
+            });
+
+
+        presencasAdmin =
+            resultado.presences || [];
+
+
+        preencherFiltrosTreinamentos();
+
+        atualizarResumoPresencas();
+
+        filtrarPresencas();
+
+        atualizarAvaliacoes();
+
+
+        const statPresencas =
+            document.getElementById(
+                "stat-presencas"
+            );
+
+
+        if (statPresencas) {
+
+            statPresencas.textContent =
+                presencasAdmin.length;
+
+        }
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar presenças:",
+            erro
+        );
+
+
+        mostrarToast(
+            erro.message,
+            true
+        );
+
+    }
+}
+function preencherFiltrosTreinamentos() {
+
+    const selects = [
+
+        document.getElementById(
+            "filter-presence-course"
+        ),
+
+        document.getElementById(
+            "filter-rating-course"
+        )
+
+    ];
+
+
+    const cursos =
+        [...cursosAdmin]
+            .sort(
+                (a, b) =>
+                    removerHtml(
+                        a.tituloHtml || ""
+                    )
+                    .localeCompare(
+                        removerHtml(
+                            b.tituloHtml || ""
+                        )
+                    )
+            );
+
+
+    selects.forEach(
+        select => {
+
+            if (!select) return;
+
+
+            const valorAtual =
+                select.value;
+
+
+            select.innerHTML = `
+
+                <option value="">
+                    Todos os treinamentos
+                </option>
+
+                ${
+
+                    cursos.map(
+                        curso => `
+
+                            <option
+                                value="${escapeHtml(curso.id)}"
+                            >
+
+                                ${escapeHtml(
+                                    removerHtml(
+                                        curso.tituloHtml ||
+                                        curso.id
+                                    )
+                                )}
+
+                            </option>
+
+                        `
+                    ).join("")
+
+                }
+
+            `;
+
+
+            select.value =
+                valorAtual;
+
+        }
+    );
+}
+function filtrarPresencas() {
+
+    const termo =
+        (
+            document
+                .getElementById(
+                    "search-presence"
+                )
+                ?.value ||
+            ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    const curso =
+        document
+            .getElementById(
+                "filter-presence-course"
+            )
+            ?.value ||
+        "";
+
+
+    const lista =
+        presencasAdmin.filter(
+            item => {
+
+
+                const texto = `
+
+                    ${item.nome || ""}
+
+                    ${item.matricula || ""}
+
+                    ${item.profissao || ""}
+
+                    ${item.setor || ""}
+
+                    ${item.turno || ""}
+
+                    ${item.meta || ""}
+
+                    ${item.treinamentoTitulo || ""}
+
+                `
+                .toLowerCase();
+
+
+                const bateTexto =
+                    !termo ||
+                    texto.includes(termo);
+
+
+                const bateCurso =
+                    !curso ||
+                    item.treinamentoId ===
+                    curso;
+
+
+                return (
+                    bateTexto &&
+                    bateCurso
+                );
+
+            }
+        );
+
+
+    renderPresencas(lista);
+}
+
+function renderPresencas(lista) {
+
+    const tbody =
+        document.getElementById(
+            "presence-table-body"
+        );
+
+
+    if (!tbody) return;
+
+
+    document.getElementById(
+        "presence-result-count"
+    ).textContent =
+
+        `${lista.length} registro${
+            lista.length === 1
+                ? ""
+                : "s"
+        }`;
+
+
+    if (!lista.length) {
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="7"
+                    class="table-empty"
+                >
+
+                    Nenhum registro encontrado.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+    }
+
+
+    tbody.innerHTML =
+        lista.map(
+            item => {
+
+
+                const data =
+                    formatarDataHora(
+                        item.dataHora
+                    );
+
+
+                const treinamento =
+
+                    item.treinamentoTitulo ||
+
+                    item.meta ||
+
+                    item.treinamentoId ||
+
+                    "-";
+
+
+                const media =
+                    Number(
+                        item.avaliacaoMedia || 0
+                    );
+
+
+                return `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHtml(data)}
+                        </td>
+
+                        <td>
+                            <strong class="table-course">
+
+                                ${escapeHtml(
+                                    treinamento
+                                )}
+
+                            </strong>
+                        </td>
+
+                        <td>
+
+                            <strong>
+
+                                ${escapeHtml(
+                                    item.nome || "-"
+                                )}
+
+                            </strong>
+
+                            <small>
+
+                                ${escapeHtml(
+                                    item.profissao || ""
+                                )}
+
+                            </small>
+
+                        </td>
+
+                        <td>
+
+                            ${escapeHtml(
+                                item.matricula || "-"
+                            )}
+
+                        </td>
+
+                        <td>
+
+                            ${escapeHtml(
+                                item.setor || "-"
+                            )}
+
+                        </td>
+
+                        <td>
+
+                            ${escapeHtml(
+                                item.turno || "-"
+                            )}
+
+                        </td>
+
+                        <td>
+
+                            ${
+                                media
+                                    ? `
+
+                                        <span class="rating-score">
+
+                                            <i class="fa-solid fa-star"></i>
+
+                                            ${media.toFixed(1)}
+
+                                        </span>
+
+                                    `
+                                    : "-"
+                            }
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            }
+        )
+        .join("");
+}
+function formatarDataHora(valor) {
+
+    if (!valor) {
+        return "-";
+    }
+
+
+    const data =
+        new Date(valor);
+
+
+    if (
+        isNaN(
+            data.getTime()
+        )
+    ) {
+
+        return valor;
+    }
+
+
+    return data.toLocaleString(
+        "pt-BR",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+}
+function atualizarResumoPresencas() {
+
+    const total =
+        presencasAdmin.length;
+
+
+    const pessoas =
+        new Set(
+
+            presencasAdmin
+                .map(
+                    item =>
+                        String(
+                            item.matricula ||
+                            item.nome ||
+                            ""
+                        )
+                        .trim()
+                        .toUpperCase()
+                )
+                .filter(Boolean)
+
+        ).size;
+
+
+    const notas =
+        presencasAdmin
+
+            .map(
+                item =>
+                    Number(
+                        item.avaliacaoMedia
+                    )
+            )
+
+            .filter(
+                nota =>
+                    nota > 0
+            );
+
+
+    const media =
+        notas.length
+
+            ? (
+                notas.reduce(
+                    (a, b) =>
+                        a + b,
+                    0
+                ) /
+                notas.length
+            ).toFixed(1)
+
+            : "-";
+
+
+    document.getElementById(
+        "presence-total"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "presence-people"
+    ).textContent =
+        pessoas;
+
+
+    document.getElementById(
+        "presence-rating"
+    ).textContent =
+
+        media === "-"
+            ? "-"
+            : `${media}/5`;
+}
     </script>
 
 
