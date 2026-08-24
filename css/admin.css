@@ -648,3 +648,138 @@ body.system-body {
     }
 
 }
+/* =========================================================
+   AVALIAÇÕES
+   ========================================================= */
+
+.rating-stats-grid {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin: 18px 0 22px;
+}
+
+
+.rating-stat-card {
+    min-height: 94px;
+
+    padding: 18px 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #dfeadc;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 6px 20px rgba(35, 68, 30, 0.05);
+}
+
+
+.rating-stat-card span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #758078;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+.rating-stat-card strong {
+    display: block;
+
+    color: #2d5a27;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+.rating-stat-card small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #97a398;
+
+    font-size: 8px;
+}
+
+
+.rating-chart-panel {
+    margin-top: 0;
+}
+
+
+.rating-chart-container {
+    position: relative;
+
+    width: 100%;
+
+    height: 340px;
+}
+
+
+#section-avaliacoes .filters-card {
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+
+#section-avaliacoes .filter-select {
+    width: 260px;
+}
+
+
+@media (max-width: 700px) {
+
+    .rating-stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
+    .rating-stat-card {
+        min-height: 76px;
+
+        padding: 13px 15px;
+    }
+
+
+    .rating-stat-card strong {
+        font-size: 20px;
+    }
+
+
+    #section-avaliacoes .filters-card {
+        width: 100%;
+    }
+
+
+    #section-avaliacoes .filter-select {
+        width: 100%;
+    }
+
+
+    .rating-chart-container {
+        height: 300px;
+    }
+
+}
