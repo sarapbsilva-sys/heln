@@ -464,9 +464,8 @@
 
                 </div>
 
-<div class="filters-card presence-filters">
+<div class="filters-card">
 
-    <!-- BUSCA -->
     <div class="search-box">
 
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -474,28 +473,13 @@
         <input
             type="text"
             id="search-presence"
-            placeholder="Buscar nome ou matrícula..."
+            placeholder="Buscar nome, matrícula, setor..."
             oninput="filtrarPresencas()"
         >
 
     </div>
 
 
-    <!-- SETOR -->
-    <select
-        id="filter-presence-sector"
-        class="filter-select"
-        onchange="filtrarPresencas()"
-    >
-
-        <option value="">
-            Todos os setores
-        </option>
-
-    </select>
-
-
-    <!-- TREINAMENTO -->
     <select
         id="filter-presence-course"
         class="filter-select"
@@ -507,22 +491,6 @@
         </option>
 
     </select>
-
-
-    <!-- PDF -->
-    <button
-        type="button"
-        class="btn-export-pdf"
-        onclick="gerarRelatorioPresencasPDF()"
-    >
-
-        <i class="fa-solid fa-file-pdf"></i>
-
-        Gerar PDF
-
-    </button>
-
-</div>
 
 </div>
 
@@ -1871,15 +1839,15 @@ iniciarPainel();
         presencasAdmin =
             resultado.presences || [];
 
-preencherFiltrosTreinamentos();
 
-preencherFiltroSetores();
+       preencherFiltrosTreinamentos();
 
 atualizarResumoPresencas();
 
 filtrarPresencas();
 
 atualizarAvaliacoes();
+
 
         const statPresencas =
             document.getElementById(
@@ -2625,151 +2593,7 @@ function renderGraficoAvaliacao(
             }
         );
 }
-function preencherFiltroSetores() {
 
-    const select =
-        document.getElementById(
-            "filter-presence-sector"
-        );
-
-    if (!select) return;
-
-
-    const setores =
-        [
-            ...new Set(
-
-                presencasAdmin
-                    .map(
-                        item =>
-                            String(
-                                item.setor || ""
-                            ).trim()
-                    )
-                    .filter(Boolean)
-
-            )
-        ]
-        .sort(
-            (a, b) =>
-                a.localeCompare(
-                    b,
-                    "pt-BR"
-                )
-        );
-
-
-    select.innerHTML = `
-
-        <option value="">
-            Todos os setores
-        </option>
-
-        ${
-            setores
-                .map(
-                    setor => `
-
-                        <option
-                            value="${escapeHtml(setor)}"
-                        >
-                            ${escapeHtml(setor)}
-                        </option>
-
-                    `
-                )
-                .join("")
-        }
-
-    `;
-}
-function obterPresencasFiltradas() {
-
-    const termo =
-        (
-            document
-                .getElementById(
-                    "search-presence"
-                )
-                ?.value ||
-            ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    const setor =
-        document
-            .getElementById(
-                "filter-presence-sector"
-            )
-            ?.value ||
-        "";
-
-
-    const curso =
-        document
-            .getElementById(
-                "filter-presence-course"
-            )
-            ?.value ||
-        "";
-
-
-    return presencasAdmin.filter(
-        item => {
-
-            const texto = `
-
-                ${item.nome || ""}
-                ${item.matricula || ""}
-                ${item.profissao || ""}
-                ${item.setor || ""}
-                ${item.turno || ""}
-                ${item.meta || ""}
-                ${item.treinamentoTitulo || ""}
-                ${item.treinamentoId || ""}
-
-            `
-            .toLowerCase();
-
-
-            const bateTexto =
-                !termo ||
-                texto.includes(termo);
-
-
-            const bateSetor =
-                !setor ||
-                String(
-                    item.setor || ""
-                ).trim() === setor;
-
-
-            const bateCurso =
-                !curso ||
-                String(
-                    item.treinamentoId || ""
-                ).trim() === curso;
-
-
-            return (
-                bateTexto &&
-                bateSetor &&
-                bateCurso
-            );
-        }
-    );
-}
-
-
-function filtrarPresencas() {
-
-    const lista =
-        obterPresencasFiltradas();
-
-    renderPresencas(lista);
-}
     </script>
 
 
