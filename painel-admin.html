@@ -1860,7 +1860,6 @@ atualizarResumoPresencas();
 filtrarPresencas();
 
 atualizarAvaliacoes();
-preencherFiltroSetores();
 
 
         const statPresencas =
@@ -1969,7 +1968,8 @@ function preencherFiltrosTreinamentos() {
 
         }
     );
-}function obterPresencasFiltradas() {
+}
+function filtrarPresencas() {
 
     const termo =
         (
@@ -1984,15 +1984,6 @@ function preencherFiltrosTreinamentos() {
         .toLowerCase();
 
 
-    const setor =
-        document
-            .getElementById(
-                "filter-presence-sector"
-            )
-            ?.value ||
-        "";
-
-
     const curso =
         document
             .getElementById(
@@ -2002,58 +1993,54 @@ function preencherFiltrosTreinamentos() {
         "";
 
 
-    return presencasAdmin.filter(
-        item => {
+    const lista =
+        presencasAdmin.filter(
+            item => {
 
 
-            const texto = `
+                const texto = `
 
-                ${item.nome || ""}
+                    ${item.nome || ""}
 
-                ${item.matricula || ""}
+                    ${item.matricula || ""}
 
-                ${item.profissao || ""}
+                    ${item.profissao || ""}
 
-                ${item.setor || ""}
+                    ${item.setor || ""}
 
-                ${item.treinamentoTitulo || ""}
+                    ${item.turno || ""}
 
-                ${item.treinamentoId || ""}
+                    ${item.meta || ""}
 
-            `
-            .toLowerCase();
+                    ${item.treinamentoTitulo || ""}
+
+                `
+                .toLowerCase();
 
 
-            const bateTexto =
-                !termo ||
-                texto.includes(
-                    termo
+                const bateTexto =
+                    !termo ||
+                    texto.includes(termo);
+
+
+                const bateCurso =
+                    !curso ||
+                    item.treinamentoId ===
+                    curso;
+
+
+                return (
+                    bateTexto &&
+                    bateCurso
                 );
 
-
-            const bateSetor =
-                !setor ||
-                String(
-                    item.setor || ""
-                ) === setor;
+            }
+        );
 
 
-            const bateCurso =
-                !curso ||
-                String(
-                    item.treinamentoId || ""
-                ) === curso;
-
-
-            return (
-                bateTexto &&
-                bateSetor &&
-                bateCurso
-            );
-
-        }
-    );
+    renderPresencas(lista);
 }
+
 function renderPresencas(lista) {
 
     const tbody =
@@ -2619,72 +2606,7 @@ function renderGraficoAvaliacao(
             }
         );
 }
-function preencherFiltroSetores() {
 
-    const select =
-        document.getElementById(
-            "filter-presence-sector"
-        );
-
-    if (!select) return;
-
-
-    const valorAtual =
-        select.value;
-
-
-    const setores =
-        [
-            ...new Set(
-
-                presencasAdmin
-
-                    .map(
-                        item =>
-                            String(
-                                item.setor || ""
-                            ).trim()
-                    )
-
-                    .filter(Boolean)
-
-            )
-        ]
-        .sort(
-            (a, b) =>
-                a.localeCompare(
-                    b,
-                    "pt-BR"
-                )
-        );
-
-
-    select.innerHTML = `
-
-        <option value="">
-            Todos os setores
-        </option>
-
-        ${
-            setores.map(
-                setor => `
-
-                    <option
-                        value="${escapeHtml(setor)}"
-                    >
-                        ${escapeHtml(setor)}
-                    </option>
-
-                `
-            ).join("")
-        }
-
-    `;
-
-
-    select.value =
-        valorAtual;
-}
     </script>
 
 
