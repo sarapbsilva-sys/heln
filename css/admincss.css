@@ -4423,3 +4423,119 @@ input:checked
     }
 
 }
+/* =========================================================
+   FILTROS PRESENÇAS + PDF
+   ========================================================= */
+
+#section-presencas .presence-filters {
+    display: grid;
+
+    grid-template-columns:
+        minmax(220px, 1fr)
+        190px
+        240px
+        auto;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+#section-presencas .presence-filters .filter-select {
+    width: 100%;
+}
+
+
+.btn-export-pdf {
+    height: 44px;
+
+    padding:
+        0 16px;
+
+    border:
+        none;
+
+    border-radius:
+        11px;
+
+    background:
+        #558b2f;
+
+    color:
+        #ffffff;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        8px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    white-space:
+        nowrap;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 5px 14px
+        rgba(85, 139, 47, 0.18);
+
+    transition:
+        .2s;
+}
+
+
+.btn-export-pdf:hover {
+    background:
+        #467828;
+
+    transform:
+        translateY(-1px);
+}
+
+
+.btn-export-pdf i {
+    font-size:
+        13px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    #section-presencas .presence-filters {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    #section-presencas .presence-filters {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .btn-export-pdf {
+        width:
+            100%;
+    }
+
+}
