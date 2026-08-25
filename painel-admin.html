@@ -623,31 +623,102 @@
                 </div>
 
 
-                <div class="empty-state">
+               <div class="filters-card">
 
-                    <div class="empty-icon">
-                        <i class="fa-solid fa-star"></i>
-                    </div>
+    <select
+        id="filter-rating-course"
+        class="filter-select"
+        onchange="atualizarAvaliacoes()"
+    >
+        <option value="">
+            Todos os treinamentos
+        </option>
+    </select>
 
-                    <h3>
-                        Indicadores de satisfação
-                    </h3>
-
-                    <p>
-                        Aqui entraremos depois com as médias
-                        coletadas no formulário final.
-                    </p>
-
-                </div>
+</div>
 
 
-            </section>
+<div class="rating-stats-grid">
 
+    <div class="rating-stat-card">
 
-        </main>
+        <div class="summary-icon">
+            <i class="fa-solid fa-star"></i>
+        </div>
+
+        <div>
+            <span>Média geral</span>
+
+            <strong id="rating-general">
+                -
+            </strong>
+
+            <small>de 5,0</small>
+        </div>
 
     </div>
 
+
+    <div class="rating-stat-card">
+
+        <div class="summary-icon">
+            <i class="fa-solid fa-chart-simple"></i>
+        </div>
+
+        <div>
+            <span>Avaliações recebidas</span>
+
+            <strong id="rating-total">
+                0
+            </strong>
+        </div>
+
+    </div>
+
+
+    <div class="rating-stat-card">
+
+        <div class="summary-icon">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+        </div>
+
+        <div>
+            <span>Índice de satisfação</span>
+
+            <strong id="rating-percent">
+                -
+            </strong>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="admin-panel rating-chart-panel">
+
+    <div class="panel-header">
+
+        <div>
+            <h3>
+                Satisfação por critério
+            </h3>
+
+            <p>
+                Resultado consolidado das avaliações.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="rating-chart-container">
+
+        <canvas id="rating-chart"></canvas>
+
+    </div>
+
+</div>
 
 
     <!-- ================= TOAST ================= -->
@@ -1774,6 +1845,8 @@ atualizarResumoPresencas();
 
 filtrarPresencas();
 
+atualizarAvaliacoes();
+
 
         const statPresencas =
             document.getElementById(
@@ -2202,6 +2275,322 @@ function formatarDataHora(valor) {
         "presence-courses"
     ).textContent =
         treinamentos;
+}
+
+function atualizarAvaliacoes() {
+
+    const curso =
+        document
+            .getElementById(
+                "filter-rating-course"
+            )
+            ?.value || "";
+
+
+    const lista =
+        presencasAdmin.filter(
+            item =>
+
+                !curso ||
+
+                item.treinamentoId === curso
+        );
+
+
+    const criterios = [
+
+        {
+            nome: "Conteúdo",
+            campo: "avaliacaoConteudo"
+        },
+
+        {
+            nome: "Metodologia",
+            campo: "avaliacaoMetodologia"
+        },
+
+        {
+            nome: "Material",
+            campo: "avaliacaoMaterial"
+        },
+
+        {
+            nome: "Instrutor",
+            campo: "avaliacaoInstrutor"
+        },
+
+        {
+            nome: "Aplicabilidade",
+            campo: "avaliacaoAplicabilidade"
+        }
+
+    ];
+
+
+    const medias =
+        criterios.map(
+            criterio => {
+
+                const notas =
+                    lista
+
+                        .map(
+                            item =>
+                                Number(
+                                    item[
+                                        criterio.campo
+                                    ]
+                                )
+                        )
+
+                        .filter(
+                            nota =>
+                                nota > 0
+                        );
+
+
+                const media =
+                    notas.length
+
+                        ? notas.reduce(
+                            (a, b) =>
+                                a + b,
+                            0
+                        ) / notas.length
+
+                        : 0;
+
+
+                return {
+
+                    nome:
+                        criterio.nome,
+
+                    media:
+                        Number(
+                            media.toFixed(2)
+                        )
+
+                };
+
+            }
+        );
+
+
+    const mediasGerais =
+        lista
+
+            .map(
+                item =>
+                    Number(
+                        item.avaliacaoMedia
+                    )
+            )
+
+            .filter(
+                nota =>
+                    nota > 0
+            );
+
+
+    const mediaGeral =
+        mediasGerais.length
+
+            ? mediasGerais.reduce(
+                (a, b) =>
+                    a + b,
+                0
+            ) /
+            mediasGerais.length
+
+            : 0;
+
+
+    const percentual =
+        mediaGeral
+
+            ? Math.round(
+                (
+                    mediaGeral /
+                    5
+                ) *
+                100
+            )
+
+            : 0;
+
+
+    document.getElementById(
+        "rating-general"
+    ).textContent =
+
+        mediaGeral
+            ? mediaGeral.toFixed(1)
+            : "-";
+
+
+    document.getElementById(
+        "rating-total"
+    ).textContent =
+        mediasGerais.length;
+
+
+    document.getElementById(
+        "rating-percent"
+    ).textContent =
+
+        mediaGeral
+            ? `${percentual}%`
+            : "-";
+
+
+    renderGraficoAvaliacao(
+        medias
+    );
+}
+
+function renderGraficoAvaliacao(
+    medias
+) {
+
+    const canvas =
+        document.getElementById(
+            "rating-chart"
+        );
+
+
+    if (!canvas) {
+        return;
+    }
+
+
+    if (graficoAvaliacoes) {
+
+        graficoAvaliacoes.destroy();
+
+    }
+
+
+    graficoAvaliacoes =
+        new Chart(
+            canvas,
+            {
+
+                type:
+                    "bar",
+
+                data: {
+
+                    labels:
+                        medias.map(
+                            item =>
+                                item.nome
+                        ),
+
+                    datasets: [
+
+                        {
+
+                            label:
+                                "Média",
+
+                            data:
+                                medias.map(
+                                    item =>
+                                        item.media
+                                ),
+
+                            backgroundColor:
+                                "rgba(85, 139, 47, 0.75)",
+
+                            borderColor:
+                                "#558b2f",
+
+                            borderWidth:
+                                1,
+
+                            borderRadius:
+                                8,
+
+                            maxBarThickness:
+                                55
+
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive:
+                        true,
+
+                    maintainAspectRatio:
+                        false,
+
+
+                    plugins: {
+
+                        legend: {
+                            display:
+                                false
+                        },
+
+                        tooltip: {
+
+                            callbacks: {
+
+                                label:
+                                    contexto =>
+
+                                        ` ${Number(
+                                            contexto.raw
+                                        ).toFixed(1)} / 5`
+
+                            }
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        y: {
+
+                            beginAtZero:
+                                true,
+
+                            min:
+                                0,
+
+                            max:
+                                5,
+
+                            ticks: {
+                                stepSize:
+                                    1
+                            }
+
+                        },
+
+                        x: {
+
+                            grid: {
+                                display:
+                                    false
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
 }
     </script>
 
